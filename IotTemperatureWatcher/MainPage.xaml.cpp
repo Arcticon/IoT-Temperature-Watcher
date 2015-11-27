@@ -31,6 +31,7 @@ float floatBuffer = 0;
 long rc = 0;
 float tmpFloat1 = 0;
 float tmpFloat2 = 0;
+int slp = 75;
 
 void sendDataToServer(std::string str);
 std::string sliderValToString(int val);
@@ -428,10 +429,10 @@ void IotTemperatureWatcher::MainPage::updateAll() {
 		return;
 	}
 
-	textBlockTemperature1->Text = "Temperature 1: " + tmpFloat1;
-	textBlockTemperature2->Text = "Temperature 2: " + tmpFloat2;
+	textBlockTemperature1->Text = tmpFloat1 + "°C";
+	textBlockTemperature2->Text = tmpFloat2 + "°C";
 	std::string tmpStringV1 = getDataFromServerToString(_GETVENT1);
-	std::string tmpStringV2 = getDataFromServerToString(_GETVENT2);	
+	std::string tmpStringV2 = getDataFromServerToString(_GETVENT2);
 
 	if (tmpStringV1.compare(_V1ON) == 0) {
 		textBlockVentilator1->Text = _TEXTVENT1ON->ToString();
@@ -514,11 +515,13 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1(Platform::Obj
 {
 	sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1->Value));
 	textBlockUpperTemp1->Text = _TEXTUPPERTEMP1 + (int)sliderUpperTemp1->Value;
+	Sleep(slp);
 }
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1V2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
 	sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp1V2->Value));
 	textBlockUpperTemp1V2->Text = _TEXTUPPERTEMP1V2 + (int)sliderUpperTemp1V2->Value;
+	Sleep(slp);
 }
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
@@ -529,17 +532,20 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp1(Platform::Obj
 
 	sendDataToServer("slider2:" + sliderValToString((int)sliderLowerTemp1->Value));
 	textBlockLowerTemp1->Text = _TEXTLOWERTEMP1 + (int)sliderLowerTemp1->Value;
+	Sleep(slp);
 }
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
 	sendDataToServer("slider3:" + sliderValToString((int)sliderUpperTemp2->Value));
 	textBlockUpperTemp2->Text = _TEXTUPPERTEMP2 + (int)sliderUpperTemp2->Value;
+	Sleep(slp);
 }
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp2V1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
 	sendDataToServer("slider6:" + sliderValToString((int)sliderUpperTemp2V1->Value));
 	textBlockUpperTemp2V1->Text = _TEXTUPPERTEMP2V1 + (int)sliderUpperTemp2V1->Value;
+	Sleep(slp);
 }
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
@@ -550,6 +556,7 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp2(Platform::Obj
 
 	sendDataToServer("slider4:" + sliderValToString((int)sliderLowerTemp2->Value));
 	textBlockLowerTemp2->Text = _TEXTLOWERTEMP2 + (int)sliderLowerTemp2->Value;
+	Sleep(slp);
 }
 
 std::string sliderValToString(int val) {
@@ -584,6 +591,9 @@ void IotTemperatureWatcher::MainPage::checkedCheckBoxAdvancedCustomMode(Platform
 	sliderUpperTemp2V1->IsEnabled = true;
 	sliderLowerTemp2->IsEnabled = true;
 
+	toggleSwitchVentilator1->IsEnabled = false;
+	toggleSwitchVentilator2->IsEnabled = false;
+
 	textBlockUpperTemp1->Opacity = 1;
 	textBlockUpperTemp1V2->Opacity = 1;
 	textBlockLowerTemp1->Opacity = 1;
@@ -604,6 +614,9 @@ void IotTemperatureWatcher::MainPage::uncheckedCheckBoxAdvancedCustomMode(Platfo
 	sliderUpperTemp2->IsEnabled = false;
 	sliderUpperTemp2V1->IsEnabled = false;
 	sliderLowerTemp2->IsEnabled = false;
+
+	toggleSwitchVentilator1->IsEnabled = true;
+	toggleSwitchVentilator2->IsEnabled = true;
 
 	textBlockUpperTemp1->Opacity = 0.4;
 	textBlockUpperTemp1V2->Opacity = 0.4;
