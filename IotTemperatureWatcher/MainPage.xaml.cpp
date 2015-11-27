@@ -31,7 +31,7 @@ float floatBuffer = 0;
 long rc = 0;
 float tmpFloat1 = 0;
 float tmpFloat2 = 0;
-int slp = 75;
+int slp = 75; //75
 
 void sendDataToServer(std::string str);
 std::string sliderValToString(int val);
@@ -526,8 +526,16 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1V2(Platform::O
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
-	if (sliderLowerTemp1->Value >= sliderUpperTemp1->Value) {
-		sliderLowerTemp1->Value = sliderUpperTemp1->Value;
+	if (sliderUpperTemp1->Value > sliderUpperTemp1V2->Value) {
+		
+		if (sliderLowerTemp1->Value >= sliderUpperTemp1V2->Value) {
+			sliderLowerTemp1->Value = sliderUpperTemp1V2->Value;
+		}
+	}
+	else if (sliderUpperTemp1->Value < sliderUpperTemp1V2->Value) {
+		if (sliderLowerTemp1->Value >= sliderUpperTemp1->Value) {
+			sliderLowerTemp1->Value = sliderUpperTemp1->Value;
+		}
 	}
 
 	sendDataToServer("slider2:" + sliderValToString((int)sliderLowerTemp1->Value));
@@ -550,8 +558,15 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp2V1(Platform::O
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
-	if (sliderLowerTemp2->Value >= sliderUpperTemp2->Value) {
-		sliderLowerTemp2->Value = sliderUpperTemp2->Value;
+	if (sliderUpperTemp2->Value > sliderUpperTemp2V1->Value) {
+		if (sliderLowerTemp2->Value >= sliderUpperTemp2V1->Value) {
+			sliderLowerTemp2->Value = sliderUpperTemp2V1->Value;
+		}
+	}
+	else if (sliderUpperTemp2->Value < sliderUpperTemp2V1->Value) {
+		if (sliderLowerTemp2->Value >= sliderUpperTemp2->Value) {
+			sliderLowerTemp2->Value = sliderUpperTemp2->Value;
+		}
 	}
 
 	sendDataToServer("slider4:" + sliderValToString((int)sliderLowerTemp2->Value));
