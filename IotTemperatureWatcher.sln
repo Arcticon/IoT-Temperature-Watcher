@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IotTemperatureWatcher", "IotTemperatureWatcher\IotTemperatureWatcher.vcxproj", "{A5426F70-CE42-4A9F-8903-1B8A30ADAE86}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BackgroundTaskTest", "BackgroundTaskTest\BackgroundTaskTest.vcxproj", "{11A149CA-D130-4D55-BA68-9F4B6784D364}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -35,18 +33,6 @@ Global
 		{A5426F70-CE42-4A9F-8903-1B8A30ADAE86}.Release|x86.ActiveCfg = Release|Win32
 		{A5426F70-CE42-4A9F-8903-1B8A30ADAE86}.Release|x86.Build.0 = Release|Win32
 		{A5426F70-CE42-4A9F-8903-1B8A30ADAE86}.Release|x86.Deploy.0 = Release|Win32
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Debug|ARM.ActiveCfg = Debug|ARM
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Debug|ARM.Build.0 = Debug|ARM
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Debug|x64.ActiveCfg = Debug|x64
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Debug|x64.Build.0 = Debug|x64
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Debug|x86.ActiveCfg = Debug|Win32
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Debug|x86.Build.0 = Debug|Win32
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Release|ARM.ActiveCfg = Release|ARM
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Release|ARM.Build.0 = Release|ARM
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Release|x64.ActiveCfg = Release|x64
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Release|x64.Build.0 = Release|x64
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Release|x86.ActiveCfg = Release|Win32
-		{11A149CA-D130-4D55-BA68-9F4B6784D364}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

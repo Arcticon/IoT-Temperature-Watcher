@@ -19,6 +19,9 @@ namespace IotTemperatureWatcher
 
 	private:
 
+		int ticks = 10000000;
+		int ticksMultiplier = 1;
+
 		std::string _CUSTOMMODEOFF = "customModeOff";
 		std::string _CUSTOMMODEON = "customModeOn";
 		std::string _SETVENT1ON = "setVent1On";
@@ -40,6 +43,17 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEXTVENT1OFF = "Ventilator 1: OFF";
 		Platform::String^ _TEXTVENT2ON = "Ventilator 2: ON";
 		Platform::String^ _TEXTVENT2OFF = "Ventilator 2: OFF";
+		Platform::String^ _TEXTUPPERTEMP1 = "Upper Temperature1: ";
+		Platform::String^ _TEXTLOWERTEMP1 = "Lower Temperature1: ";
+		Platform::String^ _TEXTUPPERTEMP2 = "Upper Temperature2: ";
+		Platform::String^ _TEXTLOWERTEMP2 = "Lower Temperature2: ";
+		Platform::String^ _TEXTPOPUPERRORMESSAGE = "Error Message: ";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESOCKETFAILED = "SOCKET FAILED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGECONNECTFAILED = "CONNECT FAILED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESENDFAILED = "SEND FAILED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED = "SENSOR 1 NOT CONNECTED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED = "SENSOR 2 NOT CONNECTED!!";
+		//Platform::String^ _TEXTPOPUPERRORMESSAGE = "";
 
 		int _ETHERNETPORT = 50001;
 
@@ -48,7 +62,17 @@ namespace IotTemperatureWatcher
 		void toggledToggleSwitchVentilator2(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void updateAll();
 		void sendDataToServer(std::string str);
+		void sendDataToServerFromInt(int i);
 		float getDataFromServer(std::string str);
 		std::string getDataFromServerToString(std::string str);
+		void valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
+		void valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
+		void valueChangedSliderUpperTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
+		void valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
+		void openedPopupTest(Platform::Object^ sender, Platform::Object^ e);
+		void closedPopupTest(Platform::Object^ sender, Platform::Object^ e);
+		void clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

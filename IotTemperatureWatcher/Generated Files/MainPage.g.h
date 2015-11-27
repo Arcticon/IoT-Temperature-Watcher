@@ -11,8 +11,23 @@ namespace Windows {
     namespace UI {
         namespace Xaml {
             namespace Controls {
+                ref class CheckBox;
                 ref class TextBlock;
                 ref class ToggleSwitch;
+                ref class Slider;
+                ref class ProgressBar;
+                ref class Button;
+            }
+        }
+    }
+}
+namespace Windows {
+    namespace UI {
+        namespace Xaml {
+            namespace Controls {
+                namespace Primitives {
+                    ref class Popup;
+                }
             }
         }
     }
@@ -33,13 +48,27 @@ namespace IotTemperatureWatcher
     private:
         bool _contentLoaded;
     
+        private: ::Windows::UI::Xaml::Controls::CheckBox^ checkBoxAdvancedCustomMode;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator1;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator2;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperature1;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperature2;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockUpperTemp1;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockLowerTemp1;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockUpperTemp2;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockLowerTemp2;
         private: ::Windows::UI::Xaml::Controls::ToggleSwitch^ toggleSwitchCustomMode;
         private: ::Windows::UI::Xaml::Controls::ToggleSwitch^ toggleSwitchVentilator1;
         private: ::Windows::UI::Xaml::Controls::ToggleSwitch^ toggleSwitchVentilator2;
+        private: ::Windows::UI::Xaml::Controls::Slider^ sliderUpperTemp1;
+        private: ::Windows::UI::Xaml::Controls::Slider^ sliderLowerTemp1;
+        private: ::Windows::UI::Xaml::Controls::Slider^ sliderUpperTemp2;
+        private: ::Windows::UI::Xaml::Controls::Slider^ sliderLowerTemp2;
+        private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar1;
+        private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar2;
+        private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupTest;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockPopupErrorMessage;
+        private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupOk;
     };
 }
 

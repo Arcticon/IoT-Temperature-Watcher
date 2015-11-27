@@ -8,12 +8,47 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <CheckBox x:Name="checkBoxAdvancedCustomMode" Content="Advanced" HorizontalAlignment="Left" Margin="1447,105,0,0" Checked="checkedCheckBoxAdvancedCustomMode" Unchecked="uncheckedCheckBoxAdvancedCustomMode" VerticalAlignment="Top" IsEnabled="False" IsChecked="False"/>
+        
         <TextBlock x:Name="textBlockVentilator1" HorizontalAlignment="Left" Margin="150,100,0,0" TextWrapping="Wrap" Text="Ventilator 1 OFF" VerticalAlignment="Top" Width="200" Height="40"/>
         <TextBlock x:Name="textBlockVentilator2" HorizontalAlignment="Left" Margin="450,100,0,0" TextWrapping="Wrap" Text="Ventilator 2 OFF" VerticalAlignment="Top" Width="200" Height="40"/>
         <TextBlock x:Name="textBlockTemperature1" HorizontalAlignment="Left" Margin="150,200,0,0" TextWrapping="Wrap" Text="Temperature 1: " VerticalAlignment="Top" Width="200" Height="40"/>
         <TextBlock x:Name="textBlockTemperature2" HorizontalAlignment="Left" Margin="450,200,0,0" TextWrapping="Wrap" Text="Temperature 2: " VerticalAlignment="Top" Width="200" Height="40"/>
-        <ToggleSwitch x:Name="toggleSwitchCustomMode" Header="Custom Mode" HorizontalAlignment="Left" Margin="1376,80,0,0" VerticalAlignment="Top" Width="154" Toggled="toggledToggleSwitchCustomMode" OffContent="OFF" OnContent="ON"/>
+        <TextBlock x:Name="textBlockUpperTemp1" HorizontalAlignment="Left" Margin="1267,287,0,0" TextWrapping="Wrap" Text="Upper Temperature1: 38" VerticalAlignment="Top" Opacity="0.4" />
+        <TextBlock x:Name="textBlockLowerTemp1" HorizontalAlignment="Left" Margin="1267,357,0,0" TextWrapping="Wrap" Text="Lower Temperature1: 34" VerticalAlignment="Top" Opacity="0.4" />
+        <TextBlock x:Name="textBlockUpperTemp2" HorizontalAlignment="Left" Margin="1267,427,0,0" TextWrapping="Wrap" Text="Upper Temperature2: 32" VerticalAlignment="Top" Opacity="0.4" />
+        <TextBlock x:Name="textBlockLowerTemp2" HorizontalAlignment="Left" Margin="1267,497,0,0" TextWrapping="Wrap" Text="Lower Temperature2: 27" VerticalAlignment="Top" Opacity="0.4" />
+
+
+
+        <ToggleSwitch x:Name="toggleSwitchCustomMode" HorizontalAlignment="Left" Margin="1270,80,0,0" VerticalAlignment="Top" Width="154" Toggled="toggledToggleSwitchCustomMode" OffContent="OFF" OnContent="ON" Header="Custom Mode"/>
+
+
+        
+
+
         <ToggleSwitch x:Name="toggleSwitchVentilator1" Header="Ventilator 1" HorizontalAlignment="Left" Margin="1267,180,0,0" VerticalAlignment="Top" Width="154" Toggled="toggledToggleSwitchVentilator1" OffContent="OFF" OnContent="ON" IsEnabled="False"/>
         <ToggleSwitch x:Name="toggleSwitchVentilator2" Header="Ventilator 2" HorizontalAlignment="Left" Margin="1467,180,0,0" VerticalAlignment="Top" Width="154" Toggled="toggledToggleSwitchVentilator2" OffContent="OFF" OnContent="ON" IsEnabled="False"/>
+        <Slider x:Name="sliderUpperTemp1" HorizontalAlignment="Left" Margin="1467,280,0,0" VerticalAlignment="Top" Width="100" Value="38" ValueChanged="valueChangedSliderUpperTemp1" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible"/>
+        <Slider x:Name="sliderLowerTemp1" HorizontalAlignment="Left" Margin="1467,350,0,0" VerticalAlignment="Top" Width="100" Value="34" ValueChanged="valueChangedSliderLowerTemp1" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible"/>
+        <Slider x:Name="sliderUpperTemp2" HorizontalAlignment="Left" Margin="1467,420,0,0" VerticalAlignment="Top" Width="100" Value="32" ValueChanged="valueChangedSliderUpperTemp2" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible"/>
+        <Slider x:Name="sliderLowerTemp2" HorizontalAlignment="Left" Margin="1467,490,0,0" VerticalAlignment="Top" Width="100" Value="27" ValueChanged="valueChangedSliderLowerTemp2" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible"/>
+        <ProgressBar x:Name="progressBar1" HorizontalAlignment="Left" Height="80" Margin="146,506,0,0" VerticalAlignment="Top" Width="222" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" SmallChange="0.01">
+            <ProgressBar.RenderTransform>
+                <CompositeTransform Rotation="-90"/>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
+        <ProgressBar x:Name="progressBar2" HorizontalAlignment="Left" Height="80" Margin="322,506,0,0" VerticalAlignment="Top" Width="222" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" SmallChange="0.01">
+            <ProgressBar.RenderTransform>
+                <CompositeTransform Rotation="-90"/>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
+        <Popup x:Name="popupTest" Opened="openedPopupTest" Closed="closedPopupTest">
+            <Grid Background="#FF841439" Height="1050" Width="1680">
+                <TextBlock x:Name="textBlockPopupErrorMessage" HorizontalAlignment="Left" Margin="699,276,0,0" TextWrapping="Wrap" Text="Error Message: " VerticalAlignment="Top" Foreground="White"/>
+                <Button x:Name="buttonPopupOk" Background="White" Content="&#xE830;" Style="{ThemeResource NavigationBackButtonNormalStyle}" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top" Click="clickedButtonPopupOk" />
+            </Grid>
+        </Popup>
+
     </Grid>
 </Page>
