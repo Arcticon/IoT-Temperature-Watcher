@@ -57,9 +57,11 @@ MainPage::MainPage()
 		}));
 	}), period);
 
-	sliderUpperTemp1->Value = 38;
+	sliderUpperTemp1->Value = 34;
+	sliderUpperTemp1V2->Value = 38;
 	sliderLowerTemp1->Value = 30;
 	sliderUpperTemp2->Value = 30;
+	sliderUpperTemp2V1->Value = 32;
 	sliderLowerTemp2->Value = 27;
 	checkBoxAdvancedCustomMode->IsChecked = false;
 }
@@ -88,13 +90,17 @@ void IotTemperatureWatcher::MainPage::toggledToggleSwitchCustomMode(Platform::Ob
 	}
 	else {
 		textBlockUpperTemp1->Opacity = 0.4;
+		textBlockUpperTemp1V2->Opacity = 0.4;
 		textBlockLowerTemp1->Opacity = 0.4;
 		textBlockUpperTemp2->Opacity = 0.4;
+		textBlockUpperTemp2V1->Opacity = 0.4;
 		textBlockLowerTemp2->Opacity = 0.4;
 
 		sliderUpperTemp1->IsEnabled = false;
 		sliderLowerTemp1->IsEnabled = false;
+		sliderUpperTemp1V2->IsEnabled = false;
 		sliderUpperTemp2->IsEnabled = false;
+		sliderUpperTemp2V1->IsEnabled = false;
 		sliderLowerTemp2->IsEnabled = false;
 		checkBoxAdvancedCustomMode->IsEnabled = false;
 		checkBoxAdvancedCustomMode->IsChecked = false;
@@ -454,21 +460,21 @@ void IotTemperatureWatcher::MainPage::updateAll() {
 	else if (tmpFloat1 > 20 && tmpFloat1 <= 40) {
 		c1.A = 255;
 		c1.G = 255;
-		c1.R = ((((double)tmpFloat1) - 20) * 12.75);
+		c1.R = (tmpFloat1 - 20) * 12.75;
 		c1.B = 41;
 		//tbv1->Text = "Rot: " + c1.R + " | Grün: " + c1.G;
 	}
 	else if (tmpFloat1 > 40 && tmpFloat1 <= 80) {
 		c1.A = 255;
-		c1.G = 255 - ((((double)tmpFloat1 - 40) * 6.25));
+		c1.G = 255 - (tmpFloat1 - 40) * 6.25;
 		c1.R = 255;
 		c1.B = 41;
 	}
 	else if (tmpFloat1 > 40) {
 		c1.A = 255;
-		c1.R = 255 - ((((double)tmpFloat1 - 80) * 12.75));
-		c1.G = 41 - ((((double)tmpFloat1 - 80) * 2));
-		c1.B = 41 - ((((double)tmpFloat1 - 80) * 2));
+		c1.R = 255 - (tmpFloat1 - 80) * 12.75;
+		c1.G = 41 - (tmpFloat1 - 80) * 2;
+		c1.B = 41 - (tmpFloat1 - 80) * 2;
 	}
 	if (tmpFloat2 <= 20) {
 		c2.A = 255;
@@ -479,21 +485,20 @@ void IotTemperatureWatcher::MainPage::updateAll() {
 	else if (tmpFloat2 > 20 && tmpFloat2 <= 40) {
 		c2.A = 255;
 		c2.G = 255;
-		c2.R = ((((double)tmpFloat2) - 20) * 12.75);
+		c2.R = (tmpFloat2 - 20) * 12.75;
 		c2.B = 41;
-		//tbv2->Text = "Rot: " + c2.R + " | Grün: " + c2.G;
 	}
 	else if (tmpFloat2 > 40 && tmpFloat2 <= 80) {
 		c2.A = 255;
-		c2.G = 255 - ((((double)tmpFloat2 - 40) * 6.25));
+		c2.G = 255 - (tmpFloat2 - 40) * 6.25;
 		c2.R = 255;
 		c2.B = 41;
 	}
 	else if (tmpFloat2 > 80) {
 		c2.A = 255;
-		c2.G = 255 - ((((double)tmpFloat2 - 80) * 12.75));
-		c2.R = 41 - ((((double)tmpFloat2 - 80) * 2));
-		c2.B = 41 - ((((double)tmpFloat2 - 80) * 2));
+		c2.G = 255 - (tmpFloat2 - 80) * 12.75;
+		c2.R = 41 - (tmpFloat2 - 80) * 2;
+		c2.B = 41 - (tmpFloat2 - 80) * 2;
 	}
 
 	auto textForeground1 = ref new SolidColorBrush();
@@ -511,6 +516,11 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1(Platform::Obj
 	textBlockUpperTemp1->Text = _TEXTUPPERTEMP1 + (int)sliderUpperTemp1->Value;
 }
 
+void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1V2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
+	sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp1V2->Value));
+	textBlockUpperTemp1V2->Text = _TEXTUPPERTEMP1V2 + (int)sliderUpperTemp1V2->Value;
+}
+
 void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
 	if (sliderLowerTemp1->Value >= sliderUpperTemp1->Value) {
@@ -525,6 +535,11 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp2(Platform::Obj
 {
 	sendDataToServer("slider3:" + sliderValToString((int)sliderUpperTemp2->Value));
 	textBlockUpperTemp2->Text = _TEXTUPPERTEMP2 + (int)sliderUpperTemp2->Value;
+}
+
+void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp2V1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
+	sendDataToServer("slider6:" + sliderValToString((int)sliderUpperTemp2V1->Value));
+	textBlockUpperTemp2V1->Text = _TEXTUPPERTEMP2V1 + (int)sliderUpperTemp2V1->Value;
 }
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
@@ -563,13 +578,17 @@ void IotTemperatureWatcher::MainPage::checkedCheckBoxAdvancedCustomMode(Platform
 	sendDataToServer(_CUSTOMMODEOFF);
 
 	sliderUpperTemp1->IsEnabled = true;
+	sliderUpperTemp1V2->IsEnabled = true;
 	sliderLowerTemp1->IsEnabled = true;
 	sliderUpperTemp2->IsEnabled = true;
+	sliderUpperTemp2V1->IsEnabled = true;
 	sliderLowerTemp2->IsEnabled = true;
 
 	textBlockUpperTemp1->Opacity = 1;
+	textBlockUpperTemp1V2->Opacity = 1;
 	textBlockLowerTemp1->Opacity = 1;
 	textBlockUpperTemp2->Opacity = 1;
+	textBlockUpperTemp2V1->Opacity = 1;
 	textBlockLowerTemp2->Opacity = 1;
 
 	checkBoxAdvancedCustomMode->IsChecked = true;
@@ -581,12 +600,16 @@ void IotTemperatureWatcher::MainPage::uncheckedCheckBoxAdvancedCustomMode(Platfo
 
 	sliderUpperTemp1->IsEnabled = false;
 	sliderLowerTemp1->IsEnabled = false;
+	sliderUpperTemp1V2->IsEnabled = false;
 	sliderUpperTemp2->IsEnabled = false;
+	sliderUpperTemp2V1->IsEnabled = false;
 	sliderLowerTemp2->IsEnabled = false;
 
 	textBlockUpperTemp1->Opacity = 0.4;
+	textBlockUpperTemp1V2->Opacity = 0.4;
 	textBlockLowerTemp1->Opacity = 0.4;
 	textBlockUpperTemp2->Opacity = 0.4;
+	textBlockUpperTemp2V1->Opacity = 0.4;
 	textBlockLowerTemp2->Opacity = 0.4;
 
 	checkBoxAdvancedCustomMode->IsChecked = false;

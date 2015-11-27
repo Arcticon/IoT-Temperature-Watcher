@@ -44,8 +44,10 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEXTVENT2ON = "Ventilator 2: ON";
 		Platform::String^ _TEXTVENT2OFF = "Ventilator 2: OFF";
 		Platform::String^ _TEXTUPPERTEMP1 = "Upper Temperature1: ";
+		Platform::String^ _TEXTUPPERTEMP1V2 = "Upper Temperature1 Vent2: ";
 		Platform::String^ _TEXTLOWERTEMP1 = "Lower Temperature1: ";
 		Platform::String^ _TEXTUPPERTEMP2 = "Upper Temperature2: ";
+		Platform::String^ _TEXTUPPERTEMP2V1 = "Upper Temperature2 Vent1: ";
 		Platform::String^ _TEXTLOWERTEMP2 = "Lower Temperature2: ";
 		Platform::String^ _TEXTPOPUPERRORMESSAGE = "Error Message: ";
 		Platform::String^ _TEXTPOPUPERRORMESSAGESOCKETFAILED = "SOCKET FAILED!!";
@@ -66,8 +68,10 @@ namespace IotTemperatureWatcher
 		float getDataFromServer(std::string str);
 		std::string getDataFromServerToString(std::string str);
 		void valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
+		void valueChangedSliderUpperTemp1V2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
 		void valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
 		void valueChangedSliderUpperTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
+		void valueChangedSliderUpperTemp2V1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
 		void valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
 		void openedPopupTest(Platform::Object^ sender, Platform::Object^ e);
 		void closedPopupTest(Platform::Object^ sender, Platform::Object^ e);
