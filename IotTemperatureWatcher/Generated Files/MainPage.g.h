@@ -64,8 +64,8 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderLowerTemp1;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderUpperTemp2;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderLowerTemp2;
-        private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar1;
         private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar2;
+        private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar1;
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupTest;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockPopupErrorMessage;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupOk;

@@ -443,6 +443,66 @@ void IotTemperatureWatcher::MainPage::updateAll() {
 	progressBar1->Value = tmpFloat1;
 	progressBar2->Value = tmpFloat2;
 
+	Color c1;
+	Color c2;
+	if (tmpFloat1 <= 20) {
+		c1.A = 255;
+		c1.G = 255;
+		c1.R = 0;
+		c1.B = 41;
+	}
+	else if (tmpFloat1 > 20 && tmpFloat1 <= 40) {
+		c1.A = 255;
+		c1.G = 255;
+		c1.R = ((((double)tmpFloat1) - 20) * 12.75);
+		c1.B = 41;
+		//tbv1->Text = "Rot: " + c1.R + " | Grün: " + c1.G;
+	}
+	else if (tmpFloat1 > 40 && tmpFloat1 <= 80) {
+		c1.A = 255;
+		c1.G = 255 - ((((double)tmpFloat1 - 40) * 6.25));
+		c1.R = 255;
+		c1.B = 41;
+	}
+	else if (tmpFloat1 > 40) {
+		c1.A = 255;
+		c1.R = 255 - ((((double)tmpFloat1 - 80) * 12.75));
+		c1.G = 41 - ((((double)tmpFloat1 - 80) * 2));
+		c1.B = 41 - ((((double)tmpFloat1 - 80) * 2));
+	}
+	if (tmpFloat2 <= 20) {
+		c2.A = 255;
+		c2.G = 255;
+		c2.R = 0;
+		c2.B = 41;
+	}
+	else if (tmpFloat2 > 20 && tmpFloat2 <= 40) {
+		c2.A = 255;
+		c2.G = 255;
+		c2.R = ((((double)tmpFloat2) - 20) * 12.75);
+		c2.B = 41;
+		//tbv2->Text = "Rot: " + c2.R + " | Grün: " + c2.G;
+	}
+	else if (tmpFloat2 > 40 && tmpFloat2 <= 80) {
+		c2.A = 255;
+		c2.G = 255 - ((((double)tmpFloat2 - 40) * 6.25));
+		c2.R = 255;
+		c2.B = 41;
+	}
+	else if (tmpFloat2 > 80) {
+		c2.A = 255;
+		c2.G = 255 - ((((double)tmpFloat2 - 80) * 12.75));
+		c2.R = 41 - ((((double)tmpFloat2 - 80) * 2));
+		c2.B = 41 - ((((double)tmpFloat2 - 80) * 2));
+	}
+
+	auto textForeground1 = ref new SolidColorBrush();
+	auto textForeground2 = ref new SolidColorBrush();
+	textForeground1->Color = c1;
+	textForeground2->Color = c2;
+	progressBar1->Foreground = textForeground1;
+	progressBar2->Foreground = textForeground2;
+
 }
 
 void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)

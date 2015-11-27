@@ -127,12 +127,12 @@ void ::IotTemperatureWatcher::MainPage::Connect(int __connectionId, ::Platform::
             break;
         case 17:
             {
-                this->progressBar1 = safe_cast<::Windows::UI::Xaml::Controls::ProgressBar^>(__target);
+                this->progressBar2 = safe_cast<::Windows::UI::Xaml::Controls::ProgressBar^>(__target);
             }
             break;
         case 18:
             {
-                this->progressBar2 = safe_cast<::Windows::UI::Xaml::Controls::ProgressBar^>(__target);
+                this->progressBar1 = safe_cast<::Windows::UI::Xaml::Controls::ProgressBar^>(__target);
             }
             break;
         case 19:
