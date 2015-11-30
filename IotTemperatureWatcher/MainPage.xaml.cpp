@@ -1,8 +1,6 @@
 ﻿#pragma comment(lib,"Ws2_32.lib")
 #pragma comment(lib, "user32.lib")
 
-//
-
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <Winsock2.h>
 #include <Windows.h>
@@ -36,11 +34,7 @@ float floatBuffer = 0;
 long rc = 0;
 float tmpFloat1 = 0;
 float tmpFloat2 = 0;
-<<<<<<< HEAD
-int slp = 75;
-=======
 int slp = 75; //75
->>>>>>> d4f468930433e49cfaf866f9e8cb36b851cdc11b
 
 void sendDataToServer(std::string str);
 std::string sliderValToString(int val);
@@ -471,10 +465,7 @@ void IotTemperatureWatcher::MainPage::updateAll() {
 
 	textBlockTemperature1->Text = tmpFloat1 + "°C";
 	textBlockTemperature2->Text = tmpFloat2 + "°C";
-<<<<<<< HEAD
 	
-=======
->>>>>>> d4f468930433e49cfaf866f9e8cb36b851cdc11b
 	std::string tmpStringV1 = getDataFromServerToString(_GETVENT1);
 	std::string tmpStringV2 = getDataFromServerToString(_GETVENT2);
 

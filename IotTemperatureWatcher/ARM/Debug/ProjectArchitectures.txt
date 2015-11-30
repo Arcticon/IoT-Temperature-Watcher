@@ -1,0 +1,1 @@
+C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\IotTemperatureWatcher.vcxproj;arm
