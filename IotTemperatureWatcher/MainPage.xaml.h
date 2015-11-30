@@ -78,5 +78,6 @@ namespace IotTemperatureWatcher
 		void clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void changeXaml(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

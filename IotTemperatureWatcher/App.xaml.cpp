@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "MainPage.xaml.h"
+#include "MainView.xaml.h"
 
 using namespace IotTemperatureWatcher;
 

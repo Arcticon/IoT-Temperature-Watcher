@@ -11,6 +11,8 @@ namespace Windows {
     namespace UI {
         namespace Xaml {
             namespace Controls {
+                ref class Frame;
+                ref class Grid;
                 ref class CheckBox;
                 ref class TextBlock;
                 ref class ToggleSwitch;
@@ -48,6 +50,8 @@ namespace IotTemperatureWatcher
     private:
         bool _contentLoaded;
     
+        private: ::Windows::UI::Xaml::Controls::Frame^ FrameMainPage;
+        private: ::Windows::UI::Xaml::Controls::Grid^ GridMainPage;
         private: ::Windows::UI::Xaml::Controls::CheckBox^ checkBoxAdvancedCustomMode;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator1;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator2;
@@ -73,6 +77,7 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar2;
         private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar1;
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupTest;
+        private: ::Windows::UI::Xaml::Controls::Button^ button;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockPopupErrorMessage;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupOk;
     };

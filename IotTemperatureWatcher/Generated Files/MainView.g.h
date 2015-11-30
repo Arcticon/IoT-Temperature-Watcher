@@ -11,6 +11,8 @@ namespace Windows {
     namespace UI {
         namespace Xaml {
             namespace Controls {
+                ref class Frame;
+                ref class Grid;
                 ref class Image;
             }
         }
@@ -32,6 +34,8 @@ namespace IotTemperatureWatcher
     private:
         bool _contentLoaded;
     
+        private: ::Windows::UI::Xaml::Controls::Frame^ FrameMainView;
+        private: ::Windows::UI::Xaml::Controls::Grid^ GridMainView;
         private: ::Windows::UI::Xaml::Controls::Image^ image1;
     };
 }

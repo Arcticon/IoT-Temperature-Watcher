@@ -9,9 +9,11 @@
 #include "pch.h"
 #include "XamlTypeInfo.g.h"
 
+#include "MainView.xaml.h"
 #include "App.xaml.h"
 #include "MainPage.xaml.h"
 #include "XamlBindingInfo.g.hpp"
+#include "MainView.g.hpp"
 #include "App.g.hpp"
 #include "MainPage.g.hpp"
 
@@ -80,6 +82,20 @@
             []() -> ::Platform::Object^ 
             {
                 return ref new ::IotTemperatureWatcher::MainPage(); 
+            };
+        userType->SetIsLocalType();
+        return userType;
+    }
+
+
+    if (typeName == L"IotTemperatureWatcher.MainView")
+    {
+        ::XamlTypeInfo::InfoProvider::XamlUserType^ userType = ref new ::XamlTypeInfo::InfoProvider::XamlUserType(this, L"IotTemperatureWatcher.MainView", this->GetXamlTypeByName(L"Windows.UI.Xaml.Controls.Page"));
+        userType->KindOfType = ::Windows::UI::Xaml::Interop::TypeKind::Custom;
+        userType->Activator =
+            []() -> ::Platform::Object^ 
+            {
+                return ref new ::IotTemperatureWatcher::MainView(); 
             };
         userType->SetIsLocalType();
         return userType;

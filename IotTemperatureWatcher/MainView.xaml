@@ -6,10 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="#FF336ea5">
-        <Image x:Name="image1" Margin="1021,594,774,416" Source="Assets/Rack_Frontend_Dell.png">
-            
-        </Image>
-    </Grid>
+    <Frame x:Name="FrameMainView">
+        <Grid x:Name="GridMainView" Background="#FF336ea5">
+            <Image x:Name="image1" Margin="105,310,1276,468" Source="Assets/Rack.png"/>
+        </Grid>
+    </Frame>
 </Page>

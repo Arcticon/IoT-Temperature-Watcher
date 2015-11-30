@@ -10,6 +10,7 @@
 
 #include "pch.h"
 #include "MainPage.xaml.h"
+#include "MainView.xaml.h"
 #include "MainPage.g.h"
 #include "wtypes.h"
 
@@ -689,4 +690,9 @@ void IotTemperatureWatcher::MainPage::uncheckedCheckBoxAdvancedCustomMode(Platfo
 	textBlockLowerTemp2->Opacity = 0.4;
 
 	checkBoxAdvancedCustomMode->IsChecked = false;
+}
+
+void IotTemperatureWatcher::MainPage::changeXaml(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	//this->FrameMainPage->Navigate(IotTemperatureWatcher::MainView::);
 }
