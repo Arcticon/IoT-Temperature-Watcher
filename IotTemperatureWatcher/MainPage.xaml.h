@@ -28,7 +28,7 @@ namespace IotTemperatureWatcher
 		std::string _SETVENT1OFF = "setVent1Off";
 		std::string _SETVENT2ON = "setVent2On";
 		std::string _SETVENT2OFF = "setVent2Off";
-		std::string _ARDUINOIP = "10.0.0.17";
+		std::string _ARDUINOIP = "10.11.90.231";
 		std::string _V1ON = "v1on";
 		std::string _V1OFF = "v1off";
 		std::string _V2ON = "v2on";

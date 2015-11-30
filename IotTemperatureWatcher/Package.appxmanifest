@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="IotTemperatureWatcher" Publisher="CN=admin" Version="1.0.0.0" />
+  <Identity Name="IotTemperatureWatcher" Publisher="CN=admin" Version="1.0.2.0" />
   <mp:PhoneIdentity PhoneProductId="a8c820f9-529a-49a0-8aea-6b51d5684f35" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>IotTemperatureWatcher</DisplayName>
-    <PublisherDisplayName>admin</PublisherDisplayName>
+    <PublisherDisplayName>Maxi</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

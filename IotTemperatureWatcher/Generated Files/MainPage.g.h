@@ -52,6 +52,8 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator1;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator2;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperature1;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperatureText1;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperatureText2;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperature2;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockUpperTemp1;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockUpperTemp1V2;
