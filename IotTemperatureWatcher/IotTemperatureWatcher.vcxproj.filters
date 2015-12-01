@@ -62,5 +62,6 @@
   <ItemGroup>
     <Page Include="MainPage.xaml" />
     <Page Include="MainView.xaml" />
+    <Page Include="BlankPage.xaml" />
   </ItemGroup>
 </Project>

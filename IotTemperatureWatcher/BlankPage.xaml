@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="IotTemperatureWatcher.BlankPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:IotTemperatureWatcher"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Frame x:Name="FrameBlank">
+        <Grid x:Name="GridMainView" Background="#FF336ea5">
+            <Image x:Name="image1" Margin="105,310,1276,468" Source="Assets/Rack.png"/>
+        </Grid>
+    </Frame>
+</Page>
