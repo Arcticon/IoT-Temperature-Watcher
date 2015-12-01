@@ -1,41 +1,19 @@
-﻿Der Buildvorgang wurde am 11/30/2015 7:11:07 AM gestartet.
-Projekt "C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\IotTemperatureWatcher.vcxproj" auf Knoten "2", Build Ziel(e).
-ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_arm\CL.exe /c /I"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\\" /I"Generated Files\\" /IARM\Debug\ /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_APP /D __WRL_NO_DEFAULT_LIB__ /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc140.pdb" /Gd /TP /wd4453 /wd28204 /FU"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib\store\references\platform.winmd" /FU"C:\Program Files (x86)\Windows Kits\10\References\Windows.Foundation.FoundationContract\1.0.0.0\Windows.Foundation.FoundationContract.winmd" /FU"C:\Program Files (x86)\Windows Kits\10\References\Windows.Foundation.UniversalApiContract\1.0.0.0\Windows.Foundation.UniversalApiContract.winmd" /FU"C:\Program Files (x86)\Windows Kits\10\References\Windows.Networking.Connectivity.WwanContract\1.0.0.0\Windows.Networking.Connectivity.WwanContract.winmd" /analyze- /errorReport:prompt /bigobj MainPage.xaml.cpp
-  MainPage.xaml.cpp
-MainPage.xaml.cpp(372): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
-MainPage.xaml.cpp(500): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(506): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(512): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(513): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(514): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(525): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(530): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(536): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(537): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
-MainPage.xaml.cpp(538): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
-CreateWinMD:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe" /INCREMENTAL /NOLOGO Ws2_32.lib user32.lib WindowsApp.lib /MANIFEST:NO /DEBUG:FASTLINK /PDB:"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /APPCONTAINER /WINMD:ONLY /WINMDFILE:"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM ARM\Debug\App.xaml.obj
-  ARM\Debug\MainPage.xaml.obj
-  ARM\Debug\MainView.xaml.obj
-  ARM\Debug\pch.obj
-  ARM\Debug\XamlTypeInfo.Impl.g.obj
-CompileXamlGeneratedFiles:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_arm\CL.exe /c /I"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\\" /I"Generated Files\\" /IARM\Debug\ /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_APP /D __WRL_NO_DEFAULT_LIB__ /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc140.pdb" /Gd /TP /wd4453 /wd28204 /FU"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib\store\references\platform.winmd" /FU"C:\Program Files (x86)\Windows Kits\10\References\Windows.Foundation.FoundationContract\1.0.0.0\Windows.Foundation.FoundationContract.winmd" /FU"C:\Program Files (x86)\Windows Kits\10\References\Windows.Foundation.UniversalApiContract\1.0.0.0\Windows.Foundation.UniversalApiContract.winmd" /FU"C:\Program Files (x86)\Windows Kits\10\References\Windows.Networking.Connectivity.WwanContract\1.0.0.0\Windows.Networking.Connectivity.WwanContract.winmd" /analyze- /errorReport:prompt /bigobj "Generated Files\XamlTypeInfo.g.cpp"
+﻿  pch.cpp
+  App.xaml.cpp
+  Config.xaml.cpp
+  Overview.xaml.cpp
+  XamlTypeInfo.Impl.g.cpp
+Config.xaml.cpp(370): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
+Config.xaml.cpp(498): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(504): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(510): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(511): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(512): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(523): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(528): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(534): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(535): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(536): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
   XamlTypeInfo.g.cpp
-Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe" /INCREMENTAL /NOLOGO Ws2_32.lib user32.lib WindowsApp.lib /MANIFEST:NO /DEBUG:FASTLINK /PDB:"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /APPCONTAINER /WINMD:NO /WINMDFILE:"C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM ARM\Debug\App.xaml.obj
-  ARM\Debug\MainPage.xaml.obj
-  ARM\Debug\MainView.xaml.obj
-  ARM\Debug\pch.obj
-  ARM\Debug\XamlTypeInfo.Impl.g.obj
-  ARM\Debug\XamlTypeInfo.g.obj
-  LINK : C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
-_GenerateProjectPriFileCore:
-  C:\Program Files (x86)\Windows Kits\10\bin\x64\MakePri.exe New -ProjectRoot "C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\\" -ConfigXml ARM\Debug\priconfig.xml -OutputFile "C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\resources.pri" -IndexName IotTemperatureWatcher -Verbose -Overwrite  
-Die Erstellung von Projekt "C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\IotTemperatureWatcher.vcxproj" ist abgeschlossen (Build Ziel(e)).
-
-Der Buildvorgang wurde erfolgreich ausgeführt.
-
-Verstrichene Zeit 00:00:19.25
+  IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb (Partial PDB)

@@ -14,15 +14,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />
-    <ClCompile Include="MainPage.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="MainView.xaml.cpp" />
+    <ClCompile Include="BlankPage.xaml.cpp" />
+    <ClCompile Include="Config.xaml.cpp" />
+    <ClCompile Include="Overview.xaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h" />
-    <ClInclude Include="MainPage.xaml.h" />
-    <ClInclude Include="MainView.xaml.h" />
+    <ClInclude Include="BlankPage.xaml.h" />
+    <ClInclude Include="Config.xaml.h" />
+    <ClInclude Include="Overview.xaml.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
@@ -60,8 +62,7 @@
     <None Include="IotTemperatureWatcher_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainPage.xaml" />
-    <Page Include="MainView.xaml" />
-    <Page Include="BlankPage.xaml" />
+    <Page Include="Config.xaml" />
+    <Page Include="Overview.xaml" />
   </ItemGroup>
 </Project>

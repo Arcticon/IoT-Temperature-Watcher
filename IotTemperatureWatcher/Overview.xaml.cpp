@@ -9,9 +9,8 @@
 #include <time.h>
 
 #include "pch.h"
-#include "MainPage.xaml.h"
-#include "MainView.xaml.h"
-#include "MainPage.g.h"
+#include "Overview.xaml.h"
+#include "Config.xaml.h"
 #include "wtypes.h"
 
 using namespace IotTemperatureWatcher;
@@ -30,8 +29,16 @@ using namespace Windows::UI::Xaml::Navigation;
 using namespace Windows::System::Threading;
 
 
-MainView::MainView()
+Overview::Overview()
 {
 	InitializeComponent();
 
+}
+
+void IotTemperatureWatcher::Overview::clickButtonBack(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (this->Frame != nullptr)
+	{
+		this->Frame->Navigate(Config::typeid);
+	}
 }

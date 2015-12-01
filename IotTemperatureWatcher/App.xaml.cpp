@@ -4,8 +4,8 @@
 //
 
 #include "pch.h"
-#include "MainPage.xaml.h"
-#include "MainView.xaml.h"
+#include "Config.xaml.h"
+#include "Overview.xaml.h"
 
 using namespace IotTemperatureWatcher;
 
@@ -74,7 +74,7 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
 			// Wenn der Navigationsstapel nicht wiederhergestellt wird, zur ersten Seite navigieren
 			// und die neue Seite konfigurieren, indem die erforderlichen Informationen als Navigationsparameter
 			// übergeben werden
-			rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+			rootFrame->Navigate(TypeName(Overview::typeid), e->Arguments);
 		}
 		// Den Frame im aktuellen Fenster platzieren
 		Window::Current->Content = rootFrame;
@@ -88,7 +88,7 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
 			// Wenn der Navigationsstapel nicht wiederhergestellt wird, zur ersten Seite navigieren
 			// und die neue Seite konfigurieren, indem die erforderlichen Informationen als Navigationsparameter
 			// übergeben werden
-			rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+			rootFrame->Navigate(TypeName(Overview::typeid), e->Arguments);
 		}
 		// Sicherstellen, dass das aktuelle Fenster aktiv ist
 		Window::Current->Activate();

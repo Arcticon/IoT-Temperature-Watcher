@@ -1,21 +1,21 @@
 ﻿//
-// MainPage.xaml.h
-// Deklaration der MainPage-Klasse
+// Config.xaml.h
+// Deklaration der Config-Klasse
 //
 
 #pragma once
 
-#include "MainPage.g.h"
+#include "Config.g.h"
 
 namespace IotTemperatureWatcher
 {
 	/// <summary>
 	/// Eine leere Seite, die eigenständig verwendet werden kann oder auf die innerhalb eines Rahmens navigiert werden kann.
 	/// </summary>
-	public ref class MainPage sealed
+	public ref class Config sealed
 	{
 	public:
-		MainPage();
+		Config();
 
 	private:
 
@@ -78,6 +78,6 @@ namespace IotTemperatureWatcher
 		void clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void changeXaml(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void clickAppBarButtonAccept(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

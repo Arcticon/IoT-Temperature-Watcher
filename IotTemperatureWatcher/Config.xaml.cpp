@@ -1,5 +1,4 @@
 ﻿#pragma comment(lib,"Ws2_32.lib")
-#pragma comment(lib, "user32.lib")
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <Winsock2.h>
@@ -9,10 +8,8 @@
 #include <time.h>
 
 #include "pch.h"
-#include "MainPage.xaml.h"
-#include "MainView.xaml.h"
-#include "BlankPage.xaml.h"
-#include "MainPage.g.h"
+#include "Config.xaml.h"
+#include "Overview.xaml.h"
 #include "wtypes.h"
 
 using namespace IotTemperatureWatcher;
@@ -41,7 +38,7 @@ int slp = 75; //75
 void sendDataToServer(std::string str);
 std::string sliderValToString(int val);
 
-MainPage::MainPage()
+Config::Config()
 {
 	InitializeComponent();
 
@@ -95,13 +92,13 @@ MainPage::MainPage()
 			// UI components can be accessed within this scope.
 			// 
 
-			IotTemperatureWatcher::MainPage::updateAll();
+			IotTemperatureWatcher::Config::updateAll();
 
 		}));
 	}), period);
 }
 
-void IotTemperatureWatcher::MainPage::toggledToggleSwitchCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::toggledToggleSwitchCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (toggleSwitchCustomMode->IsOn) {
 		sendDataToServer(_CUSTOMMODEON);
@@ -148,7 +145,7 @@ void IotTemperatureWatcher::MainPage::toggledToggleSwitchCustomMode(Platform::Ob
 	}
 }
 
-void IotTemperatureWatcher::MainPage::toggledToggleSwitchVentilator1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (toggleSwitchVentilator1->IsOn) {
 		textBlockVentilator1->Text = _TEXTVENT1ON->ToString();
@@ -160,7 +157,7 @@ void IotTemperatureWatcher::MainPage::toggledToggleSwitchVentilator1(Platform::O
 	}
 }
 
-void IotTemperatureWatcher::MainPage::toggledToggleSwitchVentilator2(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator2(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (toggleSwitchVentilator2->IsOn) {
 		textBlockVentilator2->Text = _TEXTVENT2ON->ToString();
@@ -172,7 +169,7 @@ void IotTemperatureWatcher::MainPage::toggledToggleSwitchVentilator2(Platform::O
 	}
 }
 
-void IotTemperatureWatcher::MainPage::sendDataToServer(std::string str) {
+void IotTemperatureWatcher::Config::sendDataToServer(std::string str) {
 	//
 	long rc;
 
@@ -237,7 +234,7 @@ void IotTemperatureWatcher::MainPage::sendDataToServer(std::string str) {
 	WSACleanup();
 }
 
-void IotTemperatureWatcher::MainPage::sendDataToServerFromInt(int i) {
+void IotTemperatureWatcher::Config::sendDataToServerFromInt(int i) {
 	//
 	long rc;
 
@@ -302,7 +299,7 @@ void IotTemperatureWatcher::MainPage::sendDataToServerFromInt(int i) {
 	WSACleanup();
 }
 
-float IotTemperatureWatcher::MainPage::getDataFromServer(std::string str) {
+float IotTemperatureWatcher::Config::getDataFromServer(std::string str) {
 	//
 	//long rc;
 
@@ -373,7 +370,7 @@ float IotTemperatureWatcher::MainPage::getDataFromServer(std::string str) {
 	return atof(recvbuffer);
 }
 
-std::string IotTemperatureWatcher::MainPage::getDataFromServerToString(std::string str) {
+std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string str) {
 	//
 	long rc;
 
@@ -444,7 +441,7 @@ std::string IotTemperatureWatcher::MainPage::getDataFromServerToString(std::stri
 	return tmpString;
 }
 
-void IotTemperatureWatcher::MainPage::updateAll() {
+void IotTemperatureWatcher::Config::updateAll() {
 	tmpFloat1 = getDataFromServer(_GETTEMP1);
 
 	if (tmpFloat1 < 2) {
@@ -548,20 +545,20 @@ void IotTemperatureWatcher::MainPage::updateAll() {
 
 }
 
-void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
+void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
 	sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1->Value));
 	textBlockUpperTemp1->Text = _TEXTUPPERTEMP1 + (int)sliderUpperTemp1->Value;
 	Sleep(slp);
 }
 
-void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp1V2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
+void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp1V2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
 	sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp1V2->Value));
 	textBlockUpperTemp1V2->Text = _TEXTUPPERTEMP1V2 + (int)sliderUpperTemp1V2->Value;
 	Sleep(slp);
 }
 
-void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
+void IotTemperatureWatcher::Config::valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
 	if (sliderUpperTemp1->Value > sliderUpperTemp1V2->Value) {
 		
@@ -580,20 +577,20 @@ void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp1(Platform::Obj
 	Sleep(slp);
 }
 
-void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
+void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
 	sendDataToServer("slider3:" + sliderValToString((int)sliderUpperTemp2->Value));
 	textBlockUpperTemp2->Text = _TEXTUPPERTEMP2 + (int)sliderUpperTemp2->Value;
 	Sleep(slp);
 }
 
-void IotTemperatureWatcher::MainPage::valueChangedSliderUpperTemp2V1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
+void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp2V1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
 	sendDataToServer("slider6:" + sliderValToString((int)sliderUpperTemp2V1->Value));
 	textBlockUpperTemp2V1->Text = _TEXTUPPERTEMP2V1 + (int)sliderUpperTemp2V1->Value;
 	Sleep(slp);
 }
 
-void IotTemperatureWatcher::MainPage::valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
+void IotTemperatureWatcher::Config::valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
 	if (sliderUpperTemp2->Value > sliderUpperTemp2V1->Value) {
 		if (sliderLowerTemp2->Value >= sliderUpperTemp2V1->Value) {
@@ -617,22 +614,22 @@ std::string sliderValToString(int val) {
 	return sliderVal;
 }
 
-void IotTemperatureWatcher::MainPage::openedPopupTest(Platform::Object^ sender, Platform::Object^ e)
+void IotTemperatureWatcher::Config::openedPopupTest(Platform::Object^ sender, Platform::Object^ e)
 {
 	popupTest->Visibility = Windows::UI::Xaml::Visibility::Visible;
 }
 
-void IotTemperatureWatcher::MainPage::closedPopupTest(Platform::Object^ sender, Platform::Object^ e)
+void IotTemperatureWatcher::Config::closedPopupTest(Platform::Object^ sender, Platform::Object^ e)
 {
 	popupTest->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 }
 
-void IotTemperatureWatcher::MainPage::clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	popupTest->IsOpen = false;
 }
 
-void IotTemperatureWatcher::MainPage::checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	sendDataToServer(_CUSTOMMODEOFF);
 
@@ -656,7 +653,7 @@ void IotTemperatureWatcher::MainPage::checkedCheckBoxAdvancedCustomMode(Platform
 	checkBoxAdvancedCustomMode->IsChecked = true;
 }
 
-void IotTemperatureWatcher::MainPage::uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	sendDataToServer(_CUSTOMMODEON);
 
@@ -693,8 +690,10 @@ void IotTemperatureWatcher::MainPage::uncheckedCheckBoxAdvancedCustomMode(Platfo
 	checkBoxAdvancedCustomMode->IsChecked = false;
 }
 
-void IotTemperatureWatcher::MainPage::changeXaml(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::clickAppBarButtonAccept(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	//this->FrameMainPage->Navigate(IotTemperatureWatcher::MainView::);
-	//FrameMainPage->Navigate()
+	if (this->Frame != nullptr)
+	{
+		this->Frame->Navigate(Overview::typeid);
+	}
 }
