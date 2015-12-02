@@ -9,9 +9,15 @@
 
     <Frame x:Name="FrameOverview">
         <Grid x:Name="GridOverview" Background="#FF336ea5">
-            <Image x:Name="image1" Margin="105,310,1276,468" Source="Assets/Rack.png"/>
-            <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="1217,612,0,0" VerticalAlignment="Top" Click="clickButtonBack"/>
-            
+            <Image x:Name="serverRack1" Margin="10,96,1371,682" Source="Assets/Rack.png"/>
+
+            <TextBox x:Name="textBoxRackInfo1" HorizontalAlignment="Left" Height="70" Margin="368,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" BorderBrush="White" SelectionHighlightColor="White" IsReadOnly="True"/>
+
+            <TextBox x:Name="textBoxRackErrors1" HorizontalAlignment="Left" Height="127" Margin="368,271,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" BorderBrush="White" SelectionHighlightColor="White" IsReadOnly="True"/>
+
+            <Button x:Name="buttonRackConfig1" Content="Rack Configuration" HorizontalAlignment="Left" Margin="418,174,0,0" VerticalAlignment="Top" Click="clickButtonRackConfig1" Height="60" Width="200" Background="White"/>
+
+
         </Grid>
     </Frame>
 </Page>

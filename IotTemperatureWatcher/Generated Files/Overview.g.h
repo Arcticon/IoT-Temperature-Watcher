@@ -14,6 +14,7 @@ namespace Windows {
                 ref class Frame;
                 ref class Grid;
                 ref class Image;
+                ref class TextBox;
                 ref class Button;
             }
         }
@@ -37,8 +38,10 @@ namespace IotTemperatureWatcher
     
         private: ::Windows::UI::Xaml::Controls::Frame^ FrameOverview;
         private: ::Windows::UI::Xaml::Controls::Grid^ GridOverview;
-        private: ::Windows::UI::Xaml::Controls::Image^ image1;
-        private: ::Windows::UI::Xaml::Controls::Button^ button;
+        private: ::Windows::UI::Xaml::Controls::Image^ serverRack1;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxRackInfo1;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxRackErrors1;
+        private: ::Windows::UI::Xaml::Controls::Button^ buttonRackConfig1;
     };
 }
 

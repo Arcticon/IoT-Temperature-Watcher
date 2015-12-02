@@ -15,6 +15,6 @@ namespace IotTemperatureWatcher
 	private:
 
 		
-		void clickButtonBack(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

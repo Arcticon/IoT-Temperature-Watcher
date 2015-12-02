@@ -35,7 +35,8 @@ Overview::Overview()
 
 }
 
-void IotTemperatureWatcher::Overview::clickButtonBack(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+
+void IotTemperatureWatcher::Overview::clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (this->Frame != nullptr)
 	{
