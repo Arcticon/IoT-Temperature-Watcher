@@ -10,5 +10,6 @@ Config.xaml.cpp(527): warning C4244: "=": Konvertierung von "double" in "unsigne
 Config.xaml.cpp(533): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
 Config.xaml.cpp(534): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
 Config.xaml.cpp(535): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+  XamlTypeInfo.g.cpp
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb (Partial PDB)

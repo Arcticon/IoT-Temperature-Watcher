@@ -783,7 +783,7 @@
                     <AppBarToggleButton x:Name="appBarToggleButtonFanConfig" Label="Enable Fan Configuration" Checked="checkedAppBarToggleButtonFanConfig" Unchecked="uncheckedAppBarToggleButtonFanConfig" />
                     <AppBarToggleButton x:Name="appBarToggleButtonSensorConfig" Label="Enable Sensor Configuration" Checked="checkedAppBarToggleButtonSensorConfig" Unchecked="uncheckedAppBarToggleButtonSensorConfig" />
                     <AppBarToggleButton x:Name="appBarToggleButtonThresholdConfig" Label="Enable Threshold Configuration" Checked="checkedAppBarToggleButtonThresholdConfig" Unchecked="uncheckedAppBarToggleButtonThresholdConfig" />
-                    <AppBarButton Label="Save/Exit" Click="clickAppBarButtonSave" />
+                    <AppBarButton Label="Save and Exit" Click="clickAppBarButtonSave" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
 
