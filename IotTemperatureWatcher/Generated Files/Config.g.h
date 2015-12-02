@@ -19,6 +19,8 @@ namespace Windows {
                 ref class Slider;
                 ref class ProgressBar;
                 ref class Button;
+                ref class TextBox;
+                ref class PasswordBox;
             }
         }
     }
@@ -79,6 +81,8 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupTest;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockPopupErrorMessage;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupOk;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ userName;
+        private: ::Windows::UI::Xaml::Controls::PasswordBox^ passWord;
     };
 }
 
