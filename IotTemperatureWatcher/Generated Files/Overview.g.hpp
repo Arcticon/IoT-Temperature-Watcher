@@ -39,14 +39,24 @@ void ::IotTemperatureWatcher::Overview::Connect(int __connectionId, ::Platform::
             break;
         case 3:
             {
-                this->image1 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+                this->serverRack1 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
             }
             break;
         case 4:
             {
-                this->button = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->button))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonBack);
+                this->textBoxRackInfo1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 5:
+            {
+                this->textBoxRackErrors1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 6:
+            {
+                this->buttonRackConfig1 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRackConfig1))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
             }
             break;
     }

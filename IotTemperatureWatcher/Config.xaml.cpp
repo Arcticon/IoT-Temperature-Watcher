@@ -35,7 +35,6 @@ float tmpFloat1 = 0;
 float tmpFloat2 = 0;
 int slp = 75; //75
 
-void sendDataToServer(std::string str);
 std::string sliderValToString(int val);
 
 Config::Config()
