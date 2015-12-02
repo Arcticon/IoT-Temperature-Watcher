@@ -1,2 +1,14 @@
-﻿  IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
+﻿  Config.xaml.cpp
+Config.xaml.cpp(369): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
+Config.xaml.cpp(497): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(503): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(509): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(510): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(511): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(522): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(527): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(533): warning C4244: "=": Konvertierung von "double" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(534): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+Config.xaml.cpp(535): warning C4244: "=": Konvertierung von "float" in "unsigned char", möglicher Datenverlust
+  IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb (Partial PDB)

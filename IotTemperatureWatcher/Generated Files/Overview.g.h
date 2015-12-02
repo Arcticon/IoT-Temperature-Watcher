@@ -16,6 +16,7 @@ namespace Windows {
                 ref class Image;
                 ref class TextBox;
                 ref class Button;
+                ref class PasswordBox;
             }
         }
     }
@@ -42,6 +43,8 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxRackInfo1;
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxRackErrors1;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonRackConfig1;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ userName;
+        private: ::Windows::UI::Xaml::Controls::PasswordBox^ passWord;
     };
 }
 

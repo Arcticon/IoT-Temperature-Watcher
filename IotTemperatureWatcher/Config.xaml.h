@@ -24,6 +24,12 @@ namespace IotTemperatureWatcher
 
 		std::string _CUSTOMMODEOFF = "customModeOff";
 		std::string _CUSTOMMODEON = "customModeOn";
+		std::string _FANCONFIGOFF = "fanConfigOff";
+		std::string _FANCONFIGON = "fanConfigOn";
+		std::string _SENSORCONFIGOFF = "sensorConfigOff";
+		std::string _SENSORCONFIGON = "sensorConfigOn";
+		std::string _THRESHOLDCONFIGOFF = "thresholdConfigOff";
+		std::string _THRESHOLDCONFIGON = "thresholdConfigOn";
 		std::string _SETVENT1ON = "setVent1On";
 		std::string _SETVENT1OFF = "setVent1Off";
 		std::string _SETVENT2ON = "setVent2On";
@@ -55,6 +61,15 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENDFAILED = "SEND FAILED!!";
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED = "SENSOR 1 NOT CONNECTED!!";
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED = "SENSOR 2 NOT CONNECTED!!";
+
+
+		Platform::String^ _TEXTAPPBARTOGGLEBUTTONENABLEFANCONFIG = "Enable Fan Configuration";
+		Platform::String^ _TEXTAPPBARTOGGLEBUTTONENABLESENSORCONFIG = "Enable Sensor Configuration";
+		Platform::String^ _TEXTAPPBARTOGGLEBUTTONENABLETHRESHOLDCONFIG = "Enable Threshold Configuration";
+		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLEFANCONFIG = "Disable Fan Configuration";
+		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLESENSORCONFIG = "Disable Sensor Configuration";
+		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLETHRESHOLDCONFIG = "Disable Threshold Configuration";
+
 		//Platform::String^ _TEXTPOPUPERRORMESSAGE = "";
 
 		int _ETHERNETPORT = 50001;
@@ -78,6 +93,14 @@ namespace IotTemperatureWatcher
 		void clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void clickAppBarButtonAccept(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+
+		void clickAppBarButtonSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+
+		void checkedAppBarToggleButtonFanConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void uncheckedAppBarToggleButtonFanConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void checkedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void uncheckedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void checkedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void uncheckedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

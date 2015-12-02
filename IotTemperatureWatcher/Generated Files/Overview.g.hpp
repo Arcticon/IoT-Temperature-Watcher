@@ -59,6 +59,16 @@ void ::IotTemperatureWatcher::Overview::Connect(int __connectionId, ::Platform::
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
             }
             break;
+        case 7:
+            {
+                this->userName = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 8:
+            {
+                this->passWord = safe_cast<::Windows::UI::Xaml::Controls::PasswordBox^>(__target);
+            }
+            break;
     }
     _contentLoaded = true;
 }

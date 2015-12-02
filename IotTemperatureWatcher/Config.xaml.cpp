@@ -689,10 +689,113 @@ void IotTemperatureWatcher::Config::uncheckedCheckBoxAdvancedCustomMode(Platform
 	checkBoxAdvancedCustomMode->IsChecked = false;
 }
 
-void IotTemperatureWatcher::Config::clickAppBarButtonAccept(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::clickAppBarButtonSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (this->Frame != nullptr)
 	{
 		this->Frame->Navigate(Overview::typeid);
 	}
+}
+
+void IotTemperatureWatcher::Config::checkedAppBarToggleButtonFanConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	appBarToggleButtonFanConfig->Label = _TEXTAPPBARTOGGLEBUTTONDISABLEFANCONFIG;
+	sendDataToServer(_FANCONFIGON);
+
+	if (!appBarToggleButtonSensorConfig->IsChecked) {
+		appBarToggleButtonSensorConfig->IsChecked = false;
+	}
+	if (appBarToggleButtonThresholdConfig->IsChecked) {
+		appBarToggleButtonThresholdConfig->IsChecked = false;
+	}
+
+	if (toggleSwitchVentilator1->IsOn) {
+		sendDataToServer(_SETVENT1ON);
+	}
+	else {
+		sendDataToServer(_SETVENT1OFF);
+	}
+	if (toggleSwitchVentilator2->IsOn) {
+		sendDataToServer(_SETVENT2ON);
+	}
+	else {
+		sendDataToServer(_SETVENT2OFF);
+	}
+
+	toggleSwitchVentilator1->IsEnabled = true;
+	toggleSwitchVentilator2->IsEnabled = true;
+}
+
+void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonFanConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	appBarToggleButtonFanConfig->Label = _TEXTAPPBARTOGGLEBUTTONENABLEFANCONFIG;
+	sendDataToServer(_FANCONFIGOFF);
+	
+	toggleSwitchVentilator1->IsEnabled = false;
+	toggleSwitchVentilator2->IsEnabled = false;
+}
+
+void IotTemperatureWatcher::Config::checkedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	appBarToggleButtonSensorConfig->Label = _TEXTAPPBARTOGGLEBUTTONDISABLESENSORCONFIG;
+	sendDataToServer(_SENSORCONFIGON);
+
+	
+}
+
+void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	appBarToggleButtonSensorConfig->Label = _TEXTAPPBARTOGGLEBUTTONENABLESENSORCONFIG;
+	sendDataToServer(_SENSORCONFIGOFF);
+
+	
+}
+
+void IotTemperatureWatcher::Config::checkedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	appBarToggleButtonThresholdConfig->Label = _TEXTAPPBARTOGGLEBUTTONDISABLETHRESHOLDCONFIG;
+	sendDataToServer(_THRESHOLDCONFIGON);
+
+	if (appBarToggleButtonFanConfig->IsChecked) {
+		appBarToggleButtonFanConfig->IsChecked = false;
+	}
+	if (appBarToggleButtonSensorConfig->IsChecked) {
+		appBarToggleButtonSensorConfig->IsChecked = false;
+	}
+
+	sliderUpperTemp1->IsEnabled = true;
+	sliderLowerTemp1->IsEnabled = true;
+	sliderUpperTemp2->IsEnabled = true;
+	sliderLowerTemp2->IsEnabled = true;
+
+	textBlockUpperTemp1->Opacity = 1;
+	textBlockLowerTemp1->Opacity = 1;
+	textBlockUpperTemp2->Opacity = 1;
+	textBlockLowerTemp2->Opacity = 1;
+
+	sliderUpperTemp1V2->IsEnabled = true;
+	sliderUpperTemp2V1->IsEnabled = true;
+	textBlockUpperTemp1V2->Opacity = 1;
+	textBlockUpperTemp2V1->Opacity = 1;
+}
+
+void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	appBarToggleButtonThresholdConfig->Label = _TEXTAPPBARTOGGLEBUTTONENABLETHRESHOLDCONFIG;
+	sendDataToServer(_THRESHOLDCONFIGOFF);
+
+	sliderUpperTemp1->IsEnabled = false;
+	sliderLowerTemp1->IsEnabled = false;
+	sliderUpperTemp2->IsEnabled = false;
+	sliderLowerTemp2->IsEnabled = false;
+
+	textBlockUpperTemp1->Opacity = 0.4;
+	textBlockLowerTemp1->Opacity = 0.4;
+	textBlockUpperTemp2->Opacity = 0.4;
+	textBlockLowerTemp2->Opacity = 0.4;
+
+	sliderUpperTemp1V2->IsEnabled = false;
+	sliderUpperTemp2V1->IsEnabled = false;
+	textBlockUpperTemp1V2->Opacity = 0.4;
+	textBlockUpperTemp2V1->Opacity = 0.4;
 }

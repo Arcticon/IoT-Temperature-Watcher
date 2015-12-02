@@ -773,33 +773,17 @@
     
     <Frame x:Name="FrameConfig">
         <Grid x:Name="GridConfig" Background="#FF336ea5">
-            <CommandBar HorizontalAlignment="Right" Margin="00,0,0,0"  d:LayoutOverrides="VerticalAlignment" Content="Settings" Style="{StaticResource CommandBarStyle1}">
+            <CommandBar HorizontalAlignment="Right" Margin="00,0,0,0"  d:LayoutOverrides="VerticalAlignment" Content="Advanced Settings" Style="{StaticResource CommandBarStyle1}">
                 <CommandBar.CommandBarOverflowPresenterStyle>
                     <Style TargetType="CommandBarOverflowPresenter">
                         <Setter Property="Background" Value="LightCoral"/>
                     </Style>
                 </CommandBar.CommandBarOverflowPresenterStyle>
                 <CommandBar.SecondaryCommands>
-                    <AppBarButton Label="Login">
-                        <AppBarButton.Flyout>
-                            <Flyout>
-                                <Grid Width="406" Height="160"  >
-                                    <TextBlock Text="Insert information and tap the Send button:" FontSize="16"
-                   FontWeight="SemiLight" FontFamily="Arial"
-                   Margin="1,0,0,0" Height="25" VerticalAlignment="Top"  />
-                                    <TextBlock Text="Username:" Margin="15,30,-15,0" FontSize="16" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height, TopMargin, BottomMargin" />
-                                    <TextBlock Text="Password:" Margin="15,70,-15,0" FontSize="16" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height, TopMargin, BottomMargin" />
-                                    <TextBox x:Name="userName" Margin="90,0,0,70" Width="310" Height="40" BorderBrush="#FF007ACC"/>
-                                    <PasswordBox x:Name="passWord" Margin="90,0,0,-7" Width="310" BorderBrush="#FF007ACC" Height="40"/>
-                                    <Button Content="Send" HorizontalAlignment="Right" 
-                    FontSize="16" Margin="0,0,4,13" BorderBrush="#FF007ACC" VerticalAlignment="Bottom" />
-                                </Grid>
-
-                            </Flyout>
-                        </AppBarButton.Flyout>
-                    </AppBarButton>
-                    <AppBarButton Icon="CellPhone" Label="Reckoperations"/>
-                    <AppBarButton Icon="Target" Label="Shut down"  Click="clickAppBarButtonAccept"/>
+                    <AppBarToggleButton x:Name="appBarToggleButtonFanConfig" Label="Enable Fan Configuration" Checked="checkedAppBarToggleButtonFanConfig" Unchecked="uncheckedAppBarToggleButtonFanConfig" />
+                    <AppBarToggleButton x:Name="appBarToggleButtonSensorConfig" Label="Enable Sensor Configuration" Checked="checkedAppBarToggleButtonSensorConfig" Unchecked="uncheckedAppBarToggleButtonSensorConfig" />
+                    <AppBarToggleButton x:Name="appBarToggleButtonThresholdConfig" Label="Enable Threshold Configuration" Checked="checkedAppBarToggleButtonThresholdConfig" Unchecked="uncheckedAppBarToggleButtonThresholdConfig" />
+                    <AppBarButton Label="Save/Exit" Click="clickAppBarButtonSave" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
 

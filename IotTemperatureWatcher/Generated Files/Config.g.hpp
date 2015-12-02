@@ -202,19 +202,36 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
             break;
         case 30:
             {
-                ::Windows::UI::Xaml::Controls::AppBarButton^ element30 = safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(element30))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickAppBarButtonAccept);
+                this->appBarToggleButtonFanConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonFanConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::checkedAppBarToggleButtonFanConfig);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonFanConfig))->Unchecked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonFanConfig);
             }
             break;
         case 31:
             {
-                this->userName = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+                this->appBarToggleButtonSensorConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonSensorConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::checkedAppBarToggleButtonSensorConfig);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonSensorConfig))->Unchecked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonSensorConfig);
             }
             break;
         case 32:
             {
-                this->passWord = safe_cast<::Windows::UI::Xaml::Controls::PasswordBox^>(__target);
+                this->appBarToggleButtonThresholdConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonThresholdConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::checkedAppBarToggleButtonThresholdConfig);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonThresholdConfig))->Unchecked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonThresholdConfig);
+            }
+            break;
+        case 33:
+            {
+                ::Windows::UI::Xaml::Controls::AppBarButton^ element33 = safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(element33))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickAppBarButtonSave);
             }
             break;
     }
