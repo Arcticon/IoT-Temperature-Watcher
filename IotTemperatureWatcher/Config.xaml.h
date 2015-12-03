@@ -12,15 +12,19 @@ namespace IotTemperatureWatcher
 	/// <summary>
 	/// Eine leere Seite, die eigenständig verwendet werden kann oder auf die innerhalb eines Rahmens navigiert werden kann.
 	/// </summary>
+
+
 	public ref class Config sealed
 	{
 	public:
 		Config();
 
+
 	private:
 
 		int ticks = 10000000;
 		int ticksMultiplier = 1;
+
 
 		std::string _CUSTOMMODEOFF = "customModeOff";
 		std::string _CUSTOMMODEON = "customModeOn";
@@ -41,6 +45,10 @@ namespace IotTemperatureWatcher
 		std::string _V2OFF = "v2off";
 		std::string _GETTEMP1 = "getTemp1";
 		std::string _GETTEMP2 = "getTemp2";
+		std::string _GETTEMP3 = "getTemp3";
+		std::string _GETTEMP4 = "getTemp4";
+		std::string _GETTEMP5 = "getTemp5";
+		std::string _GETTEMP6 = "getTemp6";
 		std::string _GETVENT1 = "getVent1";
 		std::string _GETVENT2 = "getVent2";
 
@@ -61,6 +69,10 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENDFAILED = "SEND FAILED!!";
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED = "SENSOR 1 NOT CONNECTED!!";
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED = "SENSOR 2 NOT CONNECTED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR3NOTCONNECTED = "SENSOR 3 NOT CONNECTED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR4NOTCONNECTED = "SENSOR 4 NOT CONNECTED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR5NOTCONNECTED = "SENSOR 5 NOT CONNECTED!!";
+		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR6NOTCONNECTED = "SENSOR 6 NOT CONNECTED!!";
 
 
 		Platform::String^ _TEXTAPPBARTOGGLEBUTTONENABLEFANCONFIG = "Enable Fan Configuration";
@@ -69,6 +81,13 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLEFANCONFIG = "Disable Fan Configuration";
 		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLESENSORCONFIG = "Disable Sensor Configuration";
 		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLETHRESHOLDCONFIG = "Disable Threshold Configuration";
+
+		Platform::String^ _TEMPSENSORSTL = "Temperature Sensor Top Left (STL): ";
+		Platform::String^ _TEMPSENSORSCL = "Temperature Sensor Center Left (SCL): ";
+		Platform::String^ _TEMPSENSORSBL = "Temperature Sensor Bottom Left (SBL): ";
+		Platform::String^ _TEMPSENSORSTR = "Temperature Sensor Top Right (STR): ";
+		Platform::String^ _TEMPSENSORSCR = "Temperature Sensor Center Right (SCR): ";
+		Platform::String^ _TEMPSENSORSBR = "Temperature Sensor Bottom Right (SBR): ";
 
 		//Platform::String^ _TEXTPOPUPERRORMESSAGE = "";
 

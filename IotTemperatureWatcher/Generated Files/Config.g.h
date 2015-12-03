@@ -13,11 +13,12 @@ namespace Windows {
             namespace Controls {
                 ref class Frame;
                 ref class Grid;
+                ref class Image;
+                ref class TextBox;
                 ref class CheckBox;
                 ref class TextBlock;
                 ref class ToggleSwitch;
                 ref class Slider;
-                ref class ProgressBar;
                 ref class Button;
                 ref class AppBarToggleButton;
             }
@@ -53,13 +54,17 @@ namespace IotTemperatureWatcher
     
         private: ::Windows::UI::Xaml::Controls::Frame^ FrameConfig;
         private: ::Windows::UI::Xaml::Controls::Grid^ GridConfig;
+        private: ::Windows::UI::Xaml::Controls::Image^ serverRack;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxUpperFan1;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxUpperFan2;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxSTL;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxSTR;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxSCL;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxSCR;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxSBL;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxSBR;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxErrors;
         private: ::Windows::UI::Xaml::Controls::CheckBox^ checkBoxAdvancedCustomMode;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator1;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockVentilator2;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperature1;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperatureText1;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperatureText2;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockTemperature2;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockUpperTemp1;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockUpperTemp1V2;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockLowerTemp1;
@@ -75,8 +80,6 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderUpperTemp2;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderUpperTemp2V1;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderLowerTemp2;
-        private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar2;
-        private: ::Windows::UI::Xaml::Controls::ProgressBar^ progressBar1;
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupTest;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockPopupErrorMessage;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupOk;

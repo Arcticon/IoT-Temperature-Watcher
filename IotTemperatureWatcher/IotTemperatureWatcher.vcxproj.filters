@@ -15,14 +15,12 @@
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="BlankPage.xaml.cpp" />
     <ClCompile Include="Config.xaml.cpp" />
     <ClCompile Include="Overview.xaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h" />
-    <ClInclude Include="BlankPage.xaml.h" />
     <ClInclude Include="Config.xaml.h" />
     <ClInclude Include="Overview.xaml.h" />
   </ItemGroup>

@@ -12,6 +12,7 @@ namespace IotTemperatureWatcher
 	/// <summary>
 	/// Stellt das anwendungsspezifische Verhalten bereit, um die Standardanwendungsklasse zu ergänzen.
 	/// </summary>
+
 	ref class App sealed
 	{
 	protected:

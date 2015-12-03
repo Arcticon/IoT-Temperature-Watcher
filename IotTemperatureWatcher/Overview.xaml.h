@@ -14,7 +14,11 @@ namespace IotTemperatureWatcher
 
 	private:
 
+		int ticks = 10000000;
+		int ticksMultiplier = 10;
 		
+
+		void updateAll();
 		void clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

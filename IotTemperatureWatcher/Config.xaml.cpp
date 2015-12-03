@@ -31,8 +31,7 @@ char sendbuffer[256];
 char recvbuffer[256];
 float floatBuffer = 0;
 long rc = 0;
-float tmpFloat1 = 0;
-float tmpFloat2 = 0;
+
 int slp = 75; //75
 
 std::string sliderValToString(int val);
@@ -97,73 +96,14 @@ Config::Config()
 	}), period);
 }
 
-void IotTemperatureWatcher::Config::toggledToggleSwitchCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-	if (toggleSwitchCustomMode->IsOn) {
-		sendDataToServer(_CUSTOMMODEON);
-
-		if (toggleSwitchVentilator1->IsOn) {
-			sendDataToServer(_SETVENT1ON);
-		}
-		else {
-			sendDataToServer(_SETVENT1OFF);
-		}
-		if (toggleSwitchVentilator2->IsOn) {
-			sendDataToServer(_SETVENT2ON);
-		}
-		else {
-			sendDataToServer(_SETVENT2OFF);
-		}
-
-		toggleSwitchVentilator1->IsEnabled = true;
-		toggleSwitchVentilator2->IsEnabled = true;
-		checkBoxAdvancedCustomMode->IsEnabled = true;
-	}
-	else {
-
-		sendDataToServer(_CUSTOMMODEOFF);
-
-		textBlockUpperTemp1->Opacity = 0.4;
-		textBlockUpperTemp1V2->Opacity = 0.4;
-		textBlockLowerTemp1->Opacity = 0.4;
-		textBlockUpperTemp2->Opacity = 0.4;
-		textBlockUpperTemp2V1->Opacity = 0.4;
-		textBlockLowerTemp2->Opacity = 0.4;
-
-		sliderUpperTemp1->IsEnabled = false;
-		sliderLowerTemp1->IsEnabled = false;
-		sliderUpperTemp1V2->IsEnabled = false;
-		sliderUpperTemp2->IsEnabled = false;
-		sliderUpperTemp2V1->IsEnabled = false;
-		sliderLowerTemp2->IsEnabled = false;
-		checkBoxAdvancedCustomMode->IsEnabled = false;
-		checkBoxAdvancedCustomMode->IsChecked = false;
-		toggleSwitchVentilator1->IsEnabled = false;
-		toggleSwitchVentilator2->IsEnabled = false;
-
-	}
-}
-
-void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-	if (toggleSwitchVentilator1->IsOn) {
-		textBlockVentilator1->Text = _TEXTVENT1ON->ToString();
-		sendDataToServer(_SETVENT1ON);
-	}
-	else {
-		textBlockVentilator1->Text = _TEXTVENT1OFF->ToString();
-		sendDataToServer(_SETVENT1OFF);
-	}
-}
-
 void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator2(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (toggleSwitchVentilator2->IsOn) {
-		textBlockVentilator2->Text = _TEXTVENT2ON->ToString();
+
 		sendDataToServer(_SETVENT2ON);
 	}
 	else {
-		textBlockVentilator2->Text = _TEXTVENT2OFF->ToString();
+
 		sendDataToServer(_SETVENT2OFF);
 	}
 }
@@ -440,110 +380,6 @@ std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string
 	return tmpString;
 }
 
-void IotTemperatureWatcher::Config::updateAll() {
-	tmpFloat1 = getDataFromServer(_GETTEMP1);
-
-	if (tmpFloat1 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED;
-		}
-		return;
-	}
-
-	tmpFloat2 = getDataFromServer(_GETTEMP2);
-
-	if (tmpFloat2 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED;
-		}
-		return;
-	}
-
-	textBlockTemperature1->Text = tmpFloat1 + "°C";
-	textBlockTemperature2->Text = tmpFloat2 + "°C";
-	
-	std::string tmpStringV1 = getDataFromServerToString(_GETVENT1);
-	std::string tmpStringV2 = getDataFromServerToString(_GETVENT2);
-
-	if (tmpStringV1.compare(_V1ON) == 0) {
-		textBlockVentilator1->Text = _TEXTVENT1ON->ToString();
-	}
-	else if (tmpStringV1.compare(_V1OFF) == 0) {
-		textBlockVentilator1->Text = _TEXTVENT1OFF->ToString();
-	}
-	if (tmpStringV2.compare(_V2ON) == 0) {
-		textBlockVentilator2->Text = _TEXTVENT2ON->ToString();
-	}
-	else if (tmpStringV2.compare(_V2OFF) == 0) {
-		textBlockVentilator2->Text = _TEXTVENT2OFF->ToString();
-	}
-
-	progressBar1->Value = tmpFloat1;
-	progressBar2->Value = tmpFloat2;
-
-	Color c1;
-	Color c2;
-	if (tmpFloat1 <= 20) {
-		c1.A = 255;
-		c1.G = 255;
-		c1.R = 0;
-		c1.B = 41;
-	}
-	else if (tmpFloat1 > 20 && tmpFloat1 <= 40) {
-		c1.A = 255;
-		c1.G = 255;
-		c1.R = (tmpFloat1 - 20) * 12.75;
-		c1.B = 41;
-		//tbv1->Text = "Rot: " + c1.R + " | Grün: " + c1.G;
-	}
-	else if (tmpFloat1 > 40 && tmpFloat1 <= 80) {
-		c1.A = 255;
-		c1.G = 255 - (tmpFloat1 - 40) * 6.25;
-		c1.R = 255;
-		c1.B = 41;
-	}
-	else if (tmpFloat1 > 40) {
-		c1.A = 255;
-		c1.R = 255 - (tmpFloat1 - 80) * 12.75;
-		c1.G = 41 - (tmpFloat1 - 80) * 2;
-		c1.B = 41 - (tmpFloat1 - 80) * 2;
-	}
-	if (tmpFloat2 <= 20) {
-		c2.A = 255;
-		c2.G = 255;
-		c2.R = 0;
-		c2.B = 41;
-	}
-	else if (tmpFloat2 > 20 && tmpFloat2 <= 40) {
-		c2.A = 255;
-		c2.G = 255;
-		c2.R = (tmpFloat2 - 20) * 12.75;
-		c2.B = 41;
-	}
-	else if (tmpFloat2 > 40 && tmpFloat2 <= 80) {
-		c2.A = 255;
-		c2.G = 255 - (tmpFloat2 - 40) * 6.25;
-		c2.R = 255;
-		c2.B = 41;
-	}
-	else if (tmpFloat2 > 80) {
-		c2.A = 255;
-		c2.G = 255 - (tmpFloat2 - 80) * 12.75;
-		c2.R = 41 - (tmpFloat2 - 80) * 2;
-		c2.B = 41 - (tmpFloat2 - 80) * 2;
-	}
-
-	auto textForeground1 = ref new SolidColorBrush();
-	auto textForeground2 = ref new SolidColorBrush();
-	textForeground1->Color = c1;
-	textForeground2->Color = c2;
-	progressBar1->Foreground = textForeground1;
-	progressBar2->Foreground = textForeground2;
-
-}
-
 void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
 {
 	sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1->Value));
@@ -798,4 +634,92 @@ void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonThresholdConfig(P
 	sliderUpperTemp2V1->IsEnabled = false;
 	textBlockUpperTemp1V2->Opacity = 0.4;
 	textBlockUpperTemp2V1->Opacity = 0.4;
+}
+
+void IotTemperatureWatcher::Config::updateAll() {
+	globalTemp1 = getDataFromServer(_GETTEMP1);
+
+	if (globalTemp1 < 2) {
+		if (!popupTest->IsOpen) {
+			popupTest->IsOpen = true;
+			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED;
+		}
+		return;
+	}
+
+	globalTemp2 = getDataFromServer(_GETTEMP2);
+
+	if (globalTemp2 < 2) {
+		if (!popupTest->IsOpen) {
+			popupTest->IsOpen = true;
+			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED;
+		}
+		return;
+	}
+
+	globalTemp3 = getDataFromServer(_GETTEMP3);
+
+	if (globalTemp3 < 2) {
+		if (!popupTest->IsOpen) {
+			popupTest->IsOpen = true;
+			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR3NOTCONNECTED;
+		}
+		return;
+	}
+
+	globalTemp4 = getDataFromServer(_GETTEMP4);
+
+	if (globalTemp4 < 2) {
+		if (!popupTest->IsOpen) {
+			popupTest->IsOpen = true;
+			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR4NOTCONNECTED;
+		}
+		return;
+	}
+
+	globalTemp5 = getDataFromServer(_GETTEMP5);
+
+	if (globalTemp5 < 2) {
+		if (!popupTest->IsOpen) {
+			popupTest->IsOpen = true;
+			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR5NOTCONNECTED;
+		}
+		return;
+	}
+
+	globalTemp6 = getDataFromServer(_GETTEMP6);
+
+	if (globalTemp6 < 2) {
+		if (!popupTest->IsOpen) {
+			popupTest->IsOpen = true;
+			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR6NOTCONNECTED;
+		}
+		return;
+	}
+
+	textBoxSTL->Text = _TEMPSENSORSTL + globalTemp1 + "°C - Status: ";
+	textBoxSCL->Text = _TEMPSENSORSCL + globalTemp2 + "°C - Status: ";
+	textBoxSBL->Text = _TEMPSENSORSBL + globalTemp3 + "°C - Status: ";
+	textBoxSTR->Text = _TEMPSENSORSTR + globalTemp4 + "°C - Status: ";
+	textBoxSCR->Text = _TEMPSENSORSCR + globalTemp5 + "°C - Status: ";
+	textBoxSBR->Text = _TEMPSENSORSBR + globalTemp6 + "°C - Status: ";
+
+	/*textBlockTemperature1->Text = tmpFloat1 + "°C";
+	textBlockTemperature2->Text = tmpFloat2 + "°C";*/
+
+	std::string tmpStringV1 = getDataFromServerToString(_GETVENT1);
+	std::string tmpStringV2 = getDataFromServerToString(_GETVENT2);
+
+	/*if (tmpStringV1.compare(_V1ON) == 0) {
+	textBlockVentilator1->Text = _TEXTVENT1ON->ToString();
+	}
+	else if (tmpStringV1.compare(_V1OFF) == 0) {
+	textBlockVentilator1->Text = _TEXTVENT1OFF->ToString();
+	}
+	if (tmpStringV2.compare(_V2ON) == 0) {
+	textBlockVentilator2->Text = _TEXTVENT2ON->ToString();
+	}
+	else if (tmpStringV2.compare(_V2OFF) == 0) {
+	textBlockVentilator2->Text = _TEXTVENT2OFF->ToString();
+	}*/
 }
