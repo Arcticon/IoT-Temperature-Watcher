@@ -155,7 +155,7 @@ void loop() {
       str_data += c;
     }
     if (client.available() == 0) {
-      Serial.println(str_data);
+      //Serial.println(str_data);
       String str_split1 = str_data.substring(0, 7);
       int sliderVal = str_data.substring(8, 10).toInt();
       if(str_split1 == "slider1"){
@@ -220,6 +220,8 @@ void loop() {
         //V 2 AUS
         digitalWrite(relay2, LOW);
         ventilator2State = LOW;
+      } else if (str_data == "dc01ro01ra01") {
+        server.write(dtostrf(((tmpFloat1 + tmpFloat2 + tmpFloat3 + tmpFloat4 + tmpFloat5 + tmpFloat6)/6), 0, 2, tmpString));
       }
       str_data = "";
     }

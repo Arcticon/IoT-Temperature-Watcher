@@ -34,6 +34,8 @@ long rc = 0;
 
 int slp = 75; //75
 
+float temp1, temp2, temp3, temp4, temp5, temp6 = 0;
+
 std::string sliderValToString(int val);
 
 Config::Config()
@@ -94,6 +96,22 @@ Config::Config()
 
 		}));
 	}), period);
+}
+
+void IotTemperatureWatcher::Config::toggledToggleSwitchCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
+
+}
+
+void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (toggleSwitchVentilator1->IsOn) {
+
+		sendDataToServer(_SETVENT1ON);
+	}
+	else {
+
+		sendDataToServer(_SETVENT1OFF);
+	}
 }
 
 void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator2(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -637,9 +655,9 @@ void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonThresholdConfig(P
 }
 
 void IotTemperatureWatcher::Config::updateAll() {
-	globalTemp1 = getDataFromServer(_GETTEMP1);
+	temp1 = getDataFromServer(_GETTEMP1);
 
-	if (globalTemp1 < 2) {
+	if (temp1 < 2) {
 		if (!popupTest->IsOpen) {
 			popupTest->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED;
@@ -647,9 +665,9 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	globalTemp2 = getDataFromServer(_GETTEMP2);
+	temp2 = getDataFromServer(_GETTEMP2);
 
-	if (globalTemp2 < 2) {
+	if (temp2 < 2) {
 		if (!popupTest->IsOpen) {
 			popupTest->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED;
@@ -657,9 +675,9 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	globalTemp3 = getDataFromServer(_GETTEMP3);
+	temp3 = getDataFromServer(_GETTEMP3);
 
-	if (globalTemp3 < 2) {
+	if (temp3 < 2) {
 		if (!popupTest->IsOpen) {
 			popupTest->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR3NOTCONNECTED;
@@ -667,9 +685,9 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	globalTemp4 = getDataFromServer(_GETTEMP4);
+	temp4 = getDataFromServer(_GETTEMP4);
 
-	if (globalTemp4 < 2) {
+	if (temp4 < 2) {
 		if (!popupTest->IsOpen) {
 			popupTest->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR4NOTCONNECTED;
@@ -677,9 +695,9 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	globalTemp5 = getDataFromServer(_GETTEMP5);
+	temp5 = getDataFromServer(_GETTEMP5);
 
-	if (globalTemp5 < 2) {
+	if (temp5 < 2) {
 		if (!popupTest->IsOpen) {
 			popupTest->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR5NOTCONNECTED;
@@ -687,9 +705,9 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	globalTemp6 = getDataFromServer(_GETTEMP6);
+	temp6 = getDataFromServer(_GETTEMP6);
 
-	if (globalTemp6 < 2) {
+	if (temp6 < 2) {
 		if (!popupTest->IsOpen) {
 			popupTest->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR6NOTCONNECTED;
@@ -697,12 +715,12 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	textBoxSTL->Text = _TEMPSENSORSTL + globalTemp1 + "°C - Status: ";
-	textBoxSCL->Text = _TEMPSENSORSCL + globalTemp2 + "°C - Status: ";
-	textBoxSBL->Text = _TEMPSENSORSBL + globalTemp3 + "°C - Status: ";
-	textBoxSTR->Text = _TEMPSENSORSTR + globalTemp4 + "°C - Status: ";
-	textBoxSCR->Text = _TEMPSENSORSCR + globalTemp5 + "°C - Status: ";
-	textBoxSBR->Text = _TEMPSENSORSBR + globalTemp6 + "°C - Status: ";
+	textBoxSTL->Text = _TEMPSENSORSTL + temp1 + "°C - Status: ";
+	textBoxSCL->Text = _TEMPSENSORSCL + temp2 + "°C - Status: ";
+	textBoxSBL->Text = _TEMPSENSORSBL + temp3 + "°C - Status: ";
+	textBoxSTR->Text = _TEMPSENSORSTR + temp4 + "°C - Status: ";
+	textBoxSCR->Text = _TEMPSENSORSCR + temp5 + "°C - Status: ";
+	textBoxSBR->Text = _TEMPSENSORSBR + temp6 + "°C - Status: ";
 
 	/*textBlockTemperature1->Text = tmpFloat1 + "°C";
 	textBlockTemperature2->Text = tmpFloat2 + "°C";*/

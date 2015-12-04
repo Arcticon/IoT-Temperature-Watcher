@@ -1,10 +1,10 @@
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\config.xaml.obj
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\app.xaml.obj
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\overview.xaml.obj
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottemperaturewatcher.pch
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\vc140.pdb
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\pch.obj
+c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\app.xaml.obj
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\xamltypeinfo.impl.g.obj
+c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\config.xaml.obj
+c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\overview.xaml.obj
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\xamltypeinfo.g.obj
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\arm\debug\iottemperaturewatcher\iottemperaturewatcher.winmd
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottemperaturewatcher.vcxprojresolveassemblyreference.cache
@@ -44,33 +44,14 @@ c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iot
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\arm\debug\iottemperaturewatcher\iottemperaturewatcher.ilk
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\arm\debug\iottemperaturewatcher\iottemperaturewatcher.exe
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\arm\debug\iottemperaturewatcher\iottemperaturewatcher.pdb
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\blankpage.xaml.obj
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\mainpage.xaml.obj
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\mainview.xaml.obj
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\embed.resfiles
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\cl.command.1.tlog
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\cl.read.1.tlog
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\cl.write.1.tlog
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\iottemperaturewatcher.read.1u.tlog
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\iottemperaturewatcher.write.1u.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.1128.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.1380.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.2508.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.4476.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.4516.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.4968.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.5572.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.5664.delete.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.6416.delete.1.tlog
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.command.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.delete.1.tlog
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.read.1.tlog
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\arm\debug\iottempe.a5426f70.tlog\link.write.1.tlog
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\blankpage.g.h
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\mainpage.g.h
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\mainview.g.h
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\xamlbindinginfo.g.h
 c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\xamltypeinfo.g.h
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\blankpage.xaml
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\mainpage.xaml
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\generated files\mainview.xaml

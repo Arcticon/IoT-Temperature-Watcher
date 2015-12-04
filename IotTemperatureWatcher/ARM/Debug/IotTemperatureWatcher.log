@@ -1,30 +1,8 @@
-﻿  pch.cpp
-  App.xaml.cpp
+﻿  App.xaml.cpp
   Config.xaml.cpp
-  XamlTypeInfo.Impl.g.cpp
   Overview.xaml.cpp
-Config.xaml.cpp(309): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
-Overview.xaml.cpp(64): error C2065: "globalTemp1": nichtdeklarierter Bezeichner
-Overview.xaml.cpp(64): error C2065: "globalTemp2": nichtdeklarierter Bezeichner
-Overview.xaml.cpp(64): error C2065: "globalTemp3": nichtdeklarierter Bezeichner
-Overview.xaml.cpp(64): error C2065: "globalTemp4": nichtdeklarierter Bezeichner
-Overview.xaml.cpp(64): error C2065: "globalTemp5": nichtdeklarierter Bezeichner
-Overview.xaml.cpp(64): error C2065: "globalTemp6": nichtdeklarierter Bezeichner
-Config.xaml.cpp(640): error C2065: "globalTemp1": nichtdeklarierter Bezeichner
-Config.xaml.cpp(642): error C2065: "globalTemp1": nichtdeklarierter Bezeichner
-Config.xaml.cpp(650): error C2065: "globalTemp2": nichtdeklarierter Bezeichner
-Config.xaml.cpp(652): error C2065: "globalTemp2": nichtdeklarierter Bezeichner
-Config.xaml.cpp(660): error C2065: "globalTemp3": nichtdeklarierter Bezeichner
-Config.xaml.cpp(662): error C2065: "globalTemp3": nichtdeklarierter Bezeichner
-Config.xaml.cpp(670): error C2065: "globalTemp4": nichtdeklarierter Bezeichner
-Config.xaml.cpp(672): error C2065: "globalTemp4": nichtdeklarierter Bezeichner
-Config.xaml.cpp(680): error C2065: "globalTemp5": nichtdeklarierter Bezeichner
-Config.xaml.cpp(682): error C2065: "globalTemp5": nichtdeklarierter Bezeichner
-Config.xaml.cpp(690): error C2065: "globalTemp6": nichtdeklarierter Bezeichner
-Config.xaml.cpp(692): error C2065: "globalTemp6": nichtdeklarierter Bezeichner
-Config.xaml.cpp(700): error C2065: "globalTemp1": nichtdeklarierter Bezeichner
-Config.xaml.cpp(701): error C2065: "globalTemp2": nichtdeklarierter Bezeichner
-Config.xaml.cpp(702): error C2065: "globalTemp3": nichtdeklarierter Bezeichner
-Config.xaml.cpp(703): error C2065: "globalTemp4": nichtdeklarierter Bezeichner
-Config.xaml.cpp(704): error C2065: "globalTemp5": nichtdeklarierter Bezeichner
-Config.xaml.cpp(705): error C2065: "globalTemp6": nichtdeklarierter Bezeichner
+Overview.xaml.cpp(140): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
+Config.xaml.cpp(327): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
+  XamlTypeInfo.g.cpp
+  IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
+  IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb (Partial PDB)
