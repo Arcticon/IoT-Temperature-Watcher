@@ -39,6 +39,8 @@ Overview::Overview()
 {
 	InitializeComponent();
 
+	updateAll();
+
 	TimeSpan period;
 	period.Duration = ticksMultiplier2 * ticks2; // 10,000,000 ticks per second - 
 
@@ -56,6 +58,7 @@ Overview::Overview()
 
 		}));
 	}), period);
+
 }
 
 void IotTemperatureWatcher::Overview::clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)

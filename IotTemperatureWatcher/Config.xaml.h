@@ -23,7 +23,7 @@ namespace IotTemperatureWatcher
 	private:
 
 		int ticks = 10000000;
-		int ticksMultiplier = 1;
+		int ticksMultiplier = 10;
 
 
 		std::string _CUSTOMMODEOFF = "customModeOff";
@@ -89,37 +89,44 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEMPSENSORSCR = "Temperature Sensor Center Right (SCR): ";
 		Platform::String^ _TEMPSENSORSBR = "Temperature Sensor Bottom Right (SBR): ";
 
+		Platform::String^ _DATACENTER = "Datacenter: ";
+		Platform::String^ _ROOM = " | Room: ";
+		Platform::String^ _RACK = " | Rack: ";
+		Platform::String^ _CURRTHRESHSENSTOP = "Current Thresholds Sensor Top:\n";
+		Platform::String^ _CURRTHRESHSENSCEN = "Current Thresholds Sensor Center:\n";
+		Platform::String^ _CURRTHRESHSENSBOT = "Current Thresholds Sensor Bottom:\n";
+		//Platform::String^ _ = "";
+
 		//Platform::String^ _TEXTPOPUPERRORMESSAGE = "";
 
 		int _ETHERNETPORT = 50001;
 
-		void toggledToggleSwitchCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void toggledToggleSwitchVentilator1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void toggledToggleSwitchVentilator2(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void updateAll();
 		void sendDataToServer(std::string str);
 		void sendDataToServerFromInt(int i);
 		float getDataFromServer(std::string str);
 		std::string getDataFromServerToString(std::string str);
-		void valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
-		void valueChangedSliderUpperTemp1V2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
-		void valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
-		void valueChangedSliderUpperTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
-		void valueChangedSliderUpperTemp2V1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
-		void valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e);
-		void openedPopupTest(Platform::Object^ sender, Platform::Object^ e);
-		void closedPopupTest(Platform::Object^ sender, Platform::Object^ e);
-		void clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void openedPopupError(Platform::Object^ sender, Platform::Object^ e);
+		void closedPopupError(Platform::Object^ sender, Platform::Object^ e);
+		void openedPopupConfig(Platform::Object^ sender, Platform::Object^ e);
+		void closedPopupConfig(Platform::Object^ sender, Platform::Object^ e);
+		void clickedButtonPopupErrorOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void clickedButtonPopupConfigSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+
+		
 		void checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-
 		void clickAppBarButtonSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-
 		void checkedAppBarToggleButtonFanConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void uncheckedAppBarToggleButtonFanConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void checkedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void uncheckedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void checkedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void uncheckedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-	};
+		void clickButtonChangeThresholds(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void clickButtonAddFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void clickButtonRemoveFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void clickButtonAddSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void clickButtonRemoveSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+};
 }

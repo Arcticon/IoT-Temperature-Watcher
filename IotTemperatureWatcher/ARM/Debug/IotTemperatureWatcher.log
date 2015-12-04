@@ -1,8 +1,3 @@
-﻿  App.xaml.cpp
-  Config.xaml.cpp
-  Overview.xaml.cpp
-Overview.xaml.cpp(140): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
-Config.xaml.cpp(327): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
-  XamlTypeInfo.g.cpp
+﻿  XamlTypeInfo.g.cpp
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb (Partial PDB)

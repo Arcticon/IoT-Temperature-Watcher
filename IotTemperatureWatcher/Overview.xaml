@@ -811,6 +811,12 @@
 
             <Button x:Name="buttonRackConfig1" Content="Rack Configuration" HorizontalAlignment="Left" Margin="418,174,0,0" VerticalAlignment="Top" Click="clickButtonRackConfig1" Height="60" Width="200" Background="White"/>
 
+            <!--<Popup x:Name="popupError" Opened="openedPopupError" Closed="closedPopupError">
+                <Grid Background="#FF336ea5" Height="1050" Width="1680">
+                    <TextBlock x:Name="textBlockPopupErrorMessage" HorizontalAlignment="Left" Margin="699,276,0,0" TextWrapping="Wrap" Text="Error Message: " VerticalAlignment="Top" Foreground="White"/>
+                    <Button x:Name="buttonPopupErrorOk" Background="White" Content="&#xE830;" Style="{ThemeResource NavigationBackButtonNormalStyle}" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top" Click="clickedButtonPopupErrorOk" />
+                </Grid>
+            </Popup>-->
 
         </Grid>
     </Frame>

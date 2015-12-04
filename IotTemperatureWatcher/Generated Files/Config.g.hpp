@@ -89,128 +89,97 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
             break;
         case 13:
             {
-                this->checkBoxAdvancedCustomMode = safe_cast<::Windows::UI::Xaml::Controls::CheckBox^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::CheckBox^>(this->checkBoxAdvancedCustomMode))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::checkedCheckBoxAdvancedCustomMode);
-                (safe_cast<::Windows::UI::Xaml::Controls::CheckBox^>(this->checkBoxAdvancedCustomMode))->Unchecked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedCheckBoxAdvancedCustomMode);
+                this->textBoxInfo = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 14:
             {
-                this->textBlockUpperTemp1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->textBoxThresholdUpperSensor = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 15:
             {
-                this->textBlockUpperTemp1V2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->textBoxThresholdCenterSensor = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 16:
             {
-                this->textBlockLowerTemp1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->textBoxThresholdLowerSensor = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 17:
             {
-                this->textBlockUpperTemp2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->buttonAddFan = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonAddFan))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickButtonAddFan);
             }
             break;
         case 18:
             {
-                this->textBlockUpperTemp2V1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->buttonRemoveFan = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRemoveFan))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickButtonRemoveFan);
             }
             break;
         case 19:
             {
-                this->textBlockLowerTemp2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->buttonAddSensor = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonAddSensor))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickButtonAddSensor);
             }
             break;
         case 20:
             {
-                this->toggleSwitchCustomMode = safe_cast<::Windows::UI::Xaml::Controls::ToggleSwitch^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::ToggleSwitch^>(this->toggleSwitchCustomMode))->Toggled += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::toggledToggleSwitchCustomMode);
+                this->buttonRemoveSensor = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRemoveSensor))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickButtonRemoveSensor);
             }
             break;
         case 21:
             {
-                this->toggleSwitchVentilator1 = safe_cast<::Windows::UI::Xaml::Controls::ToggleSwitch^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::ToggleSwitch^>(this->toggleSwitchVentilator1))->Toggled += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::toggledToggleSwitchVentilator1);
+                this->buttonChangeThresholds = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonChangeThresholds))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickButtonChangeThresholds);
             }
             break;
         case 22:
             {
-                this->toggleSwitchVentilator2 = safe_cast<::Windows::UI::Xaml::Controls::ToggleSwitch^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::ToggleSwitch^>(this->toggleSwitchVentilator2))->Toggled += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::toggledToggleSwitchVentilator2);
+                this->popupConfig = safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(this->popupConfig))->Opened += ref new ::Windows::Foundation::EventHandler<::Platform::Object^>(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Platform::Object^))&Config::openedPopupConfig);
+                (safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(this->popupConfig))->Closed += ref new ::Windows::Foundation::EventHandler<::Platform::Object^>(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Platform::Object^))&Config::closedPopupConfig);
             }
             break;
         case 23:
             {
-                this->sliderUpperTemp1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Slider^>(this->sliderUpperTemp1))->ValueChanged += ref new ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^))&Config::valueChangedSliderUpperTemp1);
+                this->popupError = safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(this->popupError))->Opened += ref new ::Windows::Foundation::EventHandler<::Platform::Object^>(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Platform::Object^))&Config::openedPopupError);
+                (safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(this->popupError))->Closed += ref new ::Windows::Foundation::EventHandler<::Platform::Object^>(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Platform::Object^))&Config::closedPopupError);
             }
             break;
         case 24:
             {
-                this->sliderUpperTemp1V2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Slider^>(this->sliderUpperTemp1V2))->ValueChanged += ref new ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^))&Config::valueChangedSliderUpperTemp1V2);
+                this->textBlockPopupErrorMessage = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 25:
             {
-                this->sliderLowerTemp1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Slider^>(this->sliderLowerTemp1))->ValueChanged += ref new ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^))&Config::valueChangedSliderLowerTemp1);
+                this->buttonPopupErrorOk = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonPopupErrorOk))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickedButtonPopupErrorOk);
             }
             break;
         case 26:
             {
-                this->sliderUpperTemp2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Slider^>(this->sliderUpperTemp2))->ValueChanged += ref new ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^))&Config::valueChangedSliderUpperTemp2);
+                this->buttonPopupConfigSave = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonPopupConfigSave))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickedButtonPopupConfigSave);
             }
             break;
         case 27:
-            {
-                this->sliderUpperTemp2V1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Slider^>(this->sliderUpperTemp2V1))->ValueChanged += ref new ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^))&Config::valueChangedSliderUpperTemp2V1);
-            }
-            break;
-        case 28:
-            {
-                this->sliderLowerTemp2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Slider^>(this->sliderLowerTemp2))->ValueChanged += ref new ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^))&Config::valueChangedSliderLowerTemp2);
-            }
-            break;
-        case 29:
-            {
-                this->popupTest = safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(this->popupTest))->Opened += ref new ::Windows::Foundation::EventHandler<::Platform::Object^>(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Platform::Object^))&Config::openedPopupTest);
-                (safe_cast<::Windows::UI::Xaml::Controls::Primitives::Popup^>(this->popupTest))->Closed += ref new ::Windows::Foundation::EventHandler<::Platform::Object^>(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Platform::Object^))&Config::closedPopupTest);
-            }
-            break;
-        case 30:
-            {
-                this->textBlockPopupErrorMessage = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
-            }
-            break;
-        case 31:
-            {
-                this->buttonPopupOk = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonPopupOk))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickedButtonPopupOk);
-            }
-            break;
-        case 32:
             {
                 this->appBarToggleButtonFanConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonFanConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
@@ -219,7 +188,7 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonFanConfig);
             }
             break;
-        case 33:
+        case 28:
             {
                 this->appBarToggleButtonSensorConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonSensorConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
@@ -228,7 +197,7 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonSensorConfig);
             }
             break;
-        case 34:
+        case 29:
             {
                 this->appBarToggleButtonThresholdConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonThresholdConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
@@ -237,10 +206,10 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonThresholdConfig);
             }
             break;
-        case 35:
+        case 30:
             {
-                ::Windows::UI::Xaml::Controls::AppBarButton^ element35 = safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(element35))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                ::Windows::UI::Xaml::Controls::AppBarButton^ element30 = safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(element30))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickAppBarButtonSave);
             }
             break;

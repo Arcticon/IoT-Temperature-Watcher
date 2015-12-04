@@ -42,42 +42,7 @@ Config::Config()
 {
 	InitializeComponent();
 
-	sliderUpperTemp1->Value = 34;
-	sliderUpperTemp1V2->Value = 38;
-	sliderLowerTemp1->Value = 30;
-	sliderUpperTemp2->Value = 30;
-	sliderUpperTemp2V1->Value = 32;
-	sliderLowerTemp2->Value = 27;
-	checkBoxAdvancedCustomMode->IsChecked = false;
-
-	sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1->Value));
-	sendDataToServer("slider2:" + sliderValToString((int)sliderLowerTemp1->Value));
-	sendDataToServer("slider3:" + sliderValToString((int)sliderUpperTemp2->Value));
-	sendDataToServer("slider4:" + sliderValToString((int)sliderLowerTemp2->Value));
-	sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp1V2->Value));
-	sendDataToServer("slider6:" + sliderValToString((int)sliderUpperTemp2V1->Value));
-
-	if (toggleSwitchCustomMode->IsOn) {
-		sendDataToServer(_CUSTOMMODEON);
-		if (toggleSwitchVentilator1->IsOn) {
-			sendDataToServer(_SETVENT1ON);
-		}
-		else {
-			sendDataToServer(_SETVENT1OFF);
-		}
-		if (toggleSwitchVentilator2->IsOn) {
-			sendDataToServer(_SETVENT2ON);
-		}
-		else {
-			sendDataToServer(_SETVENT2OFF);
-		}
-	}
-	else {
-		sendDataToServer(_CUSTOMMODEOFF);
-	}
-
-
-
+	updateAll();
 
 	TimeSpan period;
 	period.Duration = ticksMultiplier * ticks; // 10,000,000 ticks per second - 
@@ -96,34 +61,12 @@ Config::Config()
 
 		}));
 	}), period);
-}
 
-void IotTemperatureWatcher::Config::toggledToggleSwitchCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
+	textBoxInfo->Text = _DATACENTER + _ROOM + _RACK;
+	textBoxThresholdUpperSensor->Text = _CURRTHRESHSENSTOP;
+	textBoxThresholdCenterSensor->Text = _CURRTHRESHSENSCEN;
+	textBoxThresholdLowerSensor->Text = _CURRTHRESHSENSBOT;
 
-}
-
-void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-	if (toggleSwitchVentilator1->IsOn) {
-
-		sendDataToServer(_SETVENT1ON);
-	}
-	else {
-
-		sendDataToServer(_SETVENT1OFF);
-	}
-}
-
-void IotTemperatureWatcher::Config::toggledToggleSwitchVentilator2(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-	if (toggleSwitchVentilator2->IsOn) {
-
-		sendDataToServer(_SETVENT2ON);
-	}
-	else {
-
-		sendDataToServer(_SETVENT2OFF);
-	}
 }
 
 void IotTemperatureWatcher::Config::sendDataToServer(std::string str) {
@@ -144,8 +87,8 @@ void IotTemperatureWatcher::Config::sendDataToServer(std::string str) {
 	sConnect = socket(AF_INET, SOCK_STREAM, 0);
 	if (sConnect == INVALID_SOCKET) {
 		//t->Text = "socket failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
 		}
 		return;
@@ -161,8 +104,8 @@ void IotTemperatureWatcher::Config::sendDataToServer(std::string str) {
 	rc = connect(sConnect, (struct sockaddr*)&conpar, conparlen);
 	if (rc == SOCKET_ERROR) {
 		//t2->Text = "connect failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		}
 		return;
@@ -179,8 +122,8 @@ void IotTemperatureWatcher::Config::sendDataToServer(std::string str) {
 
 		//t3->Text = "error send";
 
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
 		}
 		return;
@@ -209,8 +152,8 @@ void IotTemperatureWatcher::Config::sendDataToServerFromInt(int i) {
 	sConnect = socket(AF_INET, SOCK_STREAM, 0);
 	if (sConnect == INVALID_SOCKET) {
 		//t->Text = "socket failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
 		}
 		return;
@@ -226,8 +169,8 @@ void IotTemperatureWatcher::Config::sendDataToServerFromInt(int i) {
 	rc = connect(sConnect, (struct sockaddr*)&conpar, conparlen);
 	if (rc == SOCKET_ERROR) {
 		//t2->Text = "connect failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		}
 		return;
@@ -244,8 +187,8 @@ void IotTemperatureWatcher::Config::sendDataToServerFromInt(int i) {
 
 		//t3->Text = "error send";
 
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
 		}
 		return;
@@ -274,8 +217,8 @@ float IotTemperatureWatcher::Config::getDataFromServer(std::string str) {
 	sConnect = socket(AF_INET, SOCK_STREAM, 0);
 	if (sConnect == INVALID_SOCKET) {
 		//t->Text = "socket failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
 		}
 		return 0;
@@ -291,8 +234,8 @@ float IotTemperatureWatcher::Config::getDataFromServer(std::string str) {
 	rc = connect(sConnect, (struct sockaddr*)&conpar, conparlen);
 	if (rc == SOCKET_ERROR) {
 		//t2->Text = "connect failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		}
 		return 0;
@@ -309,8 +252,8 @@ float IotTemperatureWatcher::Config::getDataFromServer(std::string str) {
 
 		//t3->Text = "error send";
 
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
 		}
 		return 0;
@@ -345,8 +288,8 @@ std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string
 	sConnect = socket(AF_INET, SOCK_STREAM, 0);
 	if (sConnect == INVALID_SOCKET) {
 		//t->Text = "socket failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
 		}
 		return "";
@@ -362,8 +305,8 @@ std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string
 	rc = connect(sConnect, (struct sockaddr*)&conpar, conparlen);
 	if (rc == SOCKET_ERROR) {
 		//t2->Text = "connect failed";
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		}
 		return "";
@@ -380,8 +323,8 @@ std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string
 
 		//t3->Text = "error send";
 
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
 		}
 		return "";
@@ -398,149 +341,47 @@ std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string
 	return tmpString;
 }
 
-void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
-{
-	sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1->Value));
-	textBlockUpperTemp1->Text = _TEXTUPPERTEMP1 + (int)sliderUpperTemp1->Value;
-	Sleep(slp);
-}
-
-void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp1V2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
-	sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp1V2->Value));
-	textBlockUpperTemp1V2->Text = _TEXTUPPERTEMP1V2 + (int)sliderUpperTemp1V2->Value;
-	Sleep(slp);
-}
-
-void IotTemperatureWatcher::Config::valueChangedSliderLowerTemp1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
-{
-	if (sliderUpperTemp1->Value > sliderUpperTemp1V2->Value) {
-		
-		if (sliderLowerTemp1->Value >= sliderUpperTemp1V2->Value) {
-			sliderLowerTemp1->Value = sliderUpperTemp1V2->Value;
-		}
-	}
-	else if (sliderUpperTemp1->Value < sliderUpperTemp1V2->Value) {
-		if (sliderLowerTemp1->Value >= sliderUpperTemp1->Value) {
-			sliderLowerTemp1->Value = sliderUpperTemp1->Value;
-		}
-	}
-
-	sendDataToServer("slider2:" + sliderValToString((int)sliderLowerTemp1->Value));
-	textBlockLowerTemp1->Text = _TEXTLOWERTEMP1 + (int)sliderLowerTemp1->Value;
-	Sleep(slp);
-}
-
-void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
-{
-	sendDataToServer("slider3:" + sliderValToString((int)sliderUpperTemp2->Value));
-	textBlockUpperTemp2->Text = _TEXTUPPERTEMP2 + (int)sliderUpperTemp2->Value;
-	Sleep(slp);
-}
-
-void IotTemperatureWatcher::Config::valueChangedSliderUpperTemp2V1(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e) {
-	sendDataToServer("slider6:" + sliderValToString((int)sliderUpperTemp2V1->Value));
-	textBlockUpperTemp2V1->Text = _TEXTUPPERTEMP2V1 + (int)sliderUpperTemp2V1->Value;
-	Sleep(slp);
-}
-
-void IotTemperatureWatcher::Config::valueChangedSliderLowerTemp2(Platform::Object^ sender, Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs^ e)
-{
-	if (sliderUpperTemp2->Value > sliderUpperTemp2V1->Value) {
-		if (sliderLowerTemp2->Value >= sliderUpperTemp2V1->Value) {
-			sliderLowerTemp2->Value = sliderUpperTemp2V1->Value;
-		}
-	}
-	else if (sliderUpperTemp2->Value < sliderUpperTemp2V1->Value) {
-		if (sliderLowerTemp2->Value >= sliderUpperTemp2->Value) {
-			sliderLowerTemp2->Value = sliderUpperTemp2->Value;
-		}
-	}
-
-	sendDataToServer("slider4:" + sliderValToString((int)sliderLowerTemp2->Value));
-	textBlockLowerTemp2->Text = _TEXTLOWERTEMP2 + (int)sliderLowerTemp2->Value;
-	Sleep(slp);
-}
-
 std::string sliderValToString(int val) {
 	std::wstring stringW(val.ToString()->Begin());
 	std::string sliderVal(stringW.begin(), stringW.end());
 	return sliderVal;
 }
 
-void IotTemperatureWatcher::Config::openedPopupTest(Platform::Object^ sender, Platform::Object^ e)
+void IotTemperatureWatcher::Config::openedPopupError(Platform::Object^ sender, Platform::Object^ e)
 {
-	popupTest->Visibility = Windows::UI::Xaml::Visibility::Visible;
+	popupError->Visibility = Windows::UI::Xaml::Visibility::Visible;
 }
 
-void IotTemperatureWatcher::Config::closedPopupTest(Platform::Object^ sender, Platform::Object^ e)
+void IotTemperatureWatcher::Config::closedPopupError(Platform::Object^ sender, Platform::Object^ e)
 {
-	popupTest->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	popupError->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 }
 
-void IotTemperatureWatcher::Config::clickedButtonPopupOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void IotTemperatureWatcher::Config::openedPopupConfig(Platform::Object^ sender, Platform::Object^ e) {
+	popupConfig->Visibility = Windows::UI::Xaml::Visibility::Visible;
+}
+
+void IotTemperatureWatcher::Config::closedPopupConfig(Platform::Object^ sender, Platform::Object^ e) {
+	popupConfig->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+}
+
+void IotTemperatureWatcher::Config::clickedButtonPopupErrorOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	popupTest->IsOpen = false;
+	popupError->IsOpen = false;
+}
+
+void IotTemperatureWatcher::Config::clickedButtonPopupConfigSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
+	popupConfig->IsOpen = false;
 }
 
 void IotTemperatureWatcher::Config::checkedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	sendDataToServer(_CUSTOMMODEOFF);
-
-	sliderUpperTemp1->IsEnabled = true;
-	sliderUpperTemp1V2->IsEnabled = true;
-	sliderLowerTemp1->IsEnabled = true;
-	sliderUpperTemp2->IsEnabled = true;
-	sliderUpperTemp2V1->IsEnabled = true;
-	sliderLowerTemp2->IsEnabled = true;
-
-	toggleSwitchVentilator1->IsEnabled = false;
-	toggleSwitchVentilator2->IsEnabled = false;
-
-	textBlockUpperTemp1->Opacity = 1;
-	textBlockUpperTemp1V2->Opacity = 1;
-	textBlockLowerTemp1->Opacity = 1;
-	textBlockUpperTemp2->Opacity = 1;
-	textBlockUpperTemp2V1->Opacity = 1;
-	textBlockLowerTemp2->Opacity = 1;
-
-	checkBoxAdvancedCustomMode->IsChecked = true;
 }
 
 void IotTemperatureWatcher::Config::uncheckedCheckBoxAdvancedCustomMode(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	sendDataToServer(_CUSTOMMODEON);
-
-	if (toggleSwitchVentilator1->IsOn) {
-		sendDataToServer(_SETVENT1ON);
-	}
-	else {
-		sendDataToServer(_SETVENT1OFF);
-	}
-	if (toggleSwitchVentilator2->IsOn) {
-		sendDataToServer(_SETVENT2ON);
-	}
-	else {
-		sendDataToServer(_SETVENT2OFF);
-	}
-
-	sliderUpperTemp1->IsEnabled = false;
-	sliderLowerTemp1->IsEnabled = false;
-	sliderUpperTemp1V2->IsEnabled = false;
-	sliderUpperTemp2->IsEnabled = false;
-	sliderUpperTemp2V1->IsEnabled = false;
-	sliderLowerTemp2->IsEnabled = false;
-
-	toggleSwitchVentilator1->IsEnabled = true;
-	toggleSwitchVentilator2->IsEnabled = true;
-
-	textBlockUpperTemp1->Opacity = 0.4;
-	textBlockUpperTemp1V2->Opacity = 0.4;
-	textBlockLowerTemp1->Opacity = 0.4;
-	textBlockUpperTemp2->Opacity = 0.4;
-	textBlockUpperTemp2V1->Opacity = 0.4;
-	textBlockLowerTemp2->Opacity = 0.4;
-
-	checkBoxAdvancedCustomMode->IsChecked = false;
 }
 
 void IotTemperatureWatcher::Config::clickAppBarButtonSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -555,38 +396,18 @@ void IotTemperatureWatcher::Config::checkedAppBarToggleButtonFanConfig(Platform:
 {
 	appBarToggleButtonFanConfig->Label = _TEXTAPPBARTOGGLEBUTTONDISABLEFANCONFIG;
 	sendDataToServer(_FANCONFIGON);
-
-	if (!appBarToggleButtonSensorConfig->IsChecked) {
-		appBarToggleButtonSensorConfig->IsChecked = false;
-	}
-	if (appBarToggleButtonThresholdConfig->IsChecked) {
-		appBarToggleButtonThresholdConfig->IsChecked = false;
-	}
-
-	if (toggleSwitchVentilator1->IsOn) {
-		sendDataToServer(_SETVENT1ON);
-	}
-	else {
-		sendDataToServer(_SETVENT1OFF);
-	}
-	if (toggleSwitchVentilator2->IsOn) {
-		sendDataToServer(_SETVENT2ON);
-	}
-	else {
-		sendDataToServer(_SETVENT2OFF);
-	}
-
-	toggleSwitchVentilator1->IsEnabled = true;
-	toggleSwitchVentilator2->IsEnabled = true;
+	
+	buttonAddFan->IsEnabled = true;
+	buttonRemoveFan->IsEnabled = true;
 }
 
 void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonFanConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	appBarToggleButtonFanConfig->Label = _TEXTAPPBARTOGGLEBUTTONENABLEFANCONFIG;
 	sendDataToServer(_FANCONFIGOFF);
-	
-	toggleSwitchVentilator1->IsEnabled = false;
-	toggleSwitchVentilator2->IsEnabled = false;
+
+	buttonAddFan->IsEnabled = false;
+	buttonRemoveFan->IsEnabled = false;
 }
 
 void IotTemperatureWatcher::Config::checkedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -594,7 +415,8 @@ void IotTemperatureWatcher::Config::checkedAppBarToggleButtonSensorConfig(Platfo
 	appBarToggleButtonSensorConfig->Label = _TEXTAPPBARTOGGLEBUTTONDISABLESENSORCONFIG;
 	sendDataToServer(_SENSORCONFIGON);
 
-	
+	buttonAddSensor->IsEnabled = true;
+	buttonRemoveSensor->IsEnabled = true;
 }
 
 void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonSensorConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -602,35 +424,16 @@ void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonSensorConfig(Plat
 	appBarToggleButtonSensorConfig->Label = _TEXTAPPBARTOGGLEBUTTONENABLESENSORCONFIG;
 	sendDataToServer(_SENSORCONFIGOFF);
 
-	
+	buttonAddSensor->IsEnabled = false;
+	buttonRemoveSensor->IsEnabled = false;
 }
 
 void IotTemperatureWatcher::Config::checkedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	appBarToggleButtonThresholdConfig->Label = _TEXTAPPBARTOGGLEBUTTONDISABLETHRESHOLDCONFIG;
 	sendDataToServer(_THRESHOLDCONFIGON);
-
-	if (appBarToggleButtonFanConfig->IsChecked) {
-		appBarToggleButtonFanConfig->IsChecked = false;
-	}
-	if (appBarToggleButtonSensorConfig->IsChecked) {
-		appBarToggleButtonSensorConfig->IsChecked = false;
-	}
-
-	sliderUpperTemp1->IsEnabled = true;
-	sliderLowerTemp1->IsEnabled = true;
-	sliderUpperTemp2->IsEnabled = true;
-	sliderLowerTemp2->IsEnabled = true;
-
-	textBlockUpperTemp1->Opacity = 1;
-	textBlockLowerTemp1->Opacity = 1;
-	textBlockUpperTemp2->Opacity = 1;
-	textBlockLowerTemp2->Opacity = 1;
-
-	sliderUpperTemp1V2->IsEnabled = true;
-	sliderUpperTemp2V1->IsEnabled = true;
-	textBlockUpperTemp1V2->Opacity = 1;
-	textBlockUpperTemp2V1->Opacity = 1;
+	
+	buttonChangeThresholds->IsEnabled = true;
 }
 
 void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonThresholdConfig(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -638,28 +441,15 @@ void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonThresholdConfig(P
 	appBarToggleButtonThresholdConfig->Label = _TEXTAPPBARTOGGLEBUTTONENABLETHRESHOLDCONFIG;
 	sendDataToServer(_THRESHOLDCONFIGOFF);
 
-	sliderUpperTemp1->IsEnabled = false;
-	sliderLowerTemp1->IsEnabled = false;
-	sliderUpperTemp2->IsEnabled = false;
-	sliderLowerTemp2->IsEnabled = false;
-
-	textBlockUpperTemp1->Opacity = 0.4;
-	textBlockLowerTemp1->Opacity = 0.4;
-	textBlockUpperTemp2->Opacity = 0.4;
-	textBlockLowerTemp2->Opacity = 0.4;
-
-	sliderUpperTemp1V2->IsEnabled = false;
-	sliderUpperTemp2V1->IsEnabled = false;
-	textBlockUpperTemp1V2->Opacity = 0.4;
-	textBlockUpperTemp2V1->Opacity = 0.4;
+	buttonChangeThresholds->IsEnabled = false;
 }
 
 void IotTemperatureWatcher::Config::updateAll() {
 	temp1 = getDataFromServer(_GETTEMP1);
 
 	if (temp1 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED;
 		}
 		return;
@@ -668,8 +458,8 @@ void IotTemperatureWatcher::Config::updateAll() {
 	temp2 = getDataFromServer(_GETTEMP2);
 
 	if (temp2 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED;
 		}
 		return;
@@ -678,8 +468,8 @@ void IotTemperatureWatcher::Config::updateAll() {
 	temp3 = getDataFromServer(_GETTEMP3);
 
 	if (temp3 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR3NOTCONNECTED;
 		}
 		return;
@@ -688,8 +478,8 @@ void IotTemperatureWatcher::Config::updateAll() {
 	temp4 = getDataFromServer(_GETTEMP4);
 
 	if (temp4 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR4NOTCONNECTED;
 		}
 		return;
@@ -698,8 +488,8 @@ void IotTemperatureWatcher::Config::updateAll() {
 	temp5 = getDataFromServer(_GETTEMP5);
 
 	if (temp5 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR5NOTCONNECTED;
 		}
 		return;
@@ -708,8 +498,8 @@ void IotTemperatureWatcher::Config::updateAll() {
 	temp6 = getDataFromServer(_GETTEMP6);
 
 	if (temp6 < 2) {
-		if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
+		if (!popupError->IsOpen) {
+			popupError->IsOpen = true;
 			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR6NOTCONNECTED;
 		}
 		return;
@@ -740,4 +530,39 @@ void IotTemperatureWatcher::Config::updateAll() {
 	else if (tmpStringV2.compare(_V2OFF) == 0) {
 	textBlockVentilator2->Text = _TEXTVENT2OFF->ToString();
 	}*/
+}
+
+void IotTemperatureWatcher::Config::clickButtonAddFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (!popupConfig->IsOpen) {
+		popupConfig->IsOpen = true;
+	}
+}
+
+void IotTemperatureWatcher::Config::clickButtonRemoveFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (!popupConfig->IsOpen) {
+		popupConfig->IsOpen = true;
+	}
+}
+
+void IotTemperatureWatcher::Config::clickButtonAddSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (!popupConfig->IsOpen) {
+		popupConfig->IsOpen = true;
+	}
+}
+
+void IotTemperatureWatcher::Config::clickButtonRemoveSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (!popupConfig->IsOpen) {
+		popupConfig->IsOpen = true;
+	}
+}
+
+void IotTemperatureWatcher::Config::clickButtonChangeThresholds(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (!popupConfig->IsOpen) {
+		popupConfig->IsOpen = true;
+	}
 }
