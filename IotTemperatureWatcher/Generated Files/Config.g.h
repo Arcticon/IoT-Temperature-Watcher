@@ -10,11 +10,23 @@
 namespace Windows {
     namespace UI {
         namespace Xaml {
+            namespace Media {
+                namespace Animation {
+                    ref class Storyboard;
+                }
+            }
+        }
+    }
+}
+namespace Windows {
+    namespace UI {
+        namespace Xaml {
             namespace Controls {
                 ref class Frame;
                 ref class Grid;
                 ref class Image;
                 ref class TextBox;
+                ref class StackPanel;
                 ref class Button;
                 ref class TextBlock;
                 ref class AppBarToggleButton;
@@ -49,9 +61,10 @@ namespace IotTemperatureWatcher
     private:
         bool _contentLoaded;
     
+        private: ::Windows::UI::Xaml::Media::Animation::Storyboard^ RackAnimationStoryboard;
         private: ::Windows::UI::Xaml::Controls::Frame^ FrameConfig;
         private: ::Windows::UI::Xaml::Controls::Grid^ GridConfig;
-        private: ::Windows::UI::Xaml::Controls::Image^ serverRack;
+        private: ::Windows::UI::Xaml::Controls::Image^ serverRackOpened;
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxUpperFan1;
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxUpperFan2;
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxSTL;
@@ -65,10 +78,13 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxThresholdUpperSensor;
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxThresholdCenterSensor;
         private: ::Windows::UI::Xaml::Controls::TextBox^ textBoxThresholdLowerSensor;
+        private: ::Windows::UI::Xaml::Controls::StackPanel^ buttonFanConfigPanel;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonAddFan;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonRemoveFan;
+        private: ::Windows::UI::Xaml::Controls::StackPanel^ buttonSenConfigPanel1;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonAddSensor;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonRemoveSensor;
+        private: ::Windows::UI::Xaml::Controls::StackPanel^ buttonSenConfigPanel2;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonChangeThresholds;
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupConfig;
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupError;

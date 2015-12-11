@@ -151,6 +151,7 @@
     <ClInclude Include="Config.xaml.h">
       <DependentUpon>Config.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -170,17 +171,26 @@
     <None Include="IotTemperatureWatcher_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\msgLogo.png" />
     <Image Include="Assets\ahahahah.scale-200.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="Assets\getRack.png" />
+    <Image Include="Assets\image1.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\Portal_blueV2.png" />
+    <Image Include="Assets\Portal_redV2.png" />
     <Image Include="Assets\Rack.png" />
+    <Image Include="Assets\Rack_BIGv2.png" />
+    <Image Include="Assets\Reck_SizeOptim.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />
     <Image Include="Assets\Square44x44Logo.scale-200.png" />
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Image Include="Assets\StoreLogo.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Image Include="E:\Te_Wa_Pctrs\Reck_BigView22.png" />
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp">
@@ -200,6 +210,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="IotTemperatureWatcher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\SourceSansPro-ExtraLight.ttf" />
+    <Font Include="..\..\SourceSansPro-Regular.ttf" />
+    <Font Include="Assets\SourceSansPro-ExtraLight.ttf">
+      <DeploymentContent>false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">false</ExcludedFromBuild>
+    </Font>
+    <Font Include="Assets\SourceSansPro-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

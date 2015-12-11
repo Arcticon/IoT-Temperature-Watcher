@@ -29,42 +29,189 @@ void ::IotTemperatureWatcher::Overview::Connect(int __connectionId, ::Platform::
     {
         case 1:
             {
-                this->FrameOverview = safe_cast<::Windows::UI::Xaml::Controls::Frame^>(__target);
+                this->StoryboardButton1 = safe_cast<::Windows::UI::Xaml::Media::Animation::Storyboard^>(__target);
             }
             break;
         case 2:
             {
-                this->GridOverview = safe_cast<::Windows::UI::Xaml::Controls::Grid^>(__target);
+                this->StoryboardFlyout1 = safe_cast<::Windows::UI::Xaml::Media::Animation::Storyboard^>(__target);
             }
             break;
         case 3:
             {
-                this->serverRack1 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+                this->StoryboardText1 = safe_cast<::Windows::UI::Xaml::Media::Animation::Storyboard^>(__target);
             }
             break;
         case 4:
             {
-                this->textBoxRackInfo1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+                this->StoryboardText2 = safe_cast<::Windows::UI::Xaml::Media::Animation::Storyboard^>(__target);
             }
             break;
         case 5:
             {
-                this->textBoxRackErrors1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+                this->FrameOverview = safe_cast<::Windows::UI::Xaml::Controls::Frame^>(__target);
             }
             break;
         case 6:
+            {
+                this->GridOverview = safe_cast<::Windows::UI::Xaml::Controls::Grid^>(__target);
+            }
+            break;
+        case 7:
+            {
+                this->serverRack1 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+            }
+            break;
+        case 8:
+            {
+                this->textBoxRackInfo1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 9:
+            {
+                this->textBoxRackErrors1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 10:
             {
                 this->buttonRackConfig1 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRackConfig1))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
             }
             break;
-        case 7:
+        case 11:
+            {
+                this->serverRack2 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+            }
+            break;
+        case 12:
+            {
+                this->textBoxRackInfo2 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 13:
+            {
+                this->textBoxRackErrors2 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 14:
+            {
+                this->buttonRackConfig2 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRackConfig2))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
+            }
+            break;
+        case 15:
+            {
+                this->serverRack3 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+            }
+            break;
+        case 16:
+            {
+                this->textBoxRackInfo3 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 17:
+            {
+                this->textBoxRackErrors3 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 18:
+            {
+                this->buttonRackConfig3 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRackConfig3))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
+            }
+            break;
+        case 19:
+            {
+                this->serverRack4 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+            }
+            break;
+        case 20:
+            {
+                this->textBoxRackInfo4 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 21:
+            {
+                this->textBoxRackErrors4 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 22:
+            {
+                this->buttonRackConfig4 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRackConfig4))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
+            }
+            break;
+        case 23:
+            {
+                this->serverRack5 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+            }
+            break;
+        case 24:
+            {
+                this->textBoxRackInfo5 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 25:
+            {
+                this->textBoxRackErrors5 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 26:
+            {
+                this->buttonRackConfig5 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRackConfig5))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
+            }
+            break;
+        case 27:
+            {
+                this->serverRack6 = safe_cast<::Windows::UI::Xaml::Controls::Image^>(__target);
+            }
+            break;
+        case 28:
+            {
+                this->textBoxRackInfo6 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 29:
+            {
+                this->textBoxRackErrors6 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 30:
+            {
+                this->buttonRackConfig6 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonRackConfig6))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonRackConfig1);
+            }
+            break;
+        case 31:
+            {
+                this->button = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->button))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Overview::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Overview::clickButtonmsgLogo);
+            }
+            break;
+        case 32:
+            {
+                this->textBlock1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+            }
+            break;
+        case 33:
+            {
+                this->textBlock2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+            }
+            break;
+        case 34:
             {
                 this->userName = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
-        case 8:
+        case 35:
             {
                 this->passWord = safe_cast<::Windows::UI::Xaml::Controls::PasswordBox^>(__target);
             }

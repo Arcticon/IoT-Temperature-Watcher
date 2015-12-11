@@ -38,7 +38,8 @@ float testtemp1 = 0;
 Overview::Overview()
 {
 	InitializeComponent();
-
+	StoryboardText1->Begin();
+	StoryboardText2->Begin();
 	updateAll();
 
 	TimeSpan period;
@@ -67,6 +68,11 @@ void IotTemperatureWatcher::Overview::clickButtonRackConfig1(Platform::Object^ s
 	{
 		this->Frame->Navigate(Config::typeid);
 	}
+}
+
+void  IotTemperatureWatcher::Overview::clickButtonmsgLogo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
+	
+	StoryboardFlyout1->Begin();
 }
 
 float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
@@ -214,7 +220,21 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 	return tmpString;
 }
 
+std::string IotTemperatureWatcher::Overview::getStatus(float str) {
+	if (str <= 30) {
+		return "optimal";
+	}
+	else if (str > 30 && str <= 40) {
+		return "warning";
+	}
+	else if (str > 40) {
+		return "critical";
+	}
+}
+
 void IotTemperatureWatcher::Overview::updateAll() {
 	testtemp1 = getDataFromServer("dc01ro01ra01");
+	textBlock1->Text = "" +  "Temp. Rack 1: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 2: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 3: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 4: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 5: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 6: " + testtemp1 + " | Status: optimal";
+	textBlock2->Text = textBlock1->Text;
 	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + testtemp1;
 }

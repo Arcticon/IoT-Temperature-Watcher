@@ -8,6 +8,9 @@
       <UniqueIdentifier>f794a282-388c-46f2-8dd6-2191ca0ba6af</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
+    <Filter Include="Fonts">
+      <UniqueIdentifier>{55bb1f81-37db-42b6-9a50-8b7098127053}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -23,6 +26,7 @@
     <ClInclude Include="App.xaml.h" />
     <ClInclude Include="Config.xaml.h" />
     <ClInclude Include="Overview.xaml.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
@@ -52,6 +56,31 @@
     <Image Include="Assets\Rack.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="icon1.ico" />
+    <Image Include="Assets\getRack.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="E:\Te_Wa_Pctrs\Reck_BigView22.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="..\..\msgLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\image1.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Reck_SizeOptim.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Portal_blueV2.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Portal_redV2.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Rack_BIGv2.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -62,5 +91,18 @@
   <ItemGroup>
     <Page Include="Config.xaml" />
     <Page Include="Overview.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="IotTemperatureWatcher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\SourceSansPro-ExtraLight.ttf" />
+    <Font Include="..\..\SourceSansPro-Regular.ttf" />
+    <Font Include="Assets\SourceSansPro-ExtraLight.ttf">
+      <Filter>Assets</Filter>
+    </Font>
+    <Font Include="Assets\SourceSansPro-Regular.ttf">
+      <Filter>Assets</Filter>
+    </Font>
   </ItemGroup>
 </Project>
