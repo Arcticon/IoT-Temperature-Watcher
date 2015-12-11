@@ -30,7 +30,12 @@ OneWire temperatureSensor4(5);
 OneWire temperatureSensor5(6);
 OneWire temperatureSensor6(7);
 byte sensorCount = 6;
-bool isSensor1Enabled, isSensor2Enabled, isSensor3Enabled, isSensor4Enabled, isSensor5Enabled, isSensor6Enabled = true;
+bool isSensor1Enabled = true;
+bool isSensor2Enabled = true;
+bool isSensor3Enabled = true;
+bool isSensor4Enabled = true;
+bool isSensor5Enabled = true;
+bool isSensor6Enabled = true;
 
 /* 
  * temperatureSensor1820 Variables
@@ -38,17 +43,17 @@ bool isSensor1Enabled, isSensor2Enabled, isSensor3Enabled, isSensor4Enabled, isS
 byte i;
 byte present = 0;
 byte data1[12];
-/*byte data1[12];
-byte data1[12];
-byte data1[12];
-byte data1[12];
-byte data1[12];*/
+byte data2[12];
+byte data3[12];
+byte data4[12];
+byte data5[12];
+byte data6[12];
 byte addr1[8];
-/*byte addr1[8];
-byte addr1[8];
-byte addr1[8];
-byte addr1[8];
-byte addr1[8];*/
+byte addr2[8];
+byte addr3[8];
+byte addr4[8];
+byte addr5[8];
+byte addr6[8];
 
 /*
  * Temperature variables
@@ -115,6 +120,37 @@ void setup()
   
   lcd.begin(20,4);
   lcd.setCursor(0, 0);
+
+  if ( !temperatureSensor1.search(addr1)) {
+    temperatureSensor1.reset_search();
+    Serial.println("ERROR #1");
+    return;
+  }
+  if ( !temperatureSensor2.search(addr2)) {
+    temperatureSensor2.reset_search();
+    Serial.println("ERROR #2");
+    return;
+  }
+  if ( !temperatureSensor3.search(addr3)) {
+    temperatureSensor3.reset_search();
+    Serial.println("ERROR #3");
+    return;
+  }
+  if ( !temperatureSensor4.search(addr4)) {
+    temperatureSensor4.reset_search();
+    Serial.println("ERROR #4");
+    return;
+  }
+  if ( !temperatureSensor5.search(addr5)) {
+    temperatureSensor5.reset_search();
+    Serial.println("ERROR #5");
+    return;
+  }
+  if ( !temperatureSensor6.search(addr6)) {
+    temperatureSensor6.reset_search();
+    Serial.println("ERROR #6");
+    return;
+  }
 
   Ethernet.begin(macAdress, ip, dnsServer, gateway, subnet);
   server.begin();
@@ -220,6 +256,7 @@ void loop() {
 
 // Read Temperature from temperatureSensor1820
 float getTemp(int int_switch) {
+  int16_t raw;
   if (int_switch == 1) {
     temperatureSensor1.reset();
     temperatureSensor1.select(addr1);
@@ -234,79 +271,84 @@ float getTemp(int int_switch) {
     for ( i = 0; i < 9; i++) {
       data1[i] = temperatureSensor1.read();
     }
+    raw = (data1[1] << 8) | data1[0];
   } else if (int_switch == 2) {
     temperatureSensor2.reset();
-    temperatureSensor2.select(addr1);
+    temperatureSensor2.select(addr2);
     temperatureSensor2.write(0x44);
 
     delay(sensorDelay);
 
     present = temperatureSensor2.reset();
-    temperatureSensor2.select(addr1);
+    temperatureSensor2.select(addr2);
     temperatureSensor2.write(0xBE);
 
     for ( i = 0; i < 9; i++) {
-      data1[i] = temperatureSensor2.read();
+      data2[i] = temperatureSensor2.read();
     }
+    raw = (data2[1] << 8) | data2[0];
   }else if (int_switch == 3) {
     temperatureSensor3.reset();
-    temperatureSensor3.select(addr1);
+    temperatureSensor3.select(addr3);
     temperatureSensor3.write(0x44);
 
     delay(sensorDelay);
 
     present = temperatureSensor3.reset();
-    temperatureSensor3.select(addr1);
+    temperatureSensor3.select(addr3);
     temperatureSensor3.write(0xBE);
 
     for ( i = 0; i < 9; i++) {
-      data1[i] = temperatureSensor3.read();
+      data3[i] = temperatureSensor3.read();
     }
+    raw = (data3[1] << 8) | data3[0];
   }else if (int_switch == 4) {
     temperatureSensor4.reset();
-    temperatureSensor4.select(addr1);
+    temperatureSensor4.select(addr4);
     temperatureSensor4.write(0x44);
 
     delay(sensorDelay);
 
     present = temperatureSensor4.reset();
-    temperatureSensor4.select(addr1);
+    temperatureSensor4.select(addr4);
     temperatureSensor4.write(0xBE);
 
     for ( i = 0; i < 9; i++) {
-      data1[i] = temperatureSensor4.read();
+      data4[i] = temperatureSensor4.read();
     }
+    raw = (data4[1] << 8) | data4[0];
   }else if (int_switch == 5) {
     temperatureSensor5.reset();
-    temperatureSensor5.select(addr1);
+    temperatureSensor5.select(addr5);
     temperatureSensor5.write(0x44);
 
     delay(sensorDelay);
 
     present = temperatureSensor5.reset();
-    temperatureSensor5.select(addr1);
+    temperatureSensor5.select(addr5);
     temperatureSensor5.write(0xBE);
 
     for ( i = 0; i < 9; i++) {
-      data1[i] = temperatureSensor5.read();
+      data5[i] = temperatureSensor5.read();
     }
+    raw = (data5[1] << 8) | data5[0];
   }else if (int_switch == 6) {
     temperatureSensor6.reset();
-    temperatureSensor6.select(addr1);
+    temperatureSensor6.select(addr6);
     temperatureSensor6.write(0x44);
 
     delay(sensorDelay);
 
     present = temperatureSensor6.reset();
-    temperatureSensor6.select(addr1);
+    temperatureSensor6.select(addr6);
     temperatureSensor6.write(0xBE);
 
     for ( i = 0; i < 9; i++) {
-      data1[i] = temperatureSensor6.read();
+      data6[i] = temperatureSensor6.read();
     }
+    raw = (data6[1] << 8) | data6[0];
   }
-
-  int16_t raw = (data1[1] << 8) | data1[0];
+  
   celsius = (float)raw / 16.0;
   
   return celsius;
