@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>DEB-CLI-02</Machine>
+    <Machine>DESKTOP-T712102</Machine>
     <WindowsUser>admin</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
@@ -9,94 +9,91 @@
     <SolutionConfiguration>Debug|ARM</SolutionConfiguration>
     <PackageArchitecture>arm</PackageArchitecture>
     <PackageIdentityName>a8c820f9-529a-49a0-8aea-6b51d5684f35</PackageIdentityName>
-    <IntermediateOutputPath>C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\ARM\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\ARM\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\admin\Desktop\changed colors\ARM\Debug\IotTemperatureWatcher\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe">
       <PackagePath>IotTemperatureWatcher.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.winmd">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.winmd">
       <PackagePath>IotTemperatureWatcher.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\SourceSansPro-ExtraLight.ttf">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\SourceSansPro-ExtraLight.ttf">
       <PackagePath>SourceSansPro-ExtraLight.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\SourceSansPro-Regular.ttf">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\SourceSansPro-Regular.ttf">
       <PackagePath>SourceSansPro-Regular.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\SourceSansPro-ExtraLight.ttf">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\SourceSansPro-ExtraLight.ttf">
       <PackagePath>Assets\SourceSansPro-ExtraLight.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\SourceSansPro-Regular.ttf">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\SourceSansPro-Regular.ttf">
       <PackagePath>Assets\SourceSansPro-Regular.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\msgLogo.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\msgLogo.png">
       <PackagePath>msgLogo.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\ahahahah.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\ahahahah.scale-200.png">
       <PackagePath>Assets\ahahahah.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\getRack.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\getRack.png">
       <PackagePath>Assets\getRack.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\image1.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\image1.png">
       <PackagePath>Assets\image1.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Portal_blueV2.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Portal_blueV2.png">
       <PackagePath>Assets\Portal_blueV2.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Portal_redV2.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Portal_redV2.png">
       <PackagePath>Assets\Portal_redV2.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Rack.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Rack.png">
       <PackagePath>Assets\Rack.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Rack_BIGv2.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Rack_BIGv2.png">
       <PackagePath>Assets\Rack_BIGv2.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Reck_SizeOptim.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Reck_SizeOptim.png">
       <PackagePath>Assets\Reck_SizeOptim.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\Te_Wa_Pctrs\Reck_BigView22.png">
-      <PackagePath>Reck_BigView22.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\IotTemperatureWatcher\icon1.ico">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\IotTemperatureWatcher\icon1.ico">
       <PackagePath>icon1.ico</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\admin\Desktop\changed colors\ARM\Debug\IotTemperatureWatcher\resources.pri">
+    <AppxPackagedFile Include="C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

@@ -60,9 +60,6 @@
     <Image Include="Assets\getRack.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="E:\Te_Wa_Pctrs\Reck_BigView22.png">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="..\..\msgLogo.png">
       <Filter>Assets</Filter>
     </Image>

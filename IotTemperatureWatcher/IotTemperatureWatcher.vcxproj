@@ -189,7 +189,6 @@
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Image Include="Assets\StoreLogo.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Image Include="E:\Te_Wa_Pctrs\Reck_BigView22.png" />
     <Image Include="icon1.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -218,7 +217,7 @@
     <Font Include="..\..\SourceSansPro-ExtraLight.ttf" />
     <Font Include="..\..\SourceSansPro-Regular.ttf" />
     <Font Include="Assets\SourceSansPro-ExtraLight.ttf">
-      <DeploymentContent>false</DeploymentContent>
+      <DeploymentContent>true</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">false</ExcludedFromBuild>
     </Font>

@@ -220,21 +220,21 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 	return tmpString;
 }
 
-std::string IotTemperatureWatcher::Overview::getStatus(float str) {
-	if (str <= 30) {
-		return "optimal";
+Platform::String^ IotTemperatureWatcher::Overview::getStatus(float temp) {
+	if (temp <= 30) {
+		return _OPTIMAL;
 	}
-	else if (str > 30 && str <= 40) {
-		return "warning";
+	else if (temp > 30 && temp <= 40) {
+		return _WARNING;
 	}
-	else if (str > 40) {
-		return "critical";
+	else if (temp > 40) {
+		return _CRITICAL;
 	}
 }
 
 void IotTemperatureWatcher::Overview::updateAll() {
 	testtemp1 = getDataFromServer("dc01ro01ra01");
-	textBlock1->Text = "" +  "Temp. Rack 1: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 2: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 3: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 4: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 5: " + testtemp1 + " | Status: optimal || " + "Temp. Rack 6: " + testtemp1 + " | Status: optimal";
+	textBlock1->Text = "Temp. Rack 1: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 2: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 3: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 4: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 5: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 6: " + testtemp1 + " | Status: " + getStatus(testtemp1);
 	textBlock2->Text = textBlock1->Text;
-	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + testtemp1;
+	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + testtemp1 + "\nStatus: " + getStatus(testtemp1);
 }
