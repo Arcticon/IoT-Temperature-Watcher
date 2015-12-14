@@ -809,24 +809,24 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="14*"/>
-                <ColumnDefinition Width="6*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="14*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="8*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="8*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="64*"/>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="299*"/>
+                <ColumnDefinition Width="128*"/>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="299"/>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="427"/>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="42*"/>
+                <ColumnDefinition Width="171"/>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="64"/>
                 <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
             <CommandBar HorizontalAlignment="Stretch" Margin="0,0,0,-8" Content="Advanced Settings" Style="{StaticResource CommandBarStyle1}" Grid.Column="13" Grid.ColumnSpan="5"  Grid.Row="2" Grid.RowSpan="2">
@@ -836,10 +836,10 @@
                     </Style>
                 </CommandBar.CommandBarOverflowPresenterStyle>
                 <CommandBar.SecondaryCommands>
-                    <AppBarToggleButton x:ConnectionId='31' x:Name="appBarToggleButtonFanConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Fan Configuration"                                                                                               />
-                    <AppBarToggleButton x:ConnectionId='32' x:Name="appBarToggleButtonSensorConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Sensor Configuration"                                                                                                     />
-                    <AppBarToggleButton x:ConnectionId='33' x:Name="appBarToggleButtonThresholdConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Threshold Configuration"                                                                                                           />
-                    <AppBarButton x:ConnectionId='34' Label="Save and Exit"                               FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" />
+                    <AppBarToggleButton x:ConnectionId='30' x:Name="appBarToggleButtonFanConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Fan Configuration"                                                                                               />
+                    <AppBarToggleButton x:ConnectionId='31' x:Name="appBarToggleButtonSensorConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Sensor Configuration"                                                                                                     />
+                    <AppBarToggleButton x:ConnectionId='32' x:Name="appBarToggleButtonThresholdConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Threshold Configuration"                                                                                                           />
+                    <AppBarButton x:ConnectionId='33' Label="Save and Exit"                               FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
 
@@ -890,18 +890,21 @@
             <Button x:ConnectionId='25' x:Name="buttonChangeThresholds" Content="Change Thresholds" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White"                                     BorderBrush="Black" IsEnabled="false" Grid.Column="12" Grid.Row="25" Grid.ColumnSpan="5" Grid.RowSpan="3" />
 
             <Popup x:ConnectionId='26' x:Name="popupConfig"                                                       Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Grid Background="#FFFF0000" Height="1050" Width="1680">
-
-                    <Button x:ConnectionId='30' x:Name="buttonPopupConfigSave" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Background="White" Content="Save" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top"                                      />
+                <Grid Background="#FFECECEC" Height="1050" Width="1680">
+                    <TextBlock Text="Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="650,292,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock Text="Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="650,392,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <Slider x:ConnectionId='27' x:Name="sliderThresholdLowerText" Foreground="#FF841439" HorizontalAlignment="Left" Margin="790,280,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='28' x:Name="sliderThresholdUpperText" Foreground="#FF841439" HorizontalAlignment="Left" Margin="790,380,0,0" VerticalAlignment="Top" Width="100" Value="40" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Button x:ConnectionId='29' x:Name="buttonPopupConfigSave" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Background="White" Content="Save" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top"                                      />
                 </Grid>
             </Popup>
 
-            <Popup x:ConnectionId='27' x:Name="popupError"                                                     Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <!--<Popup x:Name="popupError" Opened="openedPopupError" Closed="closedPopupError" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Grid Background="#FF336ea5" Height="1050" Width="1680">
-                    <TextBlock x:ConnectionId='28' x:Name="textBlockPopupErrorMessage" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Left" Margin="699,276,0,0" TextWrapping="Wrap" Text="Error Message: " VerticalAlignment="Top" Foreground="White"/>
-                    <Button x:ConnectionId='29' x:Name="buttonPopupErrorOk" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Background="White" Content="&#xE830;" Style="{ThemeResource NavigationBackButtonNormalStyle}" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top"                                   />
+                    <TextBlock x:Name="textBlockPopupErrorMessage" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Left" Margin="699,276,0,0" TextWrapping="Wrap" Text="Error Message: " VerticalAlignment="Top" Foreground="White"/>
+                    <Button x:Name="buttonPopupErrorOk" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Background="White" Content="&#xE830;" Style="{ThemeResource NavigationBackButtonNormalStyle}" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top" Click="clickedButtonPopupErrorOk" />
                 </Grid>
-            </Popup>
+            </Popup>-->
 
         </Grid>
     </Frame>

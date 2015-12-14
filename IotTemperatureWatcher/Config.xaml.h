@@ -18,12 +18,13 @@ namespace IotTemperatureWatcher
 	{
 	public:
 		Config();
-
+		static Platform::String^ getStatus(float temp);
 
 	private:
 
 		int ticks = 10000000;
 		int ticksMultiplier = 10;
+		int ticksMultiplier2 = 300;
 
 
 		std::string _CUSTOMMODEOFF = "customModeOff";
@@ -34,34 +35,34 @@ namespace IotTemperatureWatcher
 		std::string _SENSORCONFIGON = "sensorConfigOn";
 		std::string _THRESHOLDCONFIGOFF = "thresholdConfigOff";
 		std::string _THRESHOLDCONFIGON = "thresholdConfigOn";
-		std::string _SETVENT1ON = "setVent1On";
-		std::string _SETVENT1OFF = "setVent1Off";
-		std::string _SETVENT2ON = "setVent2On";
-		std::string _SETVENT2OFF = "setVent2Off";
+		std::string _SETFAN1ON = "setFan1On";
+		std::string _SETFAN1OFF = "setFan1Off";
+		std::string _SETFAN2ON = "setFan2On";
+		std::string _SETFAN2OFF = "setFan2Off";
 		std::string _ARDUINOIP = "10.11.90.231";
-		std::string _V1ON = "v1on";
-		std::string _V1OFF = "v1off";
-		std::string _V2ON = "v2on";
-		std::string _V2OFF = "v2off";
+		std::string _F1ON = "f1on";
+		std::string _F1OFF = "f1off";
+		std::string _F2ON = "f2on";
+		std::string _F2OFF = "f2off";
 		std::string _GETTEMP1 = "getTemp1";
 		std::string _GETTEMP2 = "getTemp2";
 		std::string _GETTEMP3 = "getTemp3";
 		std::string _GETTEMP4 = "getTemp4";
 		std::string _GETTEMP5 = "getTemp5";
 		std::string _GETTEMP6 = "getTemp6";
-		std::string _GETVENT1 = "getVent1";
-		std::string _GETVENT2 = "getVent2";
+		std::string _GETFAN1 = "getFan1";
+		std::string _GETFAN2 = "getFan2";
 
 
-		Platform::String^ _TEXTVENT1ON = "Ventilator 1: ON";
-		Platform::String^ _TEXTVENT1OFF = "Ventilator 1: OFF";
-		Platform::String^ _TEXTVENT2ON = "Ventilator 2: ON";
-		Platform::String^ _TEXTVENT2OFF = "Ventilator 2: OFF";
+		Platform::String^ _TEXTFAN1ON = "Fan 1 Top - running";
+		Platform::String^ _TEXTFAN1OFF = "Fan 1 Top - not running";
+		Platform::String^ _TEXTFAN2ON = "Fan 2 Top - running";
+		Platform::String^ _TEXTFAN2OFF = "Fan 2 Top - not running";
 		Platform::String^ _TEXTUPPERTEMP1 = "Upper Temperature1: ";
-		Platform::String^ _TEXTUPPERTEMP1V2 = "Upper Temperature1 Vent2: ";
+		Platform::String^ _TEXTUPPERTEMP1V2 = "Upper Temperature1 Fan2: ";
 		Platform::String^ _TEXTLOWERTEMP1 = "Lower Temperature1: ";
 		Platform::String^ _TEXTUPPERTEMP2 = "Upper Temperature2: ";
-		Platform::String^ _TEXTUPPERTEMP2V1 = "Upper Temperature2 Vent1: ";
+		Platform::String^ _TEXTUPPERTEMP2V1 = "Upper Temperature2 Fan1: ";
 		Platform::String^ _TEXTLOWERTEMP2 = "Lower Temperature2: ";
 		Platform::String^ _TEXTPOPUPERRORMESSAGE = "Error Message: ";
 		Platform::String^ _TEXTPOPUPERRORMESSAGESOCKETFAILED = "SOCKET FAILED!!";
@@ -82,12 +83,12 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLESENSORCONFIG = "Disable Sensor Configuration";
 		Platform::String^ _TEXTAPPBARTOGGLEBUTTONDISABLETHRESHOLDCONFIG = "Disable Threshold Configuration";
 
-		Platform::String^ _TEMPSENSORSTL = "Temperature Sensor Top Left (STL): ";
-		Platform::String^ _TEMPSENSORSCL = "Temperature Sensor Center Left (SCL): ";
-		Platform::String^ _TEMPSENSORSBL = "Temperature Sensor Bottom Left (SBL): ";
-		Platform::String^ _TEMPSENSORSTR = "Temperature Sensor Top Right (STR): ";
-		Platform::String^ _TEMPSENSORSCR = "Temperature Sensor Center Right (SCR): ";
-		Platform::String^ _TEMPSENSORSBR = "Temperature Sensor Bottom Right (SBR): ";
+		Platform::String^ _TEMPSENSORSTL = "STL: ";
+		Platform::String^ _TEMPSENSORSCL = "SCL: ";
+		Platform::String^ _TEMPSENSORSBL = "SBL: ";
+		Platform::String^ _TEMPSENSORSTR = "STR: ";
+		Platform::String^ _TEMPSENSORSCR = "SCR: ";
+		Platform::String^ _TEMPSENSORSBR = "SBR: ";
 
 		Platform::String^ _DATACENTER = "Datacenter: ";
 		Platform::String^ _ROOM = " | Room: ";
@@ -102,15 +103,13 @@ namespace IotTemperatureWatcher
 		int _ETHERNETPORT = 50001;
 
 		void updateAll();
+		void cleanErrors();
 		void sendDataToServer(std::string str);
 		void sendDataToServerFromInt(int i);
 		float getDataFromServer(std::string str);
 		std::string getDataFromServerToString(std::string str);
-		void openedPopupError(Platform::Object^ sender, Platform::Object^ e);
-		void closedPopupError(Platform::Object^ sender, Platform::Object^ e);
 		void openedPopupConfig(Platform::Object^ sender, Platform::Object^ e);
 		void closedPopupConfig(Platform::Object^ sender, Platform::Object^ e);
-		void clickedButtonPopupErrorOk(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void clickedButtonPopupConfigSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 
 		
@@ -128,5 +127,7 @@ namespace IotTemperatureWatcher
 		void clickButtonRemoveFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void clickButtonAddSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void clickButtonRemoveSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+
+		std::string sliderValToString(int val);
 };
 }

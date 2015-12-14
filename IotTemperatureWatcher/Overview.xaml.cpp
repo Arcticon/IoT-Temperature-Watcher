@@ -9,9 +9,9 @@
 #include <time.h>
 
 #include "pch.h"
-#include "Overview.xaml.h"
-#include "Config.xaml.h"
 #include "wtypes.h"
+#include "Config.xaml.h"
+#include "Overview.xaml.h"
 
 using namespace IotTemperatureWatcher;
 
@@ -33,7 +33,14 @@ char recvbuffer2[256];
 float floatBuffer2 = 0;
 long rc2 = 0;
 
-float testtemp1 = 0;
+float avgTemp1 = 0;
+float avgTemp2 = 0;
+float avgTemp3 = 0;
+float avgTemp4 = 0;
+float avgTemp5 = 0;
+float avgTemp6 = 0;
+
+Platform::String^ errorString2 = "";
 
 Overview::Overview()
 {
@@ -62,8 +69,7 @@ Overview::Overview()
 
 }
 
-void IotTemperatureWatcher::Overview::clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
+void IotTemperatureWatcher::Overview::clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e){
 	if (this->Frame != nullptr)
 	{
 		this->Frame->Navigate(Config::typeid);
@@ -71,7 +77,6 @@ void IotTemperatureWatcher::Overview::clickButtonRackConfig1(Platform::Object^ s
 }
 
 void  IotTemperatureWatcher::Overview::clickButtonmsgLogo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
-	
 	StoryboardFlyout1->Begin();
 }
 
@@ -93,11 +98,11 @@ float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
 	sConnect = socket(AF_INET, SOCK_STREAM, 0);
 	if (sConnect == INVALID_SOCKET) {
 		//t->Text = "socket failed";
-		textBoxRackInfo1->Text = "ERROR";
-		/*if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
-		}*/
+		if (!errorString2->IsEmpty()) {
+			errorString2 += "\n";
+		}
+		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
+		textBoxRackErrors1->Text = errorString2;
 		return 0;
 	}
 
@@ -110,12 +115,11 @@ float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
 
 	rc2 = connect(sConnect, (struct sockaddr*)&conpar, conparlen);
 	if (rc2 == SOCKET_ERROR) {
-		//t2->Text = "connect failed";
-		textBoxRackInfo1->Text = "ERROR";
-		/*if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
-		}*/
+		if (!errorString2->IsEmpty()) {
+			errorString2 += "\n";
+		}
+		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
+		textBoxRackErrors1->Text = errorString2;
 		return 0;
 	}
 
@@ -127,14 +131,11 @@ float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
 
 	rc2 = send(sConnect, data, strlen(data), 0);
 	if (rc2 == SOCKET_ERROR) {
-
-		//t3->Text = "error send";
-		textBoxRackInfo1->Text = "ERROR";
-
-		/*if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
-		}*/
+		if (!errorString2->IsEmpty()) {
+			errorString2 += "\n";
+		}
+		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
+		textBoxRackErrors1->Text = errorString2;
 		return 0;
 	}
 	rc2 = recv(sConnect, recvbuffer2, 256, 0);
@@ -166,11 +167,11 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 
 	sConnect = socket(AF_INET, SOCK_STREAM, 0);
 	if (sConnect == INVALID_SOCKET) {
-		//t->Text = "socket failed";
-		/*if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
-		}*/
+		if (!errorString2->IsEmpty()) {
+			errorString2 += "\n";
+		}
+		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
+		textBoxRackErrors1->Text = errorString2;
 		return "";
 	}
 
@@ -183,11 +184,11 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 
 	rc2 = connect(sConnect, (struct sockaddr*)&conpar, conparlen);
 	if (rc2 == SOCKET_ERROR) {
-		//t2->Text = "connect failed";
-		/*if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
-		}*/
+		if (!errorString2->IsEmpty()) {
+			errorString2 += "\n";
+		}
+		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
+		textBoxRackErrors1->Text = errorString2;
 		return "";
 	}
 
@@ -199,13 +200,11 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 
 	rc2 = send(sConnect, data, strlen(data), 0);
 	if (rc2 == SOCKET_ERROR) {
-
-		//t3->Text = "error send";
-
-		/*if (!popupTest->IsOpen) {
-			popupTest->IsOpen = true;
-			textBlockPopupErrorMessage->Text = _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
-		}*/
+		if (!errorString2->IsEmpty()) {
+			errorString2 += "\n";
+		}
+		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
+		textBoxRackErrors1->Text = errorString2;
 		return "";
 	}
 	rc2 = recv(sConnect, recvbuffer2, 256, 0);
@@ -220,21 +219,20 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 	return tmpString;
 }
 
-Platform::String^ IotTemperatureWatcher::Overview::getStatus(float temp) {
-	if (temp <= 30) {
-		return _OPTIMAL;
-	}
-	else if (temp > 30 && temp <= 40) {
-		return _WARNING;
-	}
-	else if (temp > 40) {
-		return _CRITICAL;
-	}
-}
-
 void IotTemperatureWatcher::Overview::updateAll() {
-	testtemp1 = getDataFromServer("dc01ro01ra01");
-	textBlock1->Text = "Temp. Rack 1: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 2: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 3: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 4: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 5: " + testtemp1 + " | Status: " + getStatus(testtemp1) + " || " + "Temp. Rack 6: " + testtemp1 + " | Status: " + getStatus(testtemp1);
+	avgTemp1 = getDataFromServer("dc01ro01ra01");
+	/*avgTemp2 = getDataFromServer("dc01ro01ra02");
+	avgTemp3 = getDataFromServer("dc01ro01ra03");
+	avgTemp4 = getDataFromServer("dc01ro01ra04");
+	avgTemp5 = getDataFromServer("dc01ro01ra05");
+	avgTemp6 = getDataFromServer("dc01ro01ra06");*/
+
+	textBlock1->Text = "Temp. Rack 1: " + avgTemp1 + " | Status: " + Config::getStatus(avgTemp1) + " || " + "Temp. Rack 2: " + avgTemp2 + " | Status: " + Config::getStatus(avgTemp2) + " || " + "Temp. Rack 3: " + avgTemp3 + " | Status: " + Config::getStatus(avgTemp3) + " || " + "Temp. Rack 4: " + avgTemp4 + " | Status: " + Config::getStatus(avgTemp4) + " || " + "Temp. Rack 5: " + avgTemp5 + " | Status: " + Config::getStatus(avgTemp5) + " || " + "Temp. Rack 6: " + avgTemp6 + " | Status: " + Config::getStatus(avgTemp6);
 	textBlock2->Text = textBlock1->Text;
-	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + testtemp1 + "\nStatus: " + getStatus(testtemp1);
+	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + avgTemp1 + "\nStatus: " + Config::getStatus(avgTemp1);
+	/*textBoxRackInfo2->Text = "Datacenter: 01 | Room: 01 | Rack: 02\nTemperature: " + avgTemp2 + "\nStatus: " + getStatus(avgTemp2);
+	textBoxRackInfo3->Text = "Datacenter: 01 | Room: 01 | Rack: 03\nTemperature: " + avgTemp3 + "\nStatus: " + getStatus(avgTemp3);
+	textBoxRackInfo4->Text = "Datacenter: 01 | Room: 01 | Rack: 04\nTemperature: " + avgTemp4 + "\nStatus: " + getStatus(avgTemp4);
+	textBoxRackInfo5->Text = "Datacenter: 01 | Room: 01 | Rack: 05\nTemperature: " + avgTemp5 + "\nStatus: " + getStatus(avgTemp5);
+	textBoxRackInfo6->Text = "Datacenter: 01 | Room: 01 | Rack: 06\nTemperature: " + avgTemp6 + "\nStatus: " + getStatus(avgTemp6);*/
 }

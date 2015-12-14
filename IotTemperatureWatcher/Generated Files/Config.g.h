@@ -28,7 +28,7 @@ namespace Windows {
                 ref class TextBox;
                 ref class StackPanel;
                 ref class Button;
-                ref class TextBlock;
+                ref class Slider;
                 ref class AppBarToggleButton;
             }
         }
@@ -87,9 +87,8 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::StackPanel^ buttonSenConfigPanel2;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonChangeThresholds;
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupConfig;
-        private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupError;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockPopupErrorMessage;
-        private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupErrorOk;
+        private: ::Windows::UI::Xaml::Controls::Slider^ sliderThresholdLowerText;
+        private: ::Windows::UI::Xaml::Controls::Slider^ sliderThresholdUpperText;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupConfigSave;
         private: ::Windows::UI::Xaml::Controls::AppBarToggleButton^ appBarToggleButtonFanConfig;
         private: ::Windows::UI::Xaml::Controls::AppBarToggleButton^ appBarToggleButtonSensorConfig;

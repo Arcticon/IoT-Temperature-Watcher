@@ -64,7 +64,9 @@ float temperature1, temperature2, temperature3, temperature4, temperature5, temp
 /*
  * Variables for Datacenter, Room & Rack number
  */
-byte datacenterNumber, roomNumber, rackNumber = 1;
+byte datacenterNumber = 1;
+byte roomNumber = 1;
+byte rackNumber = 1;
 
 /*
  * TCP Port number
@@ -81,8 +83,8 @@ char stringBuffer[10];
 
 String str_data = "";
 
-bool ventilator1State = false;
-bool ventilator2State = false;
+bool fan1State = false;
+bool fan2State = false;
 
 /*
  * Pins for the Fans
@@ -101,6 +103,12 @@ byte thresholdUpper2Fan1 = 34;
 byte thresholdLower2 = 27;
 bool thresholdUpper1Fan2Control = false;
 bool thresholdUpper2Fan1Control = false;
+
+/*
+ * Text Thresholds
+ */
+byte thresholdUpperText = 40;
+byte thresholdLowerText = 30;
 
 const int sensorDelay = 0;
 
@@ -168,6 +176,9 @@ void loop() {
   
   if (millis() - currTime >= 500) {
     setTemperatures();
+    Serial.println(thresholdLowerText);
+    Serial.println(thresholdUpperText);
+    Serial.println("------------------------------------");
     currTime = millis();
   }
   
@@ -202,6 +213,12 @@ void loop() {
       }else if(str_split1 == "slider6"){
         thresholdUpper2Fan1 = sliderVal;
         thresholdUpper2Fan1Control == true;
+      }else if(str_split1 == "setTut1"){
+        Serial.println(sliderVal);
+        thresholdUpperText = sliderVal;
+      }else if(str_split1 == "setTut2"){
+        Serial.println(sliderVal);
+        thresholdLowerText = sliderVal;
       }
       
       if (str_data == "getTemp1") {
@@ -217,34 +234,38 @@ void loop() {
         server.write(dtostrf(temperature5, 0, 2, stringBuffer));
       } else if (str_data == "getTemp6") {
         server.write(dtostrf(temperature6, 0, 2, stringBuffer));
-      } else if (str_data == "getVent1") {
-        if (ventilator1State == true) {
-          server.write("v1on");
+      } else if (str_data == "getFan1") {
+        if (fan1State == true) {
+          server.write("f1on");
         } else {
-          server.write("v1off");
+          server.write("f1off");
         }
-      } else if (str_data == "getVent2") {
-        if (ventilator2State == true) {
-          server.write("v2on");
+      } else if (str_data == "getFan2") {
+        if (fan2State == true) {
+          server.write("f2on");
         } else {
-          server.write("v2off");
+          server.write("f2off");
         }
-      } else if (str_data == "setVent1On") {
+      } else if (str_data == "setFan1On") {
         //Fan 1 ON
         digitalWrite(fan1Pin, HIGH);
-        ventilator1State = true;
-      } else if (str_data == "setVent1Off") {
+        fan1State = true;
+      } else if (str_data == "setFan1Off") {
         //Fan 1 OFF
         digitalWrite(fan1Pin, LOW);
-        ventilator1State = false;
-      } else if (str_data == "setVent2On") {
+        fan1State = false;
+      } else if (str_data == "setFan2On") {
         //Fan 2 ON
         digitalWrite(fan2Pin, HIGH);
-        ventilator2State = true;
-      } else if (str_data == "setVent2Off") {
+        fan2State = true;
+      } else if (str_data == "setFan2Off") {
         //Fan 2 OFF
         digitalWrite(fan2Pin, LOW);
-        ventilator2State = false;
+        fan2State = false;
+      } else if (str_data == "getTut1") {
+        server.write(dtostrf(thresholdUpperText, 0, 2, stringBuffer));
+      } else if (str_data == "getTut2") {
+        server.write(dtostrf(thresholdLowerText, 0, 2, stringBuffer));
       } else if (str_data == "dc01ro01ra01") {
         server.write(dtostrf(((temperature1 + temperature2 + temperature3 + temperature4 + temperature5 + temperature6)/sensorCount), 0, 2, stringBuffer));
       }
@@ -358,55 +379,55 @@ void control() {
   if (temperature1 > thresholdUpper1Fan1) {
     //Fan 1 ON
     digitalWrite(fan1Pin, HIGH);
-    ventilator1State = true;
+    fan1State = true;
   }
   if (temperature1 > thresholdUpper1Fan2) {
     //Fan 2 ON
     digitalWrite(fan2Pin, HIGH);
-    ventilator2State = true;
+    fan2State = true;
   }
   if (temperature2 > thresholdUpper2Fan2) {
     //Fan 2 ON
     digitalWrite(fan2Pin, HIGH);
-    ventilator2State = true;
+    fan2State = true;
   }
   if (temperature2 > thresholdUpper2Fan1) {
     //Fan 1 ON
     digitalWrite(fan1Pin, HIGH);
-    ventilator1State = true;
+    fan1State = true;
   }
 
   if (temperature1 < thresholdLower1 && thresholdUpper1Fan2Control) {
     //Fan 1 OFF
     digitalWrite(fan1Pin, LOW);
-    ventilator1State = false;
+    fan1State = false;
     //Fan 2 OFF
     digitalWrite(fan2Pin, LOW);
-    ventilator2State = false;
+    fan2State = false;
     thresholdUpper1Fan2Control = false;
   }else if(temperature1 < thresholdLower1){
     //Fan 1 OFF
     digitalWrite(fan1Pin, LOW);
-    ventilator1State = false;
+    fan1State = false;
     //Fan 2 OFF
     digitalWrite(fan2Pin, LOW);
-    ventilator2State = false;
+    fan2State = false;
   }
   if(temperature2 < thresholdLower2 && thresholdUpper2Fan1Control) {
     //Fan 1 OFF
     digitalWrite(fan1Pin, LOW);
-    ventilator1State = false;
+    fan1State = false;
     //Fan 2 OFF
     digitalWrite(fan2Pin, LOW);
-    ventilator2State = false;
+    fan2State = false;
     thresholdUpper2Fan1Control = false;
   }else if(temperature2 < thresholdLower2){
     //Fan 1 OFF
     digitalWrite(fan1Pin, LOW);
-    ventilator1State = false;
+    fan1State = false;
     //Fan 2 OFF
     digitalWrite(fan2Pin, LOW);
-    ventilator2State = false;
+    fan2State = false;
   }
 }
 

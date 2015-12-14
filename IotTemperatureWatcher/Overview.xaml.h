@@ -27,10 +27,6 @@ namespace IotTemperatureWatcher
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR5NOTCONNECTED = "SENSOR 5 NOT CONNECTED!!";
 		Platform::String^ _TEXTPOPUPERRORMESSAGESENSOR6NOTCONNECTED = "SENSOR 6 NOT CONNECTED!!";
 
-		Platform::String^ _OPTIMAL = "optimal";
-		Platform::String^ _WARNING = "warning";
-		Platform::String^ _CRITICAL = "critical";
-
 		int _ETHERNETPORT = 50001;
 
 		int ticks2 = 10000000;
@@ -41,7 +37,6 @@ namespace IotTemperatureWatcher
 		void clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void clickButtonmsgLogo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		std::string getDataFromServerToString(std::string str);
-		Platform::String^ IotTemperatureWatcher::Overview::getStatus(float str);
 
 		float getDataFromServer(std::string str);
 	};
