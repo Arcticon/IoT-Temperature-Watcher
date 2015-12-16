@@ -32,8 +32,6 @@ char recvbuffer[256];
 float floatBuffer = 0;
 long rc = 0;
 
-int slp = 75; //75
-
 float temp1, temp2, temp3, temp4, temp5, temp6 = 0;
 int thresholdUpper = 40;
 int thresholdLower = 30;

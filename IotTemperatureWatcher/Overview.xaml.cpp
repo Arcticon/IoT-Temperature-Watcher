@@ -103,6 +103,9 @@ float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
 		}
 		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
 		textBoxRackErrors1->Text = errorString2;
+		closesocket(sConnect);
+
+		WSACleanup();
 		return 0;
 	}
 
@@ -120,6 +123,9 @@ float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
 		}
 		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		textBoxRackErrors1->Text = errorString2;
+		closesocket(sConnect);
+
+		WSACleanup();
 		return 0;
 	}
 
@@ -136,6 +142,9 @@ float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
 		}
 		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
 		textBoxRackErrors1->Text = errorString2;
+		closesocket(sConnect);
+
+		WSACleanup();
 		return 0;
 	}
 	rc2 = recv(sConnect, recvbuffer2, 256, 0);
@@ -172,6 +181,9 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 		}
 		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
 		textBoxRackErrors1->Text = errorString2;
+		closesocket(sConnect);
+
+		WSACleanup();
 		return "";
 	}
 
@@ -189,6 +201,9 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 		}
 		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		textBoxRackErrors1->Text = errorString2;
+		closesocket(sConnect);
+
+		WSACleanup();
 		return "";
 	}
 
@@ -205,6 +220,9 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 		}
 		errorString2 += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENDFAILED;
 		textBoxRackErrors1->Text = errorString2;
+		closesocket(sConnect);
+
+		WSACleanup();
 		return "";
 	}
 	rc2 = recv(sConnect, recvbuffer2, 256, 0);

@@ -25,7 +25,7 @@ IPAddress subnet(255, 255, 255, 0);
  */
 OneWire temperatureSensor1(2);
 OneWire temperatureSensor2(3);
-OneWire temperatureSensor3(4);
+OneWire temperatureSensor3(8);
 OneWire temperatureSensor4(5);
 OneWire temperatureSensor5(6);
 OneWire temperatureSensor6(7);
@@ -176,6 +176,13 @@ void loop() {
   
   if (millis() - currTime >= 500) {
     setTemperatures();
+    Serial.println(temperature1);
+    Serial.println(temperature2);
+    Serial.println(temperature3);
+    Serial.println(temperature4);
+    Serial.println(temperature5);
+    Serial.println(temperature6);
+    Serial.println("------------------------------------");
     Serial.println(thresholdLowerText);
     Serial.println(thresholdUpperText);
     Serial.println("------------------------------------");
@@ -376,26 +383,6 @@ float getTemp(int int_switch) {
 }
 
 void control() {
-  if (temperature1 > thresholdUpper1Fan1) {
-    //Fan 1 ON
-    digitalWrite(fan1Pin, HIGH);
-    fan1State = true;
-  }
-  if (temperature1 > thresholdUpper1Fan2) {
-    //Fan 2 ON
-    digitalWrite(fan2Pin, HIGH);
-    fan2State = true;
-  }
-  if (temperature2 > thresholdUpper2Fan2) {
-    //Fan 2 ON
-    digitalWrite(fan2Pin, HIGH);
-    fan2State = true;
-  }
-  if (temperature2 > thresholdUpper2Fan1) {
-    //Fan 1 ON
-    digitalWrite(fan1Pin, HIGH);
-    fan1State = true;
-  }
 
   if (temperature1 < thresholdLower1 && thresholdUpper1Fan2Control) {
     //Fan 1 OFF
@@ -428,6 +415,28 @@ void control() {
     //Fan 2 OFF
     digitalWrite(fan2Pin, LOW);
     fan2State = false;
+  }
+
+  
+  if (temperature1 > thresholdUpper1Fan1) {
+    //Fan 1 ON
+    digitalWrite(fan1Pin, HIGH);
+    fan1State = true;
+  }
+  if (temperature1 > thresholdUpper1Fan2) {
+    //Fan 2 ON
+    digitalWrite(fan2Pin, HIGH);
+    fan2State = true;
+  }
+  if (temperature2 > thresholdUpper2Fan2) {
+    //Fan 2 ON
+    digitalWrite(fan2Pin, HIGH);
+    fan2State = true;
+  }
+  if (temperature2 > thresholdUpper2Fan1) {
+    //Fan 1 ON
+    digitalWrite(fan1Pin, HIGH);
+    fan1State = true;
   }
 }
 

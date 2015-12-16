@@ -1,7 +1,5 @@
 ﻿  Config.xaml.cpp
-  Overview.xaml.cpp
-Overview.xaml.cpp(150): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
-Config.xaml.cpp(300): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\config.xaml.cpp(105): warning C4715: "IotTemperatureWatcher::Config::getStatus": Nicht alle Steuerelementpfade geben einen Wert zurück.
+Config.xaml.cpp(298): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\config.xaml.cpp(103): warning C4715: "IotTemperatureWatcher::Config::getStatus": Nicht alle Steuerelementpfade geben einen Wert zurück.
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb (Partial PDB)
