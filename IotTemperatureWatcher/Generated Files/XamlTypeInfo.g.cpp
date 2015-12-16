@@ -17,156 +17,6 @@
 #include "App.g.hpp"
 #include "Config.g.hpp"
 
-template<typename T>
-::Platform::Object^ ActivateType()
-{
-    return ref new T;
-}
-
-template<typename TInstance, typename TItem>
-void CollectionAdd(::Platform::Object^ instance, ::Platform::Object^ item)
-{
-    safe_cast<TInstance^>(instance)->Append((TItem)item);
-}
-
-template<typename TInstance, typename TKey, typename TItem>
-void DictionaryAdd(::Platform::Object^ instance, ::Platform::Object^ key, ::Platform::Object^ item)
-{
-    safe_cast<TInstance^>(instance)->Insert((TKey)key, (TItem)item);
-}
-
-template<typename T>
-::Platform::Object^ FromStringConverter(::XamlTypeInfo::InfoProvider::XamlUserType^ userType, ::Platform::String^ input)
-{
-    return ref new ::Platform::Box<T>((T)userType->CreateEnumUIntFromString(input));
-}
-
-struct TypeInfo
-{
-    PCWSTR  typeName;
-    PCWSTR contentPropertyName;
-    ::Platform::Object^ (*activator)();
-    void (*collectionAdd)(::Platform::Object^, ::Platform::Object^);
-    void (*dictionaryAdd)(::Platform::Object^, ::Platform::Object^, ::Platform::Object^);
-    ::Platform::Object^ (*fromStringConverter)(::XamlTypeInfo::InfoProvider::XamlUserType^, ::Platform::String^);
-    int     baseTypeIndex;
-    int     firstMemberIndex;
-    int     firstEnumValueIndex;
-    ::Windows::UI::Xaml::Interop::TypeKind kindofType;
-    bool    isLocalType;
-    bool    isSystemType;
-    bool    isReturnTypeStub;
-    bool    isBindable;
-};
-
-TypeInfo TypeInfos[] = 
-{
-    //   0
-    L"Object", L"",
-    nullptr, nullptr, nullptr, nullptr,
-    -1,
-    0, 0, ::Windows::UI::Xaml::Interop::TypeKind::Metadata,
-    false, true,  false, false,
-    //   1
-    L"Windows.UI.Color", L"",
-    nullptr, nullptr, nullptr, nullptr,
-    2, // System.ValueType
-    0, 0, ::Windows::UI::Xaml::Interop::TypeKind::Metadata,
-    false, false, false, false,
-    //   2
-    L"System.ValueType", L"",
-    nullptr, nullptr, nullptr, nullptr,
-    0, // Object
-    0, 0, ::Windows::UI::Xaml::Interop::TypeKind::Metadata,
-    false, false, false, false,
-    //   3
-    L"IotTemperatureWatcher.Config", L"",
-    &ActivateType<::IotTemperatureWatcher::Config>, nullptr, nullptr, nullptr,
-    4, // Windows.UI.Xaml.Controls.Page
-    0, 0, ::Windows::UI::Xaml::Interop::TypeKind::Custom,
-    true,  false, false, false,
-    //   4
-    L"Windows.UI.Xaml.Controls.Page", L"",
-    nullptr, nullptr, nullptr, nullptr,
-    -1,
-    0, 0, ::Windows::UI::Xaml::Interop::TypeKind::Metadata,
-    false, true,  false, false,
-    //   5
-    L"IotTemperatureWatcher.Overview", L"",
-    &ActivateType<::IotTemperatureWatcher::Overview>, nullptr, nullptr, nullptr,
-    4, // Windows.UI.Xaml.Controls.Page
-    0, 0, ::Windows::UI::Xaml::Interop::TypeKind::Custom,
-    true,  false, false, false,
-    //   6
-    L"Windows.UI.Xaml.Controls.UserControl", L"",
-    nullptr, nullptr, nullptr, nullptr,
-    -1,
-    0, 0, ::Windows::UI::Xaml::Interop::TypeKind::Metadata,
-    false, true,  false, false,
-    //  Last type here is for padding
-    L"", L"",
-    nullptr, nullptr, nullptr, nullptr,
-    -1, 
-    0, 0,::Windows::UI::Xaml::Interop::TypeKind::Custom,
-    false, false, false, false,
-};
-
-UINT TypeInfoLookup[] = { 
-      0,   //   0
-      0,   //   1
-      0,   //   2
-      0,   //   3
-      0,   //   4
-      0,   //   5
-      0,   //   6
-      1,   //   7
-      1,   //   8
-      1,   //   9
-      1,   //  10
-      1,   //  11
-      1,   //  12
-      1,   //  13
-      1,   //  14
-      1,   //  15
-      1,   //  16
-      3,   //  17
-      3,   //  18
-      3,   //  19
-      3,   //  20
-      3,   //  21
-      3,   //  22
-      3,   //  23
-      3,   //  24
-      3,   //  25
-      3,   //  26
-      3,   //  27
-      3,   //  28
-      4,   //  29
-      5,   //  30
-      6,   //  31
-      6,   //  32
-      6,   //  33
-      6,   //  34
-      6,   //  35
-      6,   //  36
-      7,   //  37
-};
-
-TypeInfo* GetTypeInfo(::Platform::String^ typeName)
-{
-    int typeNameLength = typeName->Length();
-    if (typeNameLength < _countof(TypeInfoLookup) - 1)
-    {
-        for (UINT i = TypeInfoLookup[typeNameLength]; i < TypeInfoLookup[typeNameLength+1]; i++)
-        {
-            if (typeName == ::Platform::StringReference(TypeInfos[i].typeName))
-            {
-                return &TypeInfos[i];
-            }
-        }
-    }
-    return nullptr;
-}
 
 ::Platform::Collections::Vector<::Windows::UI::Xaml::Markup::IXamlMetadataProvider^>^ ::XamlTypeInfo::InfoProvider::XamlTypeInfoProvider::OtherProviders::get()
 {
@@ -178,42 +28,107 @@ TypeInfo* GetTypeInfo(::Platform::String^ typeName)
     return _otherProviders;
 }
 
+::Windows::UI::Xaml::Markup::IXamlType^ ::XamlTypeInfo::InfoProvider::XamlTypeInfoProvider::CheckOtherMetadataProvidersForName(::Platform::String^ typeName)
+{
+    ::Windows::UI::Xaml::Markup::IXamlType^ foundXamlType = nullptr;
+    for (unsigned int i = 0; i < OtherProviders->Size; i++)
+    {
+        auto xamlType = OtherProviders->GetAt(i)->GetXamlType(typeName);
+        if(xamlType != nullptr)
+        {
+            if(xamlType->IsConstructible)    // not Constructible means it might be a Return Type Stub
+            {
+                return xamlType;
+            }
+            foundXamlType = xamlType;
+        }
+    }
+    return foundXamlType;
+}
+
+::Windows::UI::Xaml::Markup::IXamlType^ ::XamlTypeInfo::InfoProvider::XamlTypeInfoProvider::CheckOtherMetadataProvidersForType(::Windows::UI::Xaml::Interop::TypeName t)
+{
+    ::Windows::UI::Xaml::Markup::IXamlType^ foundXamlType = nullptr;
+    for (unsigned int i = 0; i < OtherProviders->Size; i++)
+    {
+        auto xamlType = OtherProviders->GetAt(i)->GetXamlType(t);
+        if(xamlType != nullptr)
+        {
+            if(xamlType->IsConstructible)    // not Constructible means it might be a Return Type Stub
+            {
+                return xamlType;
+            }
+            foundXamlType = xamlType;
+        }
+    }
+    return foundXamlType;
+}
+
 ::Windows::UI::Xaml::Markup::IXamlType^ ::XamlTypeInfo::InfoProvider::XamlTypeInfoProvider::CreateXamlType(::Platform::String^ typeName)
 {
-    TypeInfo* pTypeInfo = GetTypeInfo(typeName);
-    TypeInfo* pNextTypeInfo = pTypeInfo + 1;
-    if (pTypeInfo == nullptr || pNextTypeInfo == nullptr)
+    if (typeName == L"Windows.UI.Xaml.Controls.Page")
     {
-        return nullptr;
+        return ref new XamlSystemBaseType(typeName);
     }
-    else if (pTypeInfo->isSystemType)
+    if (typeName == L"Windows.UI.Xaml.Controls.UserControl")
     {
-        return ref new ::XamlTypeInfo::InfoProvider::XamlSystemBaseType(typeName);
+        return ref new XamlSystemBaseType(typeName);
     }
-    else
+    if (typeName == L"Object")
     {
-        ::XamlTypeInfo::InfoProvider::XamlUserType^ userType = ref new ::XamlTypeInfo::InfoProvider::XamlUserType(
-            this, 
-            ::Platform::StringReference(pTypeInfo->typeName), 
-            this->GetXamlTypeByName(::Platform::StringReference(pTypeInfo->baseTypeIndex >= 0 ? TypeInfos[pTypeInfo->baseTypeIndex].typeName : L"")));
-        userType->KindOfType = pTypeInfo->kindofType;
-        userType->Activator = pTypeInfo->activator;
-        userType->CollectionAdd = pTypeInfo->collectionAdd;
-        userType->DictionaryAdd = pTypeInfo->dictionaryAdd;
-        userType->FromStringConverter = pTypeInfo->fromStringConverter;
-        userType->ContentPropertyName = ::Platform::StringReference(pTypeInfo->contentPropertyName);
-        userType->IsLocalType = pTypeInfo->isLocalType;
-        userType->IsReturnTypeStub = pTypeInfo->isReturnTypeStub;
-        userType->IsBindable = pTypeInfo->isBindable;
+        return ref new XamlSystemBaseType(typeName);
+    }
+    if (typeName == L"IotTemperatureWatcher.Config")
+    {
+        ::XamlTypeInfo::InfoProvider::XamlUserType^ userType = ref new ::XamlTypeInfo::InfoProvider::XamlUserType(this, L"IotTemperatureWatcher.Config", this->GetXamlTypeByName(L"Windows.UI.Xaml.Controls.Page"));
+        userType->KindOfType = ::Windows::UI::Xaml::Interop::TypeKind::Custom;
+        userType->Activator =
+            []() -> ::Platform::Object^ 
+            {
+                return ref new ::IotTemperatureWatcher::Config(); 
+            };
+        userType->SetIsLocalType();
         return userType;
     }
-}
+
+
+    if (typeName == L"Windows.UI.Color")
+    {
+        ::XamlTypeInfo::InfoProvider::XamlUserType^ userType = ref new ::XamlTypeInfo::InfoProvider::XamlUserType(this, L"Windows.UI.Color", this->GetXamlTypeByName(L"System.ValueType"));
+        userType->KindOfType = ::Windows::UI::Xaml::Interop::TypeKind::Metadata;
+        return userType;
+    }
+
+
+    if (typeName == L"System.ValueType")
+    {
+        ::XamlTypeInfo::InfoProvider::XamlUserType^ userType = ref new ::XamlTypeInfo::InfoProvider::XamlUserType(this, L"System.ValueType", this->GetXamlTypeByName(L"Object"));
+        userType->KindOfType = ::Windows::UI::Xaml::Interop::TypeKind::Metadata;
+        return userType;
+    }
+
+
+    if (typeName == L"IotTemperatureWatcher.Overview")
+    {
+        ::XamlTypeInfo::InfoProvider::XamlUserType^ userType = ref new ::XamlTypeInfo::InfoProvider::XamlUserType(this, L"IotTemperatureWatcher.Overview", this->GetXamlTypeByName(L"Windows.UI.Xaml.Controls.Page"));
+        userType->KindOfType = ::Windows::UI::Xaml::Interop::TypeKind::Custom;
+        userType->Activator =
+            []() -> ::Platform::Object^ 
+            {
+                return ref new ::IotTemperatureWatcher::Overview(); 
+            };
+        userType->SetIsLocalType();
+        return userType;
+    }
+
+
+    return nullptr;
+    }
 
 ::Windows::UI::Xaml::Markup::IXamlMember^ ::XamlTypeInfo::InfoProvider::XamlTypeInfoProvider::CreateXamlMember(::Platform::String^ longMemberName)
 {
-    ::XamlTypeInfo::InfoProvider::XamlMember^ xamlMember = nullptr;
     // No Local Properties
     (void)longMemberName; // Unused parameter
-    return xamlMember;
+    return nullptr;
 }
 

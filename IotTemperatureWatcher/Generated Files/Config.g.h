@@ -28,6 +28,7 @@ namespace Windows {
                 ref class TextBox;
                 ref class StackPanel;
                 ref class Button;
+                ref class TextBlock;
                 ref class Slider;
                 ref class AppBarToggleButton;
             }
@@ -62,6 +63,8 @@ namespace IotTemperatureWatcher
         bool _contentLoaded;
     
         private: ::Windows::UI::Xaml::Media::Animation::Storyboard^ RackAnimationStoryboard;
+        private: ::Windows::UI::Xaml::Media::Animation::Storyboard^ StoryboardText1;
+        private: ::Windows::UI::Xaml::Media::Animation::Storyboard^ StoryboardText2;
         private: ::Windows::UI::Xaml::Controls::Frame^ FrameConfig;
         private: ::Windows::UI::Xaml::Controls::Grid^ GridConfig;
         private: ::Windows::UI::Xaml::Controls::Image^ serverRackOpened;
@@ -87,6 +90,9 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::StackPanel^ buttonSenConfigPanel2;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonChangeThresholds;
         private: ::Windows::UI::Xaml::Controls::Primitives::Popup^ popupConfig;
+        private: ::Windows::UI::Xaml::Controls::Button^ button;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlock1;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlock2;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderThresholdLowerText;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderThresholdUpperText;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupConfigSave;

@@ -43,7 +43,8 @@ std::string sliderValToString(int val);
 Config::Config()
 {
 	InitializeComponent();
-
+	StoryboardText1->Begin();
+	StoryboardText2->Begin();
 	updateAll();
 
 	TimeSpan period;

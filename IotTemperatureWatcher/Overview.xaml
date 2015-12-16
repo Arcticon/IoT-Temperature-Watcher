@@ -741,8 +741,8 @@
                                         </ItemsControl.ItemsPanel>
                                     </ItemsControl>
                                 </Grid>
-                                <TextBlock Text="Settings" FontSize="40" FontFamily="Assets/SourceSansPro-Regular.ttf#Source Sans Pro" Margin="110,3,108,5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Foreground="#FFECECEC"/>
-                                <Button x:Name="MoreButton"  Foreground="{TemplateBinding Foreground}" FontSize="40" MinHeight="{ThemeResource AppBarThemeCompactHeight}" Padding="0,0,0,0" Style="{StaticResource EllipsisButton}" Content="" RenderTransformOrigin="0.485,0.375" Width="Auto" Margin="2,0,1,0" d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition" Height="56" VerticalAlignment="Top"/>
+                                <TextBlock Text="Settings" FontSize="35" FontFamily="Assets/SourceSansPro-Regular.ttf#Source Sans Pro" Margin="-2,3,4,5" d:LayoutOverrides="TopMargin, BottomMargin" Foreground="#FFECECEC" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button x:Name="MoreButton"  Foreground="{TemplateBinding Foreground}" FontSize="40" MinHeight="{ThemeResource AppBarThemeCompactHeight}" Padding="0,0,0,0" Style="{StaticResource EllipsisButton}" Content="" RenderTransformOrigin="0.485,0.375" Width="Auto" Margin="41,0,66,0" d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition" Height="56" VerticalAlignment="Top"/>
                                 <Popup x:Name="OverflowPopup" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
                                     <Popup.RenderTransform>
                                         <TranslateTransform x:Name="OverflowPopupOffsetTransform"/>
@@ -888,6 +888,78 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="StoryboardFlyout1"/>
+        <Style x:Key="ButtonChangeColor" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="8,4,8,4"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFf6b347"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFf6b347"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFECECEC"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFf6b347"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFf6b347"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFECECEC"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFECECEC"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFECECEC"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Storyboard x:Name="StoryboardText1" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="textBlock1">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-3800"/>
@@ -899,8 +971,8 @@
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="textBlock1">
                 <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="66"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:14" Value="66"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="128"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:14" Value="130"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:20" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
@@ -912,11 +984,11 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:35" Value="1190"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="textBlock2">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-57"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:25" Value="-57"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:30" Value="9"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:35" Value="9"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:40" Value="-57"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="-61.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:25" Value="-61.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:30" Value="65"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:35" Value="75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:40" Value="-62"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
@@ -926,7 +998,7 @@
     </Page.Resources>
 
     <Frame x:Name="FrameOverview">
-        <Grid x:Name="GridOverview" Background="#FF3866A1">
+        <Grid x:Name="GridOverview" Background="#FF19a399">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0*"/>
                 <RowDefinition Height="0*"/>
@@ -993,73 +1065,75 @@
                     </Style>
                 </CommandBar.CommandBarOverflowPresenterStyle>
                 <CommandBar.SecondaryCommands>
-                    <AppBarButton Label="Login" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight">
+                    <AppBarButton Label="Login" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight">
                         <AppBarButton.Flyout>
                             <Flyout>
                                 <Grid Width="406" Height="160"  >
                                     <TextBlock Text="Insert information and tap the Send button:" FontSize="16"
-                   FontWeight="SemiLight" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"
+                   FontWeight="SemiLight" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"
                    Margin="1,0,0,0" Height="25" VerticalAlignment="Top"  />
-                                    <TextBlock Text="Username:" Margin="15,30,-15,0" FontSize="16" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height, TopMargin, BottomMargin" />
-                                    <TextBlock Text="Password:" Margin="15,70,-15,0" FontSize="16" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height, TopMargin, BottomMargin" />
-                                    <TextBox x:Name="userName" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Margin="90,0,0,70" Width="310" Height="40" BorderBrush="#FF007ACC"/>
-                                    <PasswordBox x:Name="passWord" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Margin="90,0,0,-7" Width="310" BorderBrush="#FF007ACC" Height="40"/>
-                                    <Button Content="Send" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Right" 
+                                    <TextBlock Text="Username:" Margin="15,30,-15,0" FontSize="16" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height, TopMargin, BottomMargin" />
+                                    <TextBlock Text="Password:" Margin="15,70,-15,0" FontSize="16" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height, TopMargin, BottomMargin" />
+                                    <TextBox x:Name="userName" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Margin="90,0,0,70" Width="310" Height="40" BorderBrush="#FF007ACC"/>
+                                    <PasswordBox x:Name="passWord" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Margin="90,0,0,-7" Width="310" BorderBrush="#FF007ACC" Height="40"/>
+                                    <Button Content="Send" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Right" 
                     FontSize="16" Margin="0,0,4,13" BorderBrush="#FF007ACC" VerticalAlignment="Bottom" />
                                 </Grid>
 
                             </Flyout>
                         </AppBarButton.Flyout>
                     </AppBarButton>
-                    <AppBarButton Icon="CellPhone" Label="Reckoperations" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <AppBarButton Icon="Target" Label="Shut down" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" />
+                    <AppBarButton Icon="CellPhone" Label="Reckoperations" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <AppBarButton Icon="Target" Label="Shut down" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
             <Image x:Name="serverRack1" Source="Assets/Reck_SizeOptim.png" Grid.Column="3" Grid.Row="5" Grid.RowSpan="7" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Opacity="0.9"/>
             <TextBox x:Name="textBoxRackInfo1" Foreground="#FFECECEC" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text="" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="5" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#B2FFFFFF" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBoxRackErrors1" Foreground="#FFECECEC" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"  TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" BorderThickness="0"/>
-            <Button x:Name="buttonRackConfig1" Foreground="#FFECECEC" Background="Transparent" BorderBrush="#FFECECEC" Content="Rack Configuration" FontSize="25" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="6"  Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+            <TextBox x:Name="textBoxRackErrors1" Foreground="#FFECECEC" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"  TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" BorderThickness="0"/>
+            <Button x:Name="buttonRackConfig1" Foreground="#FFECECEC" Background="Transparent" BorderBrush="#FFECECEC" Content="Rack Configuration" FontSize="25" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="6"  Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Style="{StaticResource ButtonChangeColor}">
 
             </Button>
 
             <Image x:Name="serverRack2" Source="Assets/Reck_SizeOptim.png" Grid.Column="11" Grid.Row="5" Grid.RowSpan="7" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <TextBox x:Name="textBoxRackInfo2" Foreground="#FFECECEC" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="13" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <TextBox x:Name="textBoxRackErrors2" Foreground="#FFECECEC" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="13" Grid.Row="10" Grid.ColumnSpan="3" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <Button x:Name="buttonRackConfig2" Content="Rack Configuration" FontSize="25" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC"  Grid.Column="14"  Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <TextBox x:Name="textBoxRackInfo2" Foreground="#FFECECEC" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="13" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <TextBox x:Name="textBoxRackErrors2" Foreground="#FFECECEC" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="13" Grid.Row="10" Grid.ColumnSpan="3" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <Button x:Name="buttonRackConfig2" Content="Rack Configuration" FontSize="25" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC"  Grid.Column="14"  Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Style="{StaticResource ButtonChangeColor}"/>
 
             <Image x:Name="serverRack3" Source="Assets/Reck_SizeOptim.png" Grid.Column="17" Grid.Row="5" Grid.RowSpan="7" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <TextBox x:Name="textBoxRackInfo3" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text=""  SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="19" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#B2FFFFFF" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBoxRackErrors3" Foreground="#FFECECEC" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="19" Grid.Row="10" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <Button x:Name="buttonRackConfig3" Content="Rack Configuration" FontSize="25" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="20"  Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <TextBox x:Name="textBoxRackInfo3" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text=""  SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="19" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#B2FFFFFF" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="textBoxRackErrors3" Foreground="#FFECECEC" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="19" Grid.Row="10" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <Button x:Name="buttonRackConfig3" Content="Rack Configuration" FontSize="25" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="20"  Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Style="{StaticResource ButtonChangeColor}"/>
 
             <Image x:Name="serverRack4" Source="Assets/Reck_SizeOptim.png" Grid.Column="3" Grid.Row="14" Grid.RowSpan="7" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <TextBox x:Name="textBoxRackInfo4" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="5" Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <TextBox x:Name="textBoxRackErrors4" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="5" Grid.Row="19" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <Button x:Name="buttonRackConfig4" Content="Rack Configuration" FontSize="25" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="6"  Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <TextBox x:Name="textBoxRackInfo4" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="5" Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <TextBox x:Name="textBoxRackErrors4" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="#FFECECEC" IsReadOnly="True" Grid.Column="5" Grid.Row="19" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <Button x:Name="buttonRackConfig4" Content="Rack Configuration" FontSize="25" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="6"  Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Style="{StaticResource ButtonChangeColor}"/>
 
             <Image x:Name="serverRack5" Source="Assets/Reck_SizeOptim.png" Grid.Column="11" Grid.Row="14" Grid.RowSpan="7" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
             <TextBox x:Name="textBoxRackInfo5" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="White" IsReadOnly="True" Grid.Column="13" Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
             <TextBox x:Name="textBoxRackErrors5" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" SelectionHighlightColor="White" IsReadOnly="True" Grid.Column="13" Grid.Row="19" Grid.ColumnSpan="3" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <Button x:Name="buttonRackConfig5" Content="Rack Configuration" FontSize="25" FontFamily="Arial" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="14"  Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <Button x:Name="buttonRackConfig5" Content="Rack Configuration" FontSize="25" FontFamily="Arial" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="14"  Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Style="{StaticResource ButtonChangeColor}"/>
 
             <Image x:Name="serverRack6" Source="Assets/Reck_SizeOptim.png" Grid.Column="17" Grid.Row="14" Grid.RowSpan="7" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <TextBox x:Name="textBoxRackInfo6" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="White" IsReadOnly="True" Grid.Column="19" Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <TextBox x:Name="textBoxRackErrors6" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="White" IsReadOnly="True" Grid.Column="19" Grid.Row="19" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <Button x:Name="buttonRackConfig6" Content="Rack Configuration" FontSize="25" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="20"  Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <TextBox x:Name="textBoxRackInfo6" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="White" IsReadOnly="True" Grid.Column="19" Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="5" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <TextBox x:Name="textBoxRackErrors6" Foreground="#FFECECEC" TextWrapping="Wrap" Text="" Background="#B2FFFFFF" BorderBrush="{x:Null}" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" SelectionHighlightColor="White" IsReadOnly="True" Grid.Column="19" Grid.Row="19" Grid.ColumnSpan="5" Grid.RowSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+            <Button x:Name="buttonRackConfig6" Content="Rack Configuration" FontSize="25" FontFamily="Assets/SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Click="clickButtonRackConfig1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="#FFECECEC" Foreground="#FFECECEC" Grid.Column="20"  Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Style="{StaticResource ButtonChangeColor}"/>
 
 
             <StackPanel Grid.Column="8" Grid.ColumnSpan ="13" Grid.Row="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
             <StackPanel Grid.Column="7" Grid.ColumnSpan ="15" Grid.Row="2"  Grid.RowSpan="2" BorderThickness="1,0,0,0" BorderBrush="#FFECECEC" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            <StackPanel Grid.Column="8" Grid.ColumnSpan ="13" Grid.Row="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-                <TextBlock FontSize="45" x:Name="textBlock1" Foreground="#FFECECEC" FontFamily="Assets/SourceSansPro-Regular.ttf#Source Sans Pro"  Text="Temp. Rack 1: 12,34 | Status: optimal || Temp. Rack 2: 12,34 | Status: optimal || Temp. Rack 3: 12,34 | Status: optimal || Temp. Rack 4: 12,34 | Status: optimal || Temp. Rack 5: 12,34 | Status: optimal  || Temp. Rack 6: 12,34 | Status: optimal" Padding="0,5,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-3800,0">
+            <StackPanel Grid.Column="8" Grid.ColumnSpan ="13" Grid.Row="2" Grid.RowSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                <TextBlock FontSize="45" x:Name="textBlock1" Foreground="#FFECECEC" FontFamily="SourceSansPro-Regular.ttf#Source Sans Pro"  Text="Temp. Rack 1: 12,34 | Status: optimal || Temp. Rack 2: 12,34 | Status: optimal || Temp. Rack 3: 12,34 | Status: optimal || Temp. Rack 4: 12,34 | Status: optimal || Temp. Rack 5: 12,34 | Status: optimal  || Temp. Rack 6: 12,34 | Status: optimal" Padding="0,5,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-3800,0">
                     <TextBlock.RenderTransform>
                         <CompositeTransform/>
                     </TextBlock.RenderTransform>
+
                 </TextBlock>
-                <TextBlock Foreground="#FFECECEC" FontFamily="Assets/SourceSansPro-Regular.ttf#Source Sans Pro" FontSize="45" x:Name="textBlock2" Text="Temp. Rack 1: 12,34 | Status: optimal || Temp. Rack 2: 12,34 | Status: optimal || Temp. Rack 3: 12,34 | Status: optimal || Temp. Rack 4: 12,34 | Status: optimal || Temp. Rack 5: 12,34 | Status: optimal  || Temp. Rack 6: 12,34 | Status: optimal" Padding="0,5,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-3800,0">
+                <TextBlock FontSize="45" x:Name="textBlock2" Foreground="#FFECECEC" FontFamily="SourceSansPro-Regular.ttf#Source Sans Pro"  Text="Temp. Rack 1: 12,34 | Status: optimal || Temp. Rack 2: 12,34 | Status: optimal || Temp. Rack 3: 12,34 | Status: optimal || Temp. Rack 4: 12,34 | Status: optimal || Temp. Rack 5: 12,34 | Status: optimal  || Temp. Rack 6: 12,34 | Status: optimal" Padding="0,5,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-3800,0">
                     <TextBlock.RenderTransform>
                         <CompositeTransform/>
                     </TextBlock.RenderTransform>
+
                 </TextBlock>
 
 
