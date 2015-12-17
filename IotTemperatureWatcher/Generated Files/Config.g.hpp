@@ -198,102 +198,187 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
             break;
         case 32:
             {
-                this->sliderThresholdSensorTopLower = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->popupConfigError = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 33:
             {
-                this->sliderThresholdSensorTopUpper = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->comboBoxFan = safe_cast<::Windows::UI::Xaml::Controls::ComboBox^>(__target);
             }
             break;
         case 34:
             {
-                this->sliderThresholdSensorCenterLower = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->comboBoxSensor = safe_cast<::Windows::UI::Xaml::Controls::ComboBox^>(__target);
             }
             break;
         case 35:
             {
-                this->sliderThresholdSensorCenterUpper = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->textBlockThresholdSensorTopLower = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 36:
             {
-                this->sliderThresholdSensorBottomLower = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->textBlockThresholdSensorTopUpper = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 37:
             {
-                this->sliderThresholdSensorBottomUpper = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->textBlockThresholdSensorCenterLower = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 38:
             {
-                this->textBlockUpper1Fan1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->textBlockThresholdSensorCenterUpper = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 39:
             {
-                this->textBlockUpper1Fan2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->textBlockThresholdSensorBottomLower = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 40:
             {
-                this->textBlockLower1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->textBlockThresholdSensorBottomUpper = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 41:
             {
-                this->textBlockUpper2Fan1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->sliderThresholdSensorTopLower = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
             }
             break;
         case 42:
             {
-                this->textBlockUpper2Fan2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->sliderThresholdSensorTopUpper = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
             }
             break;
         case 43:
             {
-                this->textBlockLower2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->sliderThresholdSensorCenterLower = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
             }
             break;
         case 44:
             {
-                this->sliderUpperTemp1F1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->sliderThresholdSensorCenterUpper = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
             }
             break;
         case 45:
             {
-                this->sliderUpperTemp1F2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->sliderThresholdSensorBottomLower = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
             }
             break;
         case 46:
             {
-                this->sliderLowerTemp1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->sliderThresholdSensorBottomUpper = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
             }
             break;
         case 47:
             {
-                this->sliderUpperTemp2F1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->textBlockUpper1Fan1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 48:
             {
-                this->sliderUpperTemp2F2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->textBlockUpper1Fan2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 49:
             {
-                this->sliderLowerTemp2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+                this->textBlockLower1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
             }
             break;
         case 50:
+            {
+                this->textBlockUpper2Fan1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+            }
+            break;
+        case 51:
+            {
+                this->textBlockUpper2Fan2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+            }
+            break;
+        case 52:
+            {
+                this->textBlockLower2 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+            }
+            break;
+        case 53:
+            {
+                this->sliderUpperTemp1F1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+            }
+            break;
+        case 54:
+            {
+                this->sliderUpperTemp1F2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+            }
+            break;
+        case 55:
+            {
+                this->sliderLowerTemp1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+            }
+            break;
+        case 56:
+            {
+                this->sliderUpperTemp2F1 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+            }
+            break;
+        case 57:
+            {
+                this->sliderUpperTemp2F2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+            }
+            break;
+        case 58:
+            {
+                this->sliderLowerTemp2 = safe_cast<::Windows::UI::Xaml::Controls::Slider^>(__target);
+            }
+            break;
+        case 59:
             {
                 this->buttonPopupConfigSave = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->buttonPopupConfigSave))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickedButtonPopupConfigSave);
             }
             break;
-        case 51:
+        case 60:
+            {
+                this->comboBoxItemSensor1 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 61:
+            {
+                this->comboBoxItemSensor2 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 62:
+            {
+                this->comboBoxItemSensor3 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 63:
+            {
+                this->comboBoxItemSensor4 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 64:
+            {
+                this->comboBoxItemSensor5 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 65:
+            {
+                this->comboBoxItemSensor6 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 66:
+            {
+                this->comboBoxItemFan1 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 67:
+            {
+                this->comboBoxItemFan2 = safe_cast<::Windows::UI::Xaml::Controls::ComboBoxItem^>(__target);
+            }
+            break;
+        case 68:
             {
                 this->appBarToggleButtonFanConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonFanConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
@@ -302,7 +387,7 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonFanConfig);
             }
             break;
-        case 52:
+        case 69:
             {
                 this->appBarToggleButtonSensorConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonSensorConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
@@ -311,7 +396,7 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonSensorConfig);
             }
             break;
-        case 53:
+        case 70:
             {
                 this->appBarToggleButtonThresholdConfig = safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(__target);
                 (safe_cast<::Windows::UI::Xaml::Controls::AppBarToggleButton^>(this->appBarToggleButtonThresholdConfig))->Checked += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
@@ -320,10 +405,10 @@ void ::IotTemperatureWatcher::Config::Connect(int __connectionId, ::Platform::Ob
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::uncheckedAppBarToggleButtonThresholdConfig);
             }
             break;
-        case 54:
+        case 71:
             {
-                ::Windows::UI::Xaml::Controls::AppBarButton^ element54 = safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(element54))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
+                ::Windows::UI::Xaml::Controls::AppBarButton^ element71 = safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(element71))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::IotTemperatureWatcher::Config::*)
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&Config::clickAppBarButtonSave);
             }
             break;

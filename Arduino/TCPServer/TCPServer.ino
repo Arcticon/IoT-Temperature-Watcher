@@ -37,6 +37,10 @@ bool isSensor4Enabled = true;
 bool isSensor5Enabled = true;
 bool isSensor6Enabled = true;
 
+bool isFan1Enabled = true;
+bool isFan2Enabled = true;
+
+
 /* 
  * temperatureSensor1820 Variables
  */
@@ -209,6 +213,21 @@ void loop() {
     Serial.print("\t");
     Serial.println(thresholdLower2);
     Serial.println("------------------------------------");
+    Serial.print(isFan1Enabled);
+    Serial.print("\t");
+    Serial.println(isFan2Enabled);
+    Serial.print(isSensor1Enabled);
+    Serial.print("\t");
+    Serial.print(isSensor2Enabled);
+    Serial.print("\t");
+    Serial.print(isSensor3Enabled);
+    Serial.print("\t");
+    Serial.print(isSensor4Enabled);
+    Serial.print("\t");
+    Serial.print(isSensor4Enabled);
+    Serial.print("\t");
+    Serial.println(isSensor6Enabled);
+    Serial.println("------------------------------------");
     currTime = millis();
   }
   
@@ -324,6 +343,38 @@ void loop() {
         server.write(roomNumber);
       } else if (str_data == "getrk") {
         server.write(rackNumber);
+      } else if (str_data == "addF1") {
+        isFan1Enabled = true;
+      } else if (str_data == "addF2") {
+        isFan2Enabled = true;
+      } else if (str_data == "remF1") {
+        isFan1Enabled = false;
+      } else if (str_data == "remF2") {
+        isFan2Enabled = false;
+      } else if (str_data == "addS1") {
+        isSensor1Enabled = true;
+      } else if (str_data == "addS2") {
+        isSensor2Enabled = true;
+      } else if (str_data == "addS3") {
+        isSensor3Enabled = true;
+      } else if (str_data == "addS4") {
+        isSensor4Enabled = true;
+      } else if (str_data == "addS5") {
+        isSensor5Enabled = true;
+      } else if (str_data == "addS6") {
+        isSensor6Enabled = true;
+      } else if (str_data == "remS1") {
+        isSensor1Enabled = false;
+      } else if (str_data == "remS2") {
+        isSensor2Enabled = false;
+      } else if (str_data == "remS3") {
+        isSensor3Enabled = false;
+      } else if (str_data == "remS4") {
+        isSensor4Enabled = false;
+      } else if (str_data == "remS5") {
+        isSensor5Enabled = false;
+      } else if (str_data == "remS6") {
+        isSensor6Enabled = false;
       }
       
       str_data = "";
@@ -434,79 +485,115 @@ float getTemp(int int_switch) {
 void control() {
 
   if (temperature1 < thresholdLower1 && thresholdUpper1Fan2Control) {
-    //Fan 1 OFF
-    digitalWrite(fan1Pin, LOW);
-    fan1State = false;
-    //Fan 2 OFF
-    digitalWrite(fan2Pin, LOW);
-    fan2State = false;
-    thresholdUpper1Fan2Control = false;
+    if(isFan1Enabled){
+      //Fan 1 OFF
+      digitalWrite(fan1Pin, LOW);
+      fan1State = false;
+    }
+    if(isFan2Enabled){
+      //Fan 2 OFF
+      digitalWrite(fan2Pin, LOW);
+      fan2State = false;
+      thresholdUpper1Fan2Control = false;
+    }
   }else if(temperature1 < thresholdLower1){
-    //Fan 1 OFF
-    digitalWrite(fan1Pin, LOW);
-    fan1State = false;
-    //Fan 2 OFF
-    digitalWrite(fan2Pin, LOW);
-    fan2State = false;
+    if(isFan1Enabled){
+      //Fan 1 OFF
+      digitalWrite(fan1Pin, LOW);
+      fan1State = false;
+    }
+    if(isFan2Enabled){
+      //Fan 2 OFF
+      digitalWrite(fan2Pin, LOW);
+      fan2State = false;
+    }
   }
   if(temperature2 < thresholdLower2 && thresholdUpper2Fan1Control) {
-    //Fan 1 OFF
-    digitalWrite(fan1Pin, LOW);
-    fan1State = false;
-    //Fan 2 OFF
-    digitalWrite(fan2Pin, LOW);
-    fan2State = false;
-    thresholdUpper2Fan1Control = false;
+    if(isFan1Enabled){
+      //Fan 1 OFF
+      digitalWrite(fan1Pin, LOW);
+      fan1State = false;
+    }
+    if(isFan2Enabled){
+      //Fan 2 OFF
+      digitalWrite(fan2Pin, LOW);
+      fan2State = false;
+      thresholdUpper2Fan1Control = false;
+    }
   }else if(temperature2 < thresholdLower2){
-    //Fan 1 OFF
-    digitalWrite(fan1Pin, LOW);
-    fan1State = false;
-    //Fan 2 OFF
-    digitalWrite(fan2Pin, LOW);
-    fan2State = false;
+    if(isFan1Enabled){
+      //Fan 1 OFF
+      digitalWrite(fan1Pin, LOW);
+      fan1State = false;
+    }
+    if(isFan2Enabled){
+      //Fan 2 OFF
+      digitalWrite(fan2Pin, LOW);
+      fan2State = false;
+    }
   }
 
   
   if (temperature1 > thresholdUpper1Fan1) {
-    //Fan 1 ON
-    digitalWrite(fan1Pin, HIGH);
-    fan1State = true;
+    if(isFan1Enabled){
+      //Fan 1 ON
+      digitalWrite(fan1Pin, HIGH);
+      fan1State = true;
+    }
   }
   if (temperature1 > thresholdUpper1Fan2) {
-    //Fan 2 ON
-    digitalWrite(fan2Pin, HIGH);
-    fan2State = true;
+    if(isFan2Enabled){
+      //Fan 2 ON
+      digitalWrite(fan2Pin, HIGH);
+      fan2State = true;
+    }
   }
   if (temperature2 > thresholdUpper2Fan2) {
-    //Fan 2 ON
-    digitalWrite(fan2Pin, HIGH);
-    fan2State = true;
+    if(isFan2Enabled){
+      //Fan 2 ON
+      digitalWrite(fan2Pin, HIGH);
+      fan2State = true;
+    }
   }
   if (temperature2 > thresholdUpper2Fan1) {
-    //Fan 1 ON
-    digitalWrite(fan1Pin, HIGH);
-    fan1State = true;
+    if(isFan1Enabled){
+      //Fan 1 ON
+      digitalWrite(fan1Pin, HIGH);
+      fan1State = true;
+    }
   }
 }
 
 void setTemperatures(){
   if(isSensor1Enabled){
     temperature1 = getTemp(1);
+  }else{
+    temperature1 = -1;
   }
   if(isSensor2Enabled){
     temperature2 = getTemp(2);
+  }else{
+    temperature2 = -1;
   }
   if(isSensor3Enabled){
     temperature3 = getTemp(3);
+  }else{
+    temperature3 = -1;
   }
   if(isSensor4Enabled){
     temperature4 = getTemp(4);
+  }else{
+    temperature4 = -1;
   }
   if(isSensor5Enabled){
     temperature5 = getTemp(5);
+  }else{
+    temperature5 = -1;
   }
   if(isSensor6Enabled){
     temperature6 = getTemp(6);
+  }else{
+    temperature6 = -1;
   }
 }
 

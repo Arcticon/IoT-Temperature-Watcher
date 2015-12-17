@@ -29,7 +29,9 @@ namespace Windows {
                 ref class StackPanel;
                 ref class Button;
                 ref class TextBlock;
+                ref class ComboBox;
                 ref class Slider;
+                ref class ComboBoxItem;
                 ref class AppBarToggleButton;
             }
         }
@@ -93,6 +95,15 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::Button^ button;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlock1;
         private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlock2;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ popupConfigError;
+        private: ::Windows::UI::Xaml::Controls::ComboBox^ comboBoxFan;
+        private: ::Windows::UI::Xaml::Controls::ComboBox^ comboBoxSensor;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockThresholdSensorTopLower;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockThresholdSensorTopUpper;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockThresholdSensorCenterLower;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockThresholdSensorCenterUpper;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockThresholdSensorBottomLower;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ textBlockThresholdSensorBottomUpper;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderThresholdSensorTopLower;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderThresholdSensorTopUpper;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderThresholdSensorCenterLower;
@@ -112,6 +123,14 @@ namespace IotTemperatureWatcher
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderUpperTemp2F2;
         private: ::Windows::UI::Xaml::Controls::Slider^ sliderLowerTemp2;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonPopupConfigSave;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemSensor1;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemSensor2;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemSensor3;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemSensor4;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemSensor5;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemSensor6;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemFan1;
+        private: ::Windows::UI::Xaml::Controls::ComboBoxItem^ comboBoxItemFan2;
         private: ::Windows::UI::Xaml::Controls::AppBarToggleButton^ appBarToggleButtonFanConfig;
         private: ::Windows::UI::Xaml::Controls::AppBarToggleButton^ appBarToggleButtonSensorConfig;
         private: ::Windows::UI::Xaml::Controls::AppBarToggleButton^ appBarToggleButtonThresholdConfig;

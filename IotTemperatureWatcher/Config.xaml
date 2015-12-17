@@ -974,7 +974,7 @@
             <TextBox x:Name="textBoxThresholdUpperSensor" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  IsReadOnly="True" Background="White" BorderBrush="White" SelectionHighlightColor="White" Grid.Column="12" Grid.Row="8" Grid.ColumnSpan="10" Grid.RowSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
             <TextBox x:Name="textBoxThresholdCenterSensor" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  IsReadOnly="True" Background="White" BorderBrush="White" SelectionHighlightColor="White" Grid.Column="12" Grid.Row="10" Grid.ColumnSpan="10" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
             <TextBox x:Name="textBoxThresholdLowerSensor" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  IsReadOnly="True" Background="White" BorderBrush="White" SelectionHighlightColor="White" Grid.Column="12" Grid.Row="11" Grid.ColumnSpan="10" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-            
+
             <StackPanel x:Name="buttonFanConfigPanel" Background="#FFf6b347" Grid.Row ="14" Grid.Column="13" Grid.RowSpan="4" Grid.ColumnSpan="9" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             </StackPanel>
             <TextBlock Text="Fan Configuration" Grid.Column="13" Grid.ColumnSpan="9" Grid.Row="14" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Foreground="#FFECECEC"/>
@@ -989,14 +989,40 @@
             <StackPanel x:Name="buttonSenConfigPanel2" Background="#FFf6b347" Grid.Row ="23" Grid.Column="13" Grid.RowSpan="7" Grid.ColumnSpan="9" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
             <Button x:Name="buttonChangeThresholds" Content="Change Thresholds" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Click="clickButtonChangeThresholds" BorderBrush="#FFECECEC" IsEnabled="false" Grid.Column="14" Grid.Row="26" Grid.ColumnSpan="7" Grid.RowSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Foreground="#FFECECEC" />
 
+
+
             <Popup x:Name="popupConfig" Opened="openedPopupConfig" Closed="closedPopupConfig" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Grid Background="#FFECECEC" Height="1050" Width="1680">
-                    <TextBlock Text="Threshold Sensor Top Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,250,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <TextBlock Text="Threshold Sensor Top Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,300,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <TextBlock Text="Threshold Sensor Center Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,350,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <TextBlock Text="Threshold Sensor Center Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,400,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <TextBlock Text="Threshold Sensor Bottom Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,450,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <TextBlock Text="Threshold Sensor Bottom Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,500,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <!--ERROR-->
+
+                    <TextBlock x:Name="popupConfigError" HorizontalAlignment="Left" Margin="223,980,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+
+                    <!--FAN-->
+
+                    <ComboBox x:Name="comboBoxFan" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" SelectedItem="comboBoxItem1" Visibility="Visible">
+                        <ComboBoxItem x:Name="comboBoxItemFan1" Visibility="Visible">Fan 1</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemFan2" Visibility="Visible">Fan 2</ComboBoxItem>
+                    </ComboBox>
+
+                    <!--SENSOR-->
+
+                    <ComboBox x:Name="comboBoxSensor" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" SelectedItem="comboBoxItem1" Visibility="Visible">
+                        <ComboBoxItem x:Name="comboBoxItemSensor1" Visibility="Visible">Sensor 1</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor2" Visibility="Visible">Sensor 2</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor3" Visibility="Visible">Sensor 3</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor4" Visibility="Visible">Sensor 4</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor5" Visibility="Visible">Sensor 5</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor6" Visibility="Visible">Sensor 6</ComboBoxItem>
+                    </ComboBox>
+
+                    <!--THRESHOLDS-->
+
+                    <TextBlock x:Name="textBlockThresholdSensorTopLower" Text="Threshold Sensor Top Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,250,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:Name="textBlockThresholdSensorTopUpper" Text="Threshold Sensor Top Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,300,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:Name="textBlockThresholdSensorCenterLower" Text="Threshold Sensor Center Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,350,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:Name="textBlockThresholdSensorCenterUpper" Text="Threshold Sensor Center Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,400,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:Name="textBlockThresholdSensorBottomLower" Text="Threshold Sensor Bottom Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,450,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:Name="textBlockThresholdSensorBottomUpper" Text="Threshold Sensor Bottom Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,500,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
                     <Slider x:Name="sliderThresholdSensorTopLower" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,250,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
                     <Slider x:Name="sliderThresholdSensorTopUpper" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,300,0,0" VerticalAlignment="Top" Width="100" Value="40" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
                     <Slider x:Name="sliderThresholdSensorCenterLower" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,350,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
@@ -1022,6 +1048,8 @@
                     <Slider x:Name="sliderLowerTemp2" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1125,500,0,0" VerticalAlignment="Top" Width="100" Value="27" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
 
                     <Button x:Name="buttonPopupConfigSave" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Background="White" Content="Save" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top" Click="clickedButtonPopupConfigSave" />
+                    
+
                 </Grid>
             </Popup>
 

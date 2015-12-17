@@ -34,12 +34,24 @@ long rc = 0;
 
 float temp1, temp2, temp3, temp4, temp5, temp6 = 0;
 
+bool isFan1Enabled = true, isFan2Enabled = true;
+bool isSensor1Enabled = true, isSensor2Enabled = true, isSensor3Enabled = true, isSensor4Enabled = true, isSensor5Enabled = true, isSensor6Enabled = true;
+
+int state = 0;
+
 static int thresholdSensorTopHigh = 40;
 static int thresholdSensorTopLow = 30;
 static int thresholdSensorCenterHigh = 40;
 static int thresholdSensorCenterLow = 30;
 static int thresholdSensorBottomHigh = 40;
 static int thresholdSensorBottomLow = 30;
+static int upperTemp1F1 = 34;
+static int upperTemp1F2 = 38;
+static int lowerTemp1 = 30;
+static int upperTemp2F1 = 32;
+static int upperTemp2F2 = 34;
+static int lowerTemp2 = 27;
+
 int datacenter, room, rack = 0;
 
 
@@ -418,54 +430,440 @@ std::string sliderValToString(int val) {
 }
 
 void IotTemperatureWatcher::Config::openedPopupConfig(Platform::Object^ sender, Platform::Object^ e) {
+	if (state == 1) {
+		//Visible
 
-	sliderThresholdSensorTopLower->Value = thresholdSensorTopLow;
-	sliderThresholdSensorTopUpper->Value = thresholdSensorTopHigh;
-	sliderThresholdSensorCenterLower->Value = thresholdSensorCenterLow;
-	sliderThresholdSensorCenterUpper->Value = thresholdSensorCenterHigh;
-	sliderThresholdSensorBottomLower->Value = thresholdSensorBottomLow;
-	sliderThresholdSensorBottomUpper->Value = thresholdSensorBottomHigh;
+		comboBoxFan->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		if (isFan1Enabled) {
+			comboBoxItemFan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemFan1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		if (isFan2Enabled) {
+			comboBoxItemFan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemFan2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
 
+		//Invisible
+
+		comboBoxSensor->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper1Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper1Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper2Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper2Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderUpperTemp1F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp1F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	}
+	else if (state == 2) {
+		//Visible
+
+		comboBoxFan->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		if (isFan1Enabled) {
+			comboBoxItemFan1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemFan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		if (isFan2Enabled) {
+			comboBoxItemFan2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemFan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+
+		//Invisible
+
+		comboBoxSensor->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper1Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper1Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper2Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper2Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderUpperTemp1F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp1F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	}
+	else if (state == 3) {
+		//Visible
+
+		comboBoxSensor->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		if (isSensor1Enabled) {
+			comboBoxItemSensor1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemSensor1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		if (isSensor2Enabled) {
+			comboBoxItemSensor2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemSensor2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		if (isSensor3Enabled) {
+			comboBoxItemSensor3->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemSensor3->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		if (isSensor4Enabled) {
+			comboBoxItemSensor4->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemSensor4->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		if (isSensor5Enabled) {
+			comboBoxItemSensor5->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemSensor5->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		if (isSensor6Enabled) {
+			comboBoxItemSensor6->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		else {
+			comboBoxItemSensor6->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+
+		//Invisible
+
+		comboBoxFan->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper1Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper1Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper2Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper2Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderUpperTemp1F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp1F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	}
+	else if (state == 4) {
+		//Visible
+
+		comboBoxSensor->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		if (isSensor1Enabled) {
+			comboBoxItemSensor1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemSensor1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		if (isSensor2Enabled) {
+			comboBoxItemSensor2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemSensor2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		if (isSensor3Enabled) {
+			comboBoxItemSensor3->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemSensor3->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		if (isSensor4Enabled) {
+			comboBoxItemSensor4->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemSensor4->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		if (isSensor5Enabled) {
+			comboBoxItemSensor5->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemSensor5->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+		if (isSensor6Enabled) {
+			comboBoxItemSensor6->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else {
+			comboBoxItemSensor6->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+
+		//Invisible
+
+		comboBoxFan->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper1Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper1Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		textBlockUpper2Fan1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockUpper2Fan2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		textBlockLower2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		sliderUpperTemp1F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp1F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F1->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderUpperTemp2F2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		sliderLowerTemp2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	}
+	else if (state == 5) {
+		//Visible
+
+
+		textBlockThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Visible;
+
+		sliderThresholdSensorTopLower->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderThresholdSensorTopUpper->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderThresholdSensorCenterLower->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderThresholdSensorCenterUpper->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderThresholdSensorBottomLower->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderThresholdSensorBottomUpper->Visibility = Windows::UI::Xaml::Visibility::Visible;
+
+		textBlockUpper1Fan1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockUpper1Fan2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockLower1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+
+		textBlockUpper2Fan1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockUpper2Fan2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		textBlockLower2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+
+		sliderUpperTemp1F1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderUpperTemp1F2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderLowerTemp1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderUpperTemp2F1->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderUpperTemp2F2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		sliderLowerTemp2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+
+		//Invisible
+
+		comboBoxFan->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		comboBoxSensor->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+
+		//
+
+		sliderThresholdSensorTopLower->Value = thresholdSensorTopLow;
+		sliderThresholdSensorTopUpper->Value = thresholdSensorTopHigh;
+		sliderThresholdSensorCenterLower->Value = thresholdSensorCenterLow;
+		sliderThresholdSensorCenterUpper->Value = thresholdSensorCenterHigh;
+		sliderThresholdSensorBottomLower->Value = thresholdSensorBottomLow;
+		sliderThresholdSensorBottomUpper->Value = thresholdSensorBottomHigh;
+
+		sliderUpperTemp1F1->Value = upperTemp1F1;
+		sliderUpperTemp1F2->Value = upperTemp1F2;
+		sliderLowerTemp1->Value = lowerTemp1;
+		sliderUpperTemp2F1->Value = upperTemp2F1;
+		sliderUpperTemp2F2->Value = upperTemp2F2;
+		sliderLowerTemp2->Value = lowerTemp2;
+	}
+	
+	popupConfigError->Text = "" + state;
 	popupConfig->Visibility = Windows::UI::Xaml::Visibility::Visible;
 }
 
 void IotTemperatureWatcher::Config::closedPopupConfig(Platform::Object^ sender, Platform::Object^ e) {
 	popupConfig->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	state = 0;
 }
 
 void IotTemperatureWatcher::Config::clickedButtonPopupConfigSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
-	sendDataToServer("settstl:" + sliderValToString((int)sliderThresholdSensorTopLower->Value));
-	Sleep(10);
-	sendDataToServer("settsth:" + sliderValToString((int)sliderThresholdSensorTopUpper->Value));
-	Sleep(10);
-	sendDataToServer("settscl:" + sliderValToString((int)sliderThresholdSensorCenterLower->Value));
-	Sleep(10);
-	sendDataToServer("settsch:" + sliderValToString((int)sliderThresholdSensorCenterUpper->Value));
-	Sleep(10);
-	sendDataToServer("settsbl:" + sliderValToString((int)sliderThresholdSensorBottomLower->Value));
-	Sleep(10);
-	sendDataToServer("settsbh:" + sliderValToString((int)sliderThresholdSensorBottomUpper->Value));
-	Sleep(10);
-	sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1F1->Value));
-	Sleep(10);
-	sendDataToServer("slider2:" + sliderValToString((int)sliderUpperTemp1F2->Value));
-	Sleep(10);
-	sendDataToServer("slider3:" + sliderValToString((int)sliderLowerTemp1->Value));
-	Sleep(10);
-	sendDataToServer("slider4:" + sliderValToString((int)sliderUpperTemp2F1->Value));
-	Sleep(10);
-	sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp2F2->Value));
-	Sleep(10);
-	sendDataToServer("slider6:" + sliderValToString((int)sliderLowerTemp2->Value));
+	if (state == 1) {
+		if (comboBoxFan->SelectedItem == comboBoxItemFan1) {
+			sendDataToServer("addF1");
+			isFan1Enabled = true;
+			Sleep(10);
+		}
+		else if (comboBoxFan->SelectedItem == comboBoxItemFan2) {
+			sendDataToServer("addF2");
+			isFan2Enabled = true;
+			Sleep(10);
+		}
+	}else if(state == 2){
+		if (comboBoxFan->SelectedItem == comboBoxItemFan1) {
+			sendDataToServer("remF1");
+			isFan1Enabled = false;
+			Sleep(10);
+		}
+		else if (comboBoxFan->SelectedItem == comboBoxItemFan2) {
+			sendDataToServer("remF2");
+			isFan1Enabled = false;
+			Sleep(10);
+		}
+	}else if (state == 3) {
+		if (comboBoxSensor->SelectedItem == comboBoxItemSensor1) {
+			sendDataToServer("addS1");
+			isSensor1Enabled = true;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor2) {
+			sendDataToServer("addS2");
+			isSensor2Enabled = true;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor3) {
+			sendDataToServer("addS3");
+			isSensor3Enabled = true;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor4) {
+			sendDataToServer("addS4");
+			isSensor4Enabled = true;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor5) {
+			sendDataToServer("addS5");
+			isSensor5Enabled = true;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor6) {
+			sendDataToServer("addS6");
+			isSensor6Enabled = true;
+			Sleep(10);
+		}
+	}else if (state == 4) {
+		if (comboBoxSensor->SelectedItem == comboBoxItemSensor1) {
+			sendDataToServer("remS1");
+			isSensor1Enabled = false;
+			Sleep(10);
+			textBoxErrors->Text = "remS1";
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor2) {
+			sendDataToServer("remS2");
+			isSensor2Enabled = false;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor3) {
+			sendDataToServer("remS3");
+			isSensor3Enabled = false;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor4) {
+			sendDataToServer("remS4");
+			isSensor4Enabled = false;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor5) {
+			sendDataToServer("remS5");
+			isSensor5Enabled = false;
+			Sleep(10);
+		}
+		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor6) {
+			sendDataToServer("remS6");
+			isSensor6Enabled = false;
+			Sleep(10);
+		}
+	}else if (state == 5) {
+		sendDataToServer("settstl:" + sliderValToString((int)sliderThresholdSensorTopLower->Value));
+		Sleep(10);
+		sendDataToServer("settsth:" + sliderValToString((int)sliderThresholdSensorTopUpper->Value));
+		Sleep(10);
+		sendDataToServer("settscl:" + sliderValToString((int)sliderThresholdSensorCenterLower->Value));
+		Sleep(10);
+		sendDataToServer("settsch:" + sliderValToString((int)sliderThresholdSensorCenterUpper->Value));
+		Sleep(10);
+		sendDataToServer("settsbl:" + sliderValToString((int)sliderThresholdSensorBottomLower->Value));
+		Sleep(10);
+		sendDataToServer("settsbh:" + sliderValToString((int)sliderThresholdSensorBottomUpper->Value));
+		Sleep(10);
+		sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1F1->Value));
+		Sleep(10);
+		sendDataToServer("slider2:" + sliderValToString((int)sliderUpperTemp1F2->Value));
+		Sleep(10);
+		sendDataToServer("slider3:" + sliderValToString((int)sliderLowerTemp1->Value));
+		Sleep(10);
+		sendDataToServer("slider4:" + sliderValToString((int)sliderUpperTemp2F1->Value));
+		Sleep(10);
+		sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp2F2->Value));
+		Sleep(10);
+		sendDataToServer("slider6:" + sliderValToString((int)sliderLowerTemp2->Value));
 
+		thresholdSensorTopHigh = (int)sliderThresholdSensorTopUpper->Value;
+		thresholdSensorTopLow = (int)sliderThresholdSensorTopLower->Value;
+		thresholdSensorCenterHigh = (int)sliderThresholdSensorCenterUpper->Value;
+		thresholdSensorCenterLow = (int)sliderThresholdSensorCenterLower->Value;
+		thresholdSensorBottomHigh = (int)sliderThresholdSensorBottomUpper->Value;
+		thresholdSensorBottomLow = (int)sliderThresholdSensorBottomLower->Value;
 
-
-	thresholdSensorTopHigh = (int)sliderThresholdSensorTopUpper->Value;
-	thresholdSensorTopLow = (int)sliderThresholdSensorTopLower->Value; 
-	thresholdSensorCenterHigh = (int)sliderThresholdSensorCenterUpper->Value;
-	thresholdSensorCenterLow = (int)sliderThresholdSensorCenterLower->Value;
-	thresholdSensorBottomHigh = (int)sliderThresholdSensorBottomUpper->Value;
-	thresholdSensorBottomLow = (int)sliderThresholdSensorBottomLower->Value;
+		upperTemp1F1 = (int)sliderUpperTemp1F1->Value;
+		upperTemp1F2 = (int)sliderUpperTemp1F2->Value;
+		lowerTemp1 = (int)sliderLowerTemp1->Value;
+		upperTemp2F1 = (int)sliderUpperTemp2F1->Value;
+		upperTemp2F2 = (int)sliderUpperTemp2F2->Value;
+		lowerTemp2 = (int)sliderLowerTemp2->Value;
+	}
+	
 
 	updateAll();
 
@@ -545,7 +943,7 @@ void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonThresholdConfig(P
 void IotTemperatureWatcher::Config::updateAll() {
 	temp1 = getDataFromServer(_GETTEMP1);
 
-	if (temp1 < 2) {
+	if (temp1 < 0) {
 		if (!errorString->IsEmpty()) {
 			errorString += "\n";
 		}
@@ -556,7 +954,7 @@ void IotTemperatureWatcher::Config::updateAll() {
 
 	temp2 = getDataFromServer(_GETTEMP2);
 
-	if (temp2 < 2) {
+	if (temp2 < 0) {
 		if (!errorString->IsEmpty()) {
 			errorString += "\n";
 		}
@@ -567,7 +965,7 @@ void IotTemperatureWatcher::Config::updateAll() {
 
 	temp3 = getDataFromServer(_GETTEMP3);
 
-	if (temp3 < 2) {
+	if (temp3 < 0) {
 		if (!errorString->IsEmpty()) {
 			errorString += "\n";
 		}
@@ -578,7 +976,7 @@ void IotTemperatureWatcher::Config::updateAll() {
 
 	temp4 = getDataFromServer(_GETTEMP4);
 
-	if (temp4 < 2) {
+	if (temp4 < 0) {
 		if (!errorString->IsEmpty()) {
 			errorString += "\n";
 		}
@@ -589,7 +987,7 @@ void IotTemperatureWatcher::Config::updateAll() {
 
 	temp5 = getDataFromServer(_GETTEMP5);
 
-	if (temp5 < 2) {
+	if (temp5 < 0) {
 		if (!errorString->IsEmpty()) {
 			errorString += "\n";
 		}
@@ -600,7 +998,7 @@ void IotTemperatureWatcher::Config::updateAll() {
 
 	temp6 = getDataFromServer(_GETTEMP6);
 
-	if (temp6 < 2) {
+	if (temp6 < 0) {
 		if (!errorString->IsEmpty()) {
 			errorString += "\n";
 		}
@@ -609,12 +1007,42 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	textBoxSTL->Text = _TEMPSENSORSTL + temp1 + "°C - Status: " + getStatus(temp1, 1);
-	textBoxSCL->Text = _TEMPSENSORSCL + temp2 + "°C - Status: " + getStatus(temp2, 2);
-	textBoxSBL->Text = _TEMPSENSORSBL + temp3 + "°C - Status: " + getStatus(temp3, 3);
-	textBoxSTR->Text = _TEMPSENSORSTR + temp4 + "°C - Status: " + getStatus(temp4, 1);
-	textBoxSCR->Text = _TEMPSENSORSCR + temp5 + "°C - Status: " + getStatus(temp5, 2);
-	textBoxSBR->Text = _TEMPSENSORSBR + temp6 + "°C - Status: " + getStatus(temp6, 3);
+	if (temp1 == -1) {
+		textBoxSTL->Text = _TEMPSENSORSTL + "NOT CONNECTED";
+	}
+	else {
+		textBoxSTL->Text = _TEMPSENSORSTL + temp1 + "°C - Status: " + getStatus(temp1, 1);
+	}
+	if (temp2 == -1) {
+		textBoxSCL->Text = _TEMPSENSORSCL + "NOT CONNECTED";
+	}
+	else {
+		textBoxSCL->Text = _TEMPSENSORSCL + temp2 + "°C - Status: " + getStatus(temp2, 2);
+	}
+	if (temp3 == -1) {
+		textBoxSBL->Text = _TEMPSENSORSBL + "NOT CONNECTED";
+	}
+	else {
+		textBoxSBL->Text = _TEMPSENSORSBL + temp3 + "°C - Status: " + getStatus(temp3, 3);
+	}
+	if (temp4 == -1) {
+		textBoxSTR->Text = _TEMPSENSORSTR + "NOT CONNECTED";
+	}
+	else {
+		textBoxSTR->Text = _TEMPSENSORSTR + temp4 + "°C - Status: " + getStatus(temp4, 1);
+	}
+	if (temp5 == -1) {
+		textBoxSCR->Text = _TEMPSENSORSCR + "NOT CONNECTED";
+	}
+	else {
+		textBoxSCR->Text = _TEMPSENSORSCR + temp5 + "°C - Status: " + getStatus(temp5, 2);
+	}
+	if (temp6 == -1) {
+		textBoxSBR->Text = _TEMPSENSORSBR + "NOT CONNECTED";
+	}
+	else {
+		textBoxSBR->Text = _TEMPSENSORSBR + temp6 + "°C - Status: " + getStatus(temp6, 3);
+	}	
 
 	/*textBlockTemperature1->Text = tmpFloat1 + "°C";
 	textBlockTemperature2->Text = tmpFloat2 + "°C";*/
@@ -643,6 +1071,8 @@ void IotTemperatureWatcher::Config::updateAll() {
 void IotTemperatureWatcher::Config::clickButtonAddFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (!popupConfig->IsOpen) {
+		state = 1;
+
 		popupConfig->IsOpen = true;
 	}
 }
@@ -650,6 +1080,8 @@ void IotTemperatureWatcher::Config::clickButtonAddFan(Platform::Object^ sender, 
 void IotTemperatureWatcher::Config::clickButtonRemoveFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (!popupConfig->IsOpen) {
+		state = 2;
+
 		popupConfig->IsOpen = true;
 	}
 }
@@ -657,6 +1089,8 @@ void IotTemperatureWatcher::Config::clickButtonRemoveFan(Platform::Object^ sende
 void IotTemperatureWatcher::Config::clickButtonAddSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (!popupConfig->IsOpen) {
+		state = 3;
+
 		popupConfig->IsOpen = true;
 	}
 }
@@ -664,6 +1098,8 @@ void IotTemperatureWatcher::Config::clickButtonAddSensor(Platform::Object^ sende
 void IotTemperatureWatcher::Config::clickButtonRemoveSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (!popupConfig->IsOpen) {
+		state = 4;
+
 		popupConfig->IsOpen = true;
 	}
 }
@@ -671,6 +1107,8 @@ void IotTemperatureWatcher::Config::clickButtonRemoveSensor(Platform::Object^ se
 void IotTemperatureWatcher::Config::clickButtonChangeThresholds(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (!popupConfig->IsOpen) {
+		state = 5;
+
 		popupConfig->IsOpen = true;
 	}
 }
