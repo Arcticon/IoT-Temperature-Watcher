@@ -37,6 +37,7 @@ namespace IotTemperatureWatcher
 		void clickButtonRackConfig1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void clickButtonmsgLogo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		std::string getDataFromServerToString(std::string str);
+		void getThresholds();
 
 		float getDataFromServer(std::string str);
 	};

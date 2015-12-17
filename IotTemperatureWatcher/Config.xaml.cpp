@@ -33,8 +33,15 @@ float floatBuffer = 0;
 long rc = 0;
 
 float temp1, temp2, temp3, temp4, temp5, temp6 = 0;
-int thresholdUpper = 40;
-int thresholdLower = 30;
+
+static int thresholdSensorTopHigh = 40;
+static int thresholdSensorTopLow = 30;
+static int thresholdSensorCenterHigh = 40;
+static int thresholdSensorCenterLow = 30;
+static int thresholdSensorBottomHigh = 40;
+static int thresholdSensorBottomLow = 30;
+int datacenter, room, rack = 0;
+
 
 Platform::String^ errorString = "";
 
@@ -45,6 +52,9 @@ Config::Config()
 	InitializeComponent();
 	StoryboardText1->Begin();
 	StoryboardText2->Begin();
+
+	getThresholds();
+
 	updateAll();
 
 	TimeSpan period;
@@ -83,23 +93,56 @@ Config::Config()
 		}));
 	}), period);*/
 
-	textBoxInfo->Text = _DATACENTER + _ROOM + _RACK;
-	textBoxThresholdUpperSensor->Text = _CURRTHRESHSENSTOP;
-	textBoxThresholdCenterSensor->Text = _CURRTHRESHSENSCEN;
-	textBoxThresholdLowerSensor->Text = _CURRTHRESHSENSBOT;
+	/*datacenter = getDataFromServer("getdc");
+	room = getDataFromServer("getrm");
+	rack = getDataFromServer("getrk");*/
+
+	textBoxInfo->Text = _DATACENTER + datacenter + _ROOM + room + _RACK + rack;
 
 }
 
-Platform::String ^ IotTemperatureWatcher::Config::getStatus(float temp)
+Platform::String ^ IotTemperatureWatcher::Config::getStatus(float temp, int choice)
 {
-	if (temp <= thresholdLower) {
-		return "optimal";
-	}
-	else if (temp > thresholdLower && temp <= thresholdUpper) {
-		return "warning";
-	}
-	else if (temp > thresholdUpper) {
-		return "critical";
+	if (choice == 1) {
+		if (temp <= thresholdSensorTopLow) {
+			return "optimal";
+		}
+		else if (temp > thresholdSensorTopLow && temp <= thresholdSensorTopHigh) {
+			return "warning";
+		}
+		else if (temp > thresholdSensorTopHigh) {
+			return "critical";
+		}
+	} else if (choice == 2) {
+		if (temp <= thresholdSensorCenterLow) {
+			return "optimal";
+		}
+		else if (temp > thresholdSensorCenterLow && temp <= thresholdSensorCenterHigh) {
+			return "warning";
+		}
+		else if (temp > thresholdSensorCenterHigh) {
+			return "critical";
+		}
+	} else if (choice == 3) {
+		if (temp <= thresholdSensorBottomLow) {
+			return "optimal";
+		}
+		else if (temp > thresholdSensorBottomLow && temp <= thresholdSensorBottomHigh) {
+			return "warning";
+		}
+		else if (temp > thresholdSensorBottomHigh) {
+			return "critical";
+		}
+	} else {
+		if (temp <= thresholdSensorCenterLow) {
+			return "optimal";
+		}
+		else if (temp > thresholdSensorCenterLow && temp <= thresholdSensorCenterHigh) {
+			return "warning";
+		}
+		else if (temp > thresholdSensorCenterHigh) {
+			return "critical";
+		}
 	}
 }
 
@@ -375,6 +418,14 @@ std::string sliderValToString(int val) {
 }
 
 void IotTemperatureWatcher::Config::openedPopupConfig(Platform::Object^ sender, Platform::Object^ e) {
+
+	sliderThresholdSensorTopLower->Value = thresholdSensorTopLow;
+	sliderThresholdSensorTopUpper->Value = thresholdSensorTopHigh;
+	sliderThresholdSensorCenterLower->Value = thresholdSensorCenterLow;
+	sliderThresholdSensorCenterUpper->Value = thresholdSensorCenterHigh;
+	sliderThresholdSensorBottomLower->Value = thresholdSensorBottomLow;
+	sliderThresholdSensorBottomUpper->Value = thresholdSensorBottomHigh;
+
 	popupConfig->Visibility = Windows::UI::Xaml::Visibility::Visible;
 }
 
@@ -383,12 +434,38 @@ void IotTemperatureWatcher::Config::closedPopupConfig(Platform::Object^ sender, 
 }
 
 void IotTemperatureWatcher::Config::clickedButtonPopupConfigSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
-	sendDataToServer("setTut1:" + sliderValToString((int)sliderThresholdUpperText->Value));
-	sendDataToServer("setTut2:" + sliderValToString((int)sliderThresholdLowerText->Value));
+	sendDataToServer("settstl:" + sliderValToString((int)sliderThresholdSensorTopLower->Value));
+	Sleep(10);
+	sendDataToServer("settsth:" + sliderValToString((int)sliderThresholdSensorTopUpper->Value));
+	Sleep(10);
+	sendDataToServer("settscl:" + sliderValToString((int)sliderThresholdSensorCenterLower->Value));
+	Sleep(10);
+	sendDataToServer("settsch:" + sliderValToString((int)sliderThresholdSensorCenterUpper->Value));
+	Sleep(10);
+	sendDataToServer("settsbl:" + sliderValToString((int)sliderThresholdSensorBottomLower->Value));
+	Sleep(10);
+	sendDataToServer("settsbh:" + sliderValToString((int)sliderThresholdSensorBottomUpper->Value));
+	Sleep(10);
+	sendDataToServer("slider1:" + sliderValToString((int)sliderUpperTemp1F1->Value));
+	Sleep(10);
+	sendDataToServer("slider2:" + sliderValToString((int)sliderUpperTemp1F2->Value));
+	Sleep(10);
+	sendDataToServer("slider3:" + sliderValToString((int)sliderLowerTemp1->Value));
+	Sleep(10);
+	sendDataToServer("slider4:" + sliderValToString((int)sliderUpperTemp2F1->Value));
+	Sleep(10);
+	sendDataToServer("slider5:" + sliderValToString((int)sliderUpperTemp2F2->Value));
+	Sleep(10);
+	sendDataToServer("slider6:" + sliderValToString((int)sliderLowerTemp2->Value));
 
 
-	thresholdUpper = (int)sliderThresholdUpperText->Value;
-	thresholdLower = (int)sliderThresholdLowerText->Value;
+
+	thresholdSensorTopHigh = (int)sliderThresholdSensorTopUpper->Value;
+	thresholdSensorTopLow = (int)sliderThresholdSensorTopLower->Value; 
+	thresholdSensorCenterHigh = (int)sliderThresholdSensorCenterUpper->Value;
+	thresholdSensorCenterLow = (int)sliderThresholdSensorCenterLower->Value;
+	thresholdSensorBottomHigh = (int)sliderThresholdSensorBottomUpper->Value;
+	thresholdSensorBottomLow = (int)sliderThresholdSensorBottomLower->Value;
 
 	updateAll();
 
@@ -532,12 +609,12 @@ void IotTemperatureWatcher::Config::updateAll() {
 		return;
 	}
 
-	textBoxSTL->Text = _TEMPSENSORSTL + temp1 + "°C - Status: " + getStatus(temp1);
-	textBoxSCL->Text = _TEMPSENSORSCL + temp2 + "°C - Status: " + getStatus(temp2);
-	textBoxSBL->Text = _TEMPSENSORSBL + temp3 + "°C - Status: " + getStatus(temp3);
-	textBoxSTR->Text = _TEMPSENSORSTR + temp4 + "°C - Status: " + getStatus(temp4);
-	textBoxSCR->Text = _TEMPSENSORSCR + temp5 + "°C - Status: " + getStatus(temp5);
-	textBoxSBR->Text = _TEMPSENSORSBR + temp6 + "°C - Status: " + getStatus(temp6);
+	textBoxSTL->Text = _TEMPSENSORSTL + temp1 + "°C - Status: " + getStatus(temp1, 1);
+	textBoxSCL->Text = _TEMPSENSORSCL + temp2 + "°C - Status: " + getStatus(temp2, 2);
+	textBoxSBL->Text = _TEMPSENSORSBL + temp3 + "°C - Status: " + getStatus(temp3, 3);
+	textBoxSTR->Text = _TEMPSENSORSTR + temp4 + "°C - Status: " + getStatus(temp4, 1);
+	textBoxSCR->Text = _TEMPSENSORSCR + temp5 + "°C - Status: " + getStatus(temp5, 2);
+	textBoxSBR->Text = _TEMPSENSORSBR + temp6 + "°C - Status: " + getStatus(temp6, 3);
 
 	/*textBlockTemperature1->Text = tmpFloat1 + "°C";
 	textBlockTemperature2->Text = tmpFloat2 + "°C";*/
@@ -558,8 +635,9 @@ void IotTemperatureWatcher::Config::updateAll() {
 		textBoxUpperFan2->Text = _TEXTFAN2OFF->ToString();
 	}
 
-	thresholdUpper = (int)getDataFromServer("getTut1");
-	thresholdLower = (int)getDataFromServer("getTut2");
+	textBoxThresholdUpperSensor->Text = _CURRTHRESHSENSTOP + _CURRTHRESHLOWER + thresholdSensorTopLow + _CURRTHRESHUPPER + thresholdSensorTopHigh;
+	textBoxThresholdCenterSensor->Text = _CURRTHRESHSENSCEN + _CURRTHRESHLOWER + thresholdSensorCenterLow + _CURRTHRESHUPPER + thresholdSensorCenterHigh;
+	textBoxThresholdLowerSensor->Text = _CURRTHRESHSENSBOT + _CURRTHRESHLOWER + thresholdSensorBottomLow + _CURRTHRESHUPPER + thresholdSensorBottomHigh;
 }
 
 void IotTemperatureWatcher::Config::clickButtonAddFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -606,4 +684,13 @@ std::string IotTemperatureWatcher::Config::sliderValToString(int val) {
 void IotTemperatureWatcher::Config::cleanErrors() {
 	errorString = "";
 	textBoxErrors->Text = errorString;
+}
+
+void IotTemperatureWatcher::Config::getThresholds() {
+	thresholdSensorTopHigh = getDataFromServer("gettsth");
+	thresholdSensorTopLow = getDataFromServer("gettstl");
+	thresholdSensorCenterHigh = getDataFromServer("gettsch");
+	thresholdSensorCenterLow = getDataFromServer("gettscl");
+	thresholdSensorBottomHigh = getDataFromServer("gettsbh");
+	thresholdSensorBottomLow = getDataFromServer("gettsbl");
 }

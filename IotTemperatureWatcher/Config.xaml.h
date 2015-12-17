@@ -18,7 +18,7 @@ namespace IotTemperatureWatcher
 	{
 	public:
 		Config();
-		static Platform::String^ getStatus(float temp);
+		static Platform::String^ getStatus(float temp, int choice);
 
 	private:
 
@@ -96,6 +96,8 @@ namespace IotTemperatureWatcher
 		Platform::String^ _CURRTHRESHSENSTOP = "Current Thresholds Sensor Top:\n";
 		Platform::String^ _CURRTHRESHSENSCEN = "Current Thresholds Sensor Center:\n";
 		Platform::String^ _CURRTHRESHSENSBOT = "Current Thresholds Sensor Bottom:\n";
+		Platform::String^ _CURRTHRESHLOWER = "Lower: ";
+		Platform::String^ _CURRTHRESHUPPER = "\nUpper: ";
 		//Platform::String^ _ = "";
 
 		//Platform::String^ _TEXTPOPUPERRORMESSAGE = "";
@@ -127,6 +129,7 @@ namespace IotTemperatureWatcher
 		void clickButtonRemoveFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void clickButtonAddSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void clickButtonRemoveSensor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void getThresholds();
 
 		std::string sliderValToString(int val);
 };

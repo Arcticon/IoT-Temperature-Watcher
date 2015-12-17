@@ -948,10 +948,10 @@
                     </Style>
                 </CommandBar.CommandBarOverflowPresenterStyle>
                 <CommandBar.SecondaryCommands>
-                    <AppBarToggleButton x:ConnectionId='35' x:Name="appBarToggleButtonFanConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Fan Configuration"                                                                                               />
-                    <AppBarToggleButton x:ConnectionId='36' x:Name="appBarToggleButtonSensorConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Sensor Configuration"                                                                                                     />
-                    <AppBarToggleButton x:ConnectionId='37' x:Name="appBarToggleButtonThresholdConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Threshold Configuration"                                                                                                           />
-                    <AppBarButton x:ConnectionId='38' Label="Save and Exit"                               FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" />
+                    <AppBarToggleButton x:ConnectionId='51' x:Name="appBarToggleButtonFanConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Fan Configuration"                                                                                               />
+                    <AppBarToggleButton x:ConnectionId='52' x:Name="appBarToggleButtonSensorConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Sensor Configuration"                                                                                                     />
+                    <AppBarToggleButton x:ConnectionId='53' x:Name="appBarToggleButtonThresholdConfig" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Label="Enable Threshold Configuration"                                                                                                           />
+                    <AppBarButton x:ConnectionId='54' Label="Save and Exit"                               FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
 
@@ -974,19 +974,7 @@
             <TextBox x:ConnectionId='17' x:Name="textBoxThresholdUpperSensor" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  IsReadOnly="True" Background="White" BorderBrush="White" SelectionHighlightColor="White" Grid.Column="12" Grid.Row="8" Grid.ColumnSpan="10" Grid.RowSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
             <TextBox x:ConnectionId='18' x:Name="textBoxThresholdCenterSensor" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  IsReadOnly="True" Background="White" BorderBrush="White" SelectionHighlightColor="White" Grid.Column="12" Grid.Row="10" Grid.ColumnSpan="10" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
             <TextBox x:ConnectionId='19' x:Name="textBoxThresholdLowerSensor" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  IsReadOnly="True" Background="White" BorderBrush="White" SelectionHighlightColor="White" Grid.Column="12" Grid.Row="11" Grid.ColumnSpan="10" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-
-
-
-            <!--<TextBlock x:Name="textBlockUpperTemp2V1" HorizontalAlignment="Left" Margin="1437,457,0,0" TextWrapping="Wrap" Text="Upper Temperature2 (V1): 32" VerticalAlignment="Top" Opacity="0.4" />
-            <TextBlock x:Name="textBlockLowerTemp2" HorizontalAlignment="Left" Margin="1437,512,0,0" TextWrapping="Wrap" Text="Lower Temperature2:        27" VerticalAlignment="Top" Opacity="0.4" />-->
-
-            <!--<Slider x:Name="sliderUpperTemp1" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1637,280,0,0" VerticalAlignment="Top" Width="100" Value="38" ValueChanged="valueChangedSliderUpperTemp1" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible"/>
-            <Slider x:Name="sliderUpperTemp1V2" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1637,310,0,0" VerticalAlignment="Top" Width="100" Value="38" ValueChanged="valueChangedSliderUpperTemp1V2" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible"/>
-            <Slider x:Name="sliderLowerTemp1" HorizontalAlignment="Left" Margin="1637,365,0,0" VerticalAlignment="Top" Width="100" Value="34" ValueChanged="valueChangedSliderLowerTemp1" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible" Foreground="#FF841439"/>
-            <Slider x:Name="sliderUpperTemp2" HorizontalAlignment="Left" Margin="1637,420,0,0" VerticalAlignment="Top" Width="100" Value="32" ValueChanged="valueChangedSliderUpperTemp2" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible" Foreground="#FF841439" />
-            <Slider x:Name="sliderUpperTemp2V1" HorizontalAlignment="Left" Margin="1637,450,0,0" VerticalAlignment="Top" Width="100" Value="32" ValueChanged="valueChangedSliderUpperTemp2V1" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible" Foreground="#FF841439" />
-            <Slider x:Name="sliderLowerTemp2" HorizontalAlignment="Left" Margin="1637,505,0,0" VerticalAlignment="Top" Width="100" Value="27" ValueChanged="valueChangedSliderLowerTemp2" SmallChange="0.01" Maximum="50" Minimum="20" IsEnabled="False" Visibility="Visible" Foreground="#FF841439" />-->
-
+            
             <StackPanel x:ConnectionId='20' x:Name="buttonFanConfigPanel" Background="#FFf6b347" Grid.Row ="14" Grid.Column="13" Grid.RowSpan="4" Grid.ColumnSpan="9" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             </StackPanel>
             <TextBlock Text="Fan Configuration" Grid.Column="13" Grid.ColumnSpan="9" Grid.Row="14" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Foreground="#FFECECEC"/>
@@ -1003,11 +991,37 @@
 
             <Popup x:ConnectionId='28' x:Name="popupConfig"                                                       Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Grid Background="#FFECECEC" Height="1050" Width="1680">
-                    <TextBlock Text="Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="650,292,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <TextBlock Text="Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="650,392,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
-                    <Slider x:ConnectionId='32' x:Name="sliderThresholdLowerText" Foreground="#FF841439" HorizontalAlignment="Left" Margin="790,280,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
-                    <Slider x:ConnectionId='33' x:Name="sliderThresholdUpperText" Foreground="#FF841439" HorizontalAlignment="Left" Margin="790,380,0,0" VerticalAlignment="Top" Width="100" Value="40" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
-                    <Button x:ConnectionId='34' x:Name="buttonPopupConfigSave" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Background="White" Content="Save" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top"                                      />
+                    <TextBlock Text="Threshold Sensor Top Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,250,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock Text="Threshold Sensor Top Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,300,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock Text="Threshold Sensor Center Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,350,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock Text="Threshold Sensor Center Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,400,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock Text="Threshold Sensor Bottom Lower:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,450,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock Text="Threshold Sensor Bottom Upper:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,500,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <Slider x:ConnectionId='32' x:Name="sliderThresholdSensorTopLower" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,250,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='33' x:Name="sliderThresholdSensorTopUpper" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,300,0,0" VerticalAlignment="Top" Width="100" Value="40" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='34' x:Name="sliderThresholdSensorCenterLower" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,350,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='35' x:Name="sliderThresholdSensorCenterUpper" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,400,0,0" VerticalAlignment="Top" Width="100" Value="40" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='36' x:Name="sliderThresholdSensorBottomLower" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,450,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='37' x:Name="sliderThresholdSensorBottomUpper" Foreground="#FF841439" HorizontalAlignment="Left" Margin="480,500,0,0" VerticalAlignment="Top" Width="100" Value="40" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+
+
+
+                    <TextBlock x:ConnectionId='38' x:Name="textBlockUpper1Fan1" Text="Upper Temperature1 (Fan1):" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="750,250,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:ConnectionId='39' x:Name="textBlockUpper1Fan2" Text="Upper Temperature1 (Fan2):" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="750,300,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:ConnectionId='40' x:Name="textBlockLower1" Text="Lower Temperature1: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="750,350,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+
+                    <TextBlock x:ConnectionId='41' x:Name="textBlockUpper2Fan1" Text="Upper Temperature2 (Fan1):" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="750,400,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:ConnectionId='42' x:Name="textBlockUpper2Fan2" Text="Upper Temperature2 (Fan2):" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="750,450,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+                    <TextBlock x:ConnectionId='43' x:Name="textBlockLower2" Text="Lower Temperature2:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="750,500,0,0" FontSize="28" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight"/>
+
+                    <Slider x:ConnectionId='44' x:Name="sliderUpperTemp1F1" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1125,250,0,0" VerticalAlignment="Top" Width="100" Value="34" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='45' x:Name="sliderUpperTemp1F2" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1125,300,0,0" VerticalAlignment="Top" Width="100" Value="38" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='46' x:Name="sliderLowerTemp1" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1125,350,0,0" VerticalAlignment="Top" Width="100" Value="30" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='47' x:Name="sliderUpperTemp2F1" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1125,400,0,0" VerticalAlignment="Top" Width="100" Value="32" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='48' x:Name="sliderUpperTemp2F2" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1125,450,0,0" VerticalAlignment="Top" Width="100" Value="34" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+                    <Slider x:ConnectionId='49' x:Name="sliderLowerTemp2" Foreground="#FF841439" HorizontalAlignment="Left" Margin="1125,500,0,0" VerticalAlignment="Top" Width="100" Value="27" SmallChange="0.01" Maximum="80" Minimum="0" IsEnabled="true" Visibility="Visible"/>
+
+                    <Button x:ConnectionId='50' x:Name="buttonPopupConfigSave" FontFamily="SourceSansPro-ExtraLight.ttf#Source Sans Pro ExtraLight" Background="White" Content="Save" HorizontalAlignment="Left" Margin="1472,900,0,0" VerticalAlignment="Top"                                      />
                 </Grid>
             </Popup>
 

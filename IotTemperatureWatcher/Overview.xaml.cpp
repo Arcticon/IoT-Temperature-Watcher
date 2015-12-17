@@ -40,6 +40,13 @@ float avgTemp4 = 0;
 float avgTemp5 = 0;
 float avgTemp6 = 0;
 
+int thresholdSensorTopHigh = 40;
+int thresholdSensorTopLow = 30;
+int thresholdSensorCenterHigh = 40;
+int thresholdSensorCenterLow = 30;
+int thresholdSensorBottomHigh = 40;
+int thresholdSensorBottomLow = 30;
+
 Platform::String^ errorString2 = "";
 
 Overview::Overview()
@@ -245,12 +252,21 @@ void IotTemperatureWatcher::Overview::updateAll() {
 	avgTemp5 = getDataFromServer("dc01ro01ra05");
 	avgTemp6 = getDataFromServer("dc01ro01ra06");*/
 
-	textBlock1->Text = "Temp. Rack 1: " + avgTemp1 + " | Status: " + Config::getStatus(avgTemp1) + " || " + "Temp. Rack 2: " + avgTemp2 + " | Status: " + Config::getStatus(avgTemp2) + " || " + "Temp. Rack 3: " + avgTemp3 + " | Status: " + Config::getStatus(avgTemp3) + " || " + "Temp. Rack 4: " + avgTemp4 + " | Status: " + Config::getStatus(avgTemp4) + " || " + "Temp. Rack 5: " + avgTemp5 + " | Status: " + Config::getStatus(avgTemp5) + " || " + "Temp. Rack 6: " + avgTemp6 + " | Status: " + Config::getStatus(avgTemp6);
+	textBlock1->Text = "Temp. Rack 1: " + avgTemp1 + " | Status: " + Config::getStatus(avgTemp1, 0) + " || " + "Temp. Rack 2: " + avgTemp2 + " | Status: " + Config::getStatus(avgTemp2, 0) + " || " + "Temp. Rack 3: " + avgTemp3 + " | Status: " + Config::getStatus(avgTemp3, 0) + " || " + "Temp. Rack 4: " + avgTemp4 + " | Status: " + Config::getStatus(avgTemp4, 0) + " || " + "Temp. Rack 5: " + avgTemp5 + " | Status: " + Config::getStatus(avgTemp5, 0) + " || " + "Temp. Rack 6: " + avgTemp6 + " | Status: " + Config::getStatus(avgTemp6, 0);
 	textBlock2->Text = textBlock1->Text;
-	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + avgTemp1 + "\nStatus: " + Config::getStatus(avgTemp1);
+	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + avgTemp1 + "\nStatus: " + Config::getStatus(avgTemp1, 0);
 	/*textBoxRackInfo2->Text = "Datacenter: 01 | Room: 01 | Rack: 02\nTemperature: " + avgTemp2 + "\nStatus: " + getStatus(avgTemp2);
 	textBoxRackInfo3->Text = "Datacenter: 01 | Room: 01 | Rack: 03\nTemperature: " + avgTemp3 + "\nStatus: " + getStatus(avgTemp3);
 	textBoxRackInfo4->Text = "Datacenter: 01 | Room: 01 | Rack: 04\nTemperature: " + avgTemp4 + "\nStatus: " + getStatus(avgTemp4);
 	textBoxRackInfo5->Text = "Datacenter: 01 | Room: 01 | Rack: 05\nTemperature: " + avgTemp5 + "\nStatus: " + getStatus(avgTemp5);
 	textBoxRackInfo6->Text = "Datacenter: 01 | Room: 01 | Rack: 06\nTemperature: " + avgTemp6 + "\nStatus: " + getStatus(avgTemp6);*/
+}
+
+void IotTemperatureWatcher::Overview::getThresholds() {
+	thresholdSensorTopHigh = getDataFromServer("gettsth");
+	thresholdSensorTopLow = getDataFromServer("gettstl");
+	thresholdSensorCenterHigh = getDataFromServer("gettsch");
+	thresholdSensorCenterLow = getDataFromServer("gettscl");
+	thresholdSensorBottomHigh = getDataFromServer("gettsbh");
+	thresholdSensorBottomLow = getDataFromServer("gettsbl");
 }

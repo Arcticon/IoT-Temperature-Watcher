@@ -107,8 +107,12 @@ bool thresholdUpper2Fan1Control = false;
 /*
  * Text Thresholds
  */
-byte thresholdUpperText = 40;
-byte thresholdLowerText = 30;
+byte thresholdSensorTopHigh = 40;
+byte thresholdSensorTopLow = 30;
+byte thresholdSensorCenterHigh = 40;
+byte thresholdSensorCenterLow = 30;
+byte thresholdSensorBottomHigh = 40;
+byte thresholdSensorBottomLow = 30;
 
 const int sensorDelay = 0;
 
@@ -183,8 +187,27 @@ void loop() {
     Serial.println(temperature5);
     Serial.println(temperature6);
     Serial.println("------------------------------------");
-    Serial.println(thresholdLowerText);
-    Serial.println(thresholdUpperText);
+    Serial.print(thresholdSensorTopLow);
+    Serial.print("\t");
+    Serial.print(thresholdSensorCenterLow);
+    Serial.print("\t");
+    Serial.println(thresholdSensorBottomLow);
+    Serial.print(thresholdSensorTopHigh);
+    Serial.print("\t");
+    Serial.print(thresholdSensorCenterHigh);
+    Serial.print("\t");
+    Serial.println(thresholdSensorBottomHigh);
+    Serial.println("------------------------------------");
+    Serial.print(thresholdUpper1Fan1);
+    Serial.print("\t");
+    Serial.print(thresholdUpper1Fan2);
+    Serial.print("\t");
+    Serial.println(thresholdLower1);
+    Serial.print(thresholdUpper2Fan1);
+    Serial.print("\t");
+    Serial.print(thresholdUpper2Fan2);
+    Serial.print("\t");
+    Serial.println(thresholdLower2);
     Serial.println("------------------------------------");
     currTime = millis();
   }
@@ -209,23 +232,35 @@ void loop() {
       if(str_split1 == "slider1"){
         thresholdUpper1Fan1 = sliderVal;
       }else if(str_split1 == "slider2"){
-        thresholdLower1 = sliderVal;
-      }else if(str_split1 == "slider3"){
-        thresholdUpper2Fan2 = sliderVal;
-      }else if(str_split1 == "slider4"){
-        thresholdLower2 = sliderVal;
-      }else if(str_split1 == "slider5"){
         thresholdUpper1Fan2 = sliderVal;
         thresholdUpper1Fan2Control == true;
-      }else if(str_split1 == "slider6"){
+      }else if(str_split1 == "slider3"){
+        thresholdLower1 = sliderVal;
+      }else if(str_split1 == "slider4"){
         thresholdUpper2Fan1 = sliderVal;
         thresholdUpper2Fan1Control == true;
-      }else if(str_split1 == "setTut1"){
+      }else if(str_split1 == "slider5"){
+        thresholdUpper2Fan2 = sliderVal;
+      }else if(str_split1 == "slider6"){
+        thresholdLower2 = sliderVal;
+      }else if(str_split1 == "settsth"){
         Serial.println(sliderVal);
-        thresholdUpperText = sliderVal;
-      }else if(str_split1 == "setTut2"){
+        thresholdSensorTopHigh = sliderVal;
+      }else if(str_split1 == "settstl"){
         Serial.println(sliderVal);
-        thresholdLowerText = sliderVal;
+        thresholdSensorTopLow = sliderVal;
+      }else if(str_split1 == "settsch"){
+        Serial.println(sliderVal);
+        thresholdSensorCenterHigh = sliderVal;
+      }else if(str_split1 == "settscl"){
+        Serial.println(sliderVal);
+        thresholdSensorCenterLow = sliderVal;
+      }else if(str_split1 == "settsbh"){
+        Serial.println(sliderVal);
+        thresholdSensorBottomHigh = sliderVal;
+      }else if(str_split1 == "settsbl"){
+        Serial.println(sliderVal);
+        thresholdSensorBottomLow = sliderVal;
       }
       
       if (str_data == "getTemp1") {
@@ -269,12 +304,26 @@ void loop() {
         //Fan 2 OFF
         digitalWrite(fan2Pin, LOW);
         fan2State = false;
-      } else if (str_data == "getTut1") {
-        server.write(dtostrf(thresholdUpperText, 0, 2, stringBuffer));
-      } else if (str_data == "getTut2") {
-        server.write(dtostrf(thresholdLowerText, 0, 2, stringBuffer));
+      } else if (str_data == "gettsth") {
+        server.write(dtostrf(thresholdSensorTopHigh, 0, 2, stringBuffer));
+      } else if (str_data == "gettstl") {
+        server.write(dtostrf(thresholdSensorTopLow, 0, 2, stringBuffer));
+      } else if (str_data == "gettsch") {
+        server.write(dtostrf(thresholdSensorCenterHigh, 0, 2, stringBuffer));
+      } else if (str_data == "gettscl") {
+        server.write(dtostrf(thresholdSensorCenterLow, 0, 2, stringBuffer));
+      } else if (str_data == "gettsbh") {
+        server.write(dtostrf(thresholdSensorBottomHigh, 0, 2, stringBuffer));
+      } else if (str_data == "gettsbl") {
+        server.write(dtostrf(thresholdSensorBottomLow, 0, 2, stringBuffer));
       } else if (str_data == "dc01ro01ra01") {
         server.write(dtostrf(((temperature1 + temperature2 + temperature3 + temperature4 + temperature5 + temperature6)/sensorCount), 0, 2, stringBuffer));
+      } else if (str_data == "getdc") {
+        server.write(datacenterNumber);
+      } else if (str_data == "getrm") {
+        server.write(roomNumber);
+      } else if (str_data == "getrk") {
+        server.write(rackNumber);
       }
       
       str_data = "";
