@@ -36,6 +36,7 @@ float temp1, temp2, temp3, temp4, temp5, temp6 = 0;
 
 bool isFan1Enabled = true, isFan2Enabled = true;
 bool isSensor1Enabled = true, isSensor2Enabled = true, isSensor3Enabled = true, isSensor4Enabled = true, isSensor5Enabled = true, isSensor6Enabled = true;
+static bool connectionProblem = false;
 
 int state = 0;
 
@@ -197,7 +198,13 @@ void IotTemperatureWatcher::Config::sendDataToServer(std::string str) {
 		}
 		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		textBoxErrors->Text = errorString;
+
+		connectionProblem = true;
+
 		return;
+	}
+	else {
+		connectionProblem = false;
 	}
 
 
@@ -261,7 +268,14 @@ void IotTemperatureWatcher::Config::sendDataToServerFromInt(int i) {
 		}
 		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		textBoxErrors->Text = errorString;
+
+		connectionProblem = true;
+
+
 		return;
+	}
+	else {
+		connectionProblem = false;
 	}
 
 
@@ -324,7 +338,13 @@ float IotTemperatureWatcher::Config::getDataFromServer(std::string str) {
 		}
 		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		textBoxErrors->Text = errorString;
+
+		connectionProblem = true;
+
 		return 0;
+	}
+	else {
+		connectionProblem = false;
 	}
 
 
@@ -376,6 +396,10 @@ std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string
 		}
 		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESOCKETFAILED + " --> check connection/arduino";
 		textBoxErrors->Text = errorString;
+
+		connectionProblem = true;
+
+
 		return "";
 	}
 
@@ -393,7 +417,13 @@ std::string IotTemperatureWatcher::Config::getDataFromServerToString(std::string
 		}
 		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGECONNECTFAILED + " --> check IP/PORT";
 		textBoxErrors->Text = errorString;
+
+		connectionProblem = true;
+
 		return "";
+	}
+	else {
+		connectionProblem = false;
 	}
 
 
@@ -740,86 +770,85 @@ void IotTemperatureWatcher::Config::closedPopupConfig(Platform::Object^ sender, 
 
 void IotTemperatureWatcher::Config::clickedButtonPopupConfigSave(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 	if (state == 1) {
-		if (comboBoxFan->SelectedItem == comboBoxItemFan1) {
+		if (comboBoxItemFan1->IsSelected) {
 			sendDataToServer("addF1");
 			isFan1Enabled = true;
 			Sleep(10);
 		}
-		else if (comboBoxFan->SelectedItem == comboBoxItemFan2) {
+		else if (comboBoxItemFan2->IsSelected) {
 			sendDataToServer("addF2");
 			isFan2Enabled = true;
 			Sleep(10);
 		}
 	}else if(state == 2){
-		if (comboBoxFan->SelectedItem == comboBoxItemFan1) {
+		if (comboBoxItemFan1->IsSelected) {
 			sendDataToServer("remF1");
 			isFan1Enabled = false;
 			Sleep(10);
 		}
-		else if (comboBoxFan->SelectedItem == comboBoxItemFan2) {
+		else if (comboBoxItemFan2->IsSelected) {
 			sendDataToServer("remF2");
 			isFan1Enabled = false;
 			Sleep(10);
 		}
 	}else if (state == 3) {
-		if (comboBoxSensor->SelectedItem == comboBoxItemSensor1) {
+		if (comboBoxItemSensor1->IsSelected) {
 			sendDataToServer("addS1");
 			isSensor1Enabled = true;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor2) {
+		else if (comboBoxItemSensor2->IsSelected) {
 			sendDataToServer("addS2");
 			isSensor2Enabled = true;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor3) {
+		else if (comboBoxItemSensor3->IsSelected) {
 			sendDataToServer("addS3");
 			isSensor3Enabled = true;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor4) {
+		else if (comboBoxItemSensor4->IsSelected) {
 			sendDataToServer("addS4");
 			isSensor4Enabled = true;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor5) {
+		else if (comboBoxItemSensor5->IsSelected) {
 			sendDataToServer("addS5");
 			isSensor5Enabled = true;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor6) {
+		else if (comboBoxItemSensor6->IsSelected) {
 			sendDataToServer("addS6");
 			isSensor6Enabled = true;
 			Sleep(10);
 		}
 	}else if (state == 4) {
-		if (comboBoxSensor->SelectedItem == comboBoxItemSensor1) {
+		if (comboBoxItemSensor1->IsSelected) {
 			sendDataToServer("remS1");
 			isSensor1Enabled = false;
 			Sleep(10);
-			textBoxErrors->Text = "remS1";
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor2) {
+		else if (comboBoxItemSensor2->IsSelected) {
 			sendDataToServer("remS2");
 			isSensor2Enabled = false;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor3) {
+		else if (comboBoxItemSensor3->IsSelected) {
 			sendDataToServer("remS3");
 			isSensor3Enabled = false;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor4) {
+		else if (comboBoxItemSensor4->IsSelected) {
 			sendDataToServer("remS4");
 			isSensor4Enabled = false;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor5) {
+		else if (comboBoxItemSensor5->IsSelected) {
 			sendDataToServer("remS5");
 			isSensor5Enabled = false;
 			Sleep(10);
 		}
-		else if (comboBoxSensor->SelectedItem == comboBoxItemSensor6) {
+		else if (comboBoxItemSensor6->IsSelected) {
 			sendDataToServer("remS6");
 			isSensor6Enabled = false;
 			Sleep(10);
@@ -941,131 +970,142 @@ void IotTemperatureWatcher::Config::uncheckedAppBarToggleButtonThresholdConfig(P
 }
 
 void IotTemperatureWatcher::Config::updateAll() {
-	temp1 = getDataFromServer(_GETTEMP1);
+	if (!connectionProblem) {
+		temp1 = getDataFromServer(_GETTEMP1);
 
-	if (temp1 < 0) {
-		if (!errorString->IsEmpty()) {
-			errorString += "\n";
+		if (temp1 == -1) {
+			textBoxSTL->Text = _TEMPSENSORSTL + "NOT CONNECTED";
 		}
-		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED;
-		textBoxErrors->Text = errorString;
-		return;
-	}
-
-	temp2 = getDataFromServer(_GETTEMP2);
-
-	if (temp2 < 0) {
-		if (!errorString->IsEmpty()) {
-			errorString += "\n";
+		else if (temp1 < 0) {
+			if (!errorString->IsEmpty()) {
+				errorString += "\n";
+			}
+			errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR1NOTCONNECTED;
+			textBoxErrors->Text = errorString;
+			return;
 		}
-		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED;
-		textBoxErrors->Text = errorString;
-		return;
-	}
-
-	temp3 = getDataFromServer(_GETTEMP3);
-
-	if (temp3 < 0) {
-		if (!errorString->IsEmpty()) {
-			errorString += "\n";
+		else {
+			textBoxSTL->Text = _TEMPSENSORSTL + temp1 + "°C - Status: " + getStatus(temp1, 1);
 		}
-		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR3NOTCONNECTED;
-		textBoxErrors->Text = errorString;
-		return;
-	}
 
-	temp4 = getDataFromServer(_GETTEMP4);
+		temp2 = getDataFromServer(_GETTEMP2);
 
-	if (temp4 < 0) {
-		if (!errorString->IsEmpty()) {
-			errorString += "\n";
+		if (temp2 == -1) {
+			textBoxSCL->Text = _TEMPSENSORSCL + "NOT CONNECTED";
 		}
-		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR4NOTCONNECTED;
-		textBoxErrors->Text = errorString;
-		return;
-	}
-
-	temp5 = getDataFromServer(_GETTEMP5);
-
-	if (temp5 < 0) {
-		if (!errorString->IsEmpty()) {
-			errorString += "\n";
+		else if (temp2 < 0) {
+			if (!errorString->IsEmpty()) {
+				errorString += "\n";
+			}
+			errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR2NOTCONNECTED;
+			textBoxErrors->Text = errorString;
+			return;
 		}
-		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR5NOTCONNECTED;
-		textBoxErrors->Text = errorString;
-		return;
-	}
-
-	temp6 = getDataFromServer(_GETTEMP6);
-
-	if (temp6 < 0) {
-		if (!errorString->IsEmpty()) {
-			errorString += "\n";
+		else {
+			textBoxSCL->Text = _TEMPSENSORSCL + temp2 + "°C - Status: " + getStatus(temp2, 2);
 		}
-		errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR6NOTCONNECTED;
-		textBoxErrors->Text = errorString;
-		return;
-	}
 
-	if (temp1 == -1) {
-		textBoxSTL->Text = _TEMPSENSORSTL + "NOT CONNECTED";
-	}
-	else {
-		textBoxSTL->Text = _TEMPSENSORSTL + temp1 + "°C - Status: " + getStatus(temp1, 1);
-	}
-	if (temp2 == -1) {
-		textBoxSCL->Text = _TEMPSENSORSCL + "NOT CONNECTED";
-	}
-	else {
-		textBoxSCL->Text = _TEMPSENSORSCL + temp2 + "°C - Status: " + getStatus(temp2, 2);
-	}
-	if (temp3 == -1) {
-		textBoxSBL->Text = _TEMPSENSORSBL + "NOT CONNECTED";
-	}
-	else {
-		textBoxSBL->Text = _TEMPSENSORSBL + temp3 + "°C - Status: " + getStatus(temp3, 3);
-	}
-	if (temp4 == -1) {
-		textBoxSTR->Text = _TEMPSENSORSTR + "NOT CONNECTED";
-	}
-	else {
-		textBoxSTR->Text = _TEMPSENSORSTR + temp4 + "°C - Status: " + getStatus(temp4, 1);
-	}
-	if (temp5 == -1) {
-		textBoxSCR->Text = _TEMPSENSORSCR + "NOT CONNECTED";
-	}
-	else {
-		textBoxSCR->Text = _TEMPSENSORSCR + temp5 + "°C - Status: " + getStatus(temp5, 2);
-	}
-	if (temp6 == -1) {
-		textBoxSBR->Text = _TEMPSENSORSBR + "NOT CONNECTED";
-	}
-	else {
-		textBoxSBR->Text = _TEMPSENSORSBR + temp6 + "°C - Status: " + getStatus(temp6, 3);
-	}	
+		temp3 = getDataFromServer(_GETTEMP3);
+		if (temp3 == -1) {
+			textBoxSBL->Text = _TEMPSENSORSBL + "NOT CONNECTED";
+		}
+		else if (temp3 < 0) {
+			if (!errorString->IsEmpty()) {
+				errorString += "\n";
+			}
+			errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR3NOTCONNECTED;
+			textBoxErrors->Text = errorString;
+			return;
+		}
+		else {
+			textBoxSBL->Text = _TEMPSENSORSBL + temp3 + "°C - Status: " + getStatus(temp3, 3);
+		}
 
-	/*textBlockTemperature1->Text = tmpFloat1 + "°C";
-	textBlockTemperature2->Text = tmpFloat2 + "°C";*/
+		temp4 = getDataFromServer(_GETTEMP4);
 
-	std::string tmpStringV1 = getDataFromServerToString(_GETFAN1);
-	std::string tmpStringV2 = getDataFromServerToString(_GETFAN2);
+		if (temp4 == -1) {
+			textBoxSTR->Text = _TEMPSENSORSTR + "NOT CONNECTED";
+		}
+		else if (temp4 < 0) {
+			if (!errorString->IsEmpty()) {
+				errorString += "\n";
+			}
+			errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR4NOTCONNECTED;
+			textBoxErrors->Text = errorString;
+			return;
+		}
+		else {
+			textBoxSTR->Text = _TEMPSENSORSTR + temp4 + "°C - Status: " + getStatus(temp4, 1);
+		}
 
-	if (tmpStringV1.compare(_F1ON) == 0) {
-		textBoxUpperFan1->Text = _TEXTFAN1ON->ToString();
+		temp5 = getDataFromServer(_GETTEMP5);
+
+		if (temp5 == -1) {
+			textBoxSCR->Text = _TEMPSENSORSCR + "NOT CONNECTED";
+		}
+		else if (temp5 < 0) {
+			if (!errorString->IsEmpty()) {
+				errorString += "\n";
+			}
+			errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR5NOTCONNECTED;
+			textBoxErrors->Text = errorString;
+			return;
+		}
+		else {
+			textBoxSCR->Text = _TEMPSENSORSCR + temp5 + "°C - Status: " + getStatus(temp5, 2);
+		}
+
+		temp6 = getDataFromServer(_GETTEMP6);
+
+		if (temp6 == -1) {
+			textBoxSBR->Text = _TEMPSENSORSBR + "NOT CONNECTED";
+		}
+		else if (temp6 < 0) {
+			if (!errorString->IsEmpty()) {
+				errorString += "\n";
+			}
+			errorString += _TEXTPOPUPERRORMESSAGE + _TEXTPOPUPERRORMESSAGESENSOR6NOTCONNECTED;
+			textBoxErrors->Text = errorString;
+			return;
+		}
+		else {
+			textBoxSBR->Text = _TEMPSENSORSBR + temp6 + "°C - Status: " + getStatus(temp6, 3);
+		}
+
+
+		/*textBlockTemperature1->Text = tmpFloat1 + "°C";
+		textBlockTemperature2->Text = tmpFloat2 + "°C";*/
+
+		std::string tmpStringV1 = getDataFromServerToString(_GETFAN1);
+		std::string tmpStringV2 = getDataFromServerToString(_GETFAN2);
+
+		if (tmpStringV1.compare(_F1ON) == 0) {
+			textBoxUpperFan1->Text = _TEXTFAN1ON->ToString();
+		}
+		else if(tmpStringV1.compare(_F1OFF) == 0){
+			textBoxUpperFan1->Text = _TEXTFAN1OFF->ToString();
+		}
+		else {
+			textBoxUpperFan1->Text = _TEXTFAN1NC->ToString();
+		}
+		if (tmpStringV2.compare(_F2ON) == 0) {
+			textBoxUpperFan2->Text = _TEXTFAN2ON->ToString();
+		}
+		else if(tmpStringV2.compare(_F2OFF) == 0){
+			textBoxUpperFan2->Text = _TEXTFAN2OFF->ToString();
+		}
+		else {
+			textBoxUpperFan2->Text = _TEXTFAN2NC->ToString();
+		}
+
+		textBoxThresholdUpperSensor->Text = _CURRTHRESHSENSTOP + _CURRTHRESHLOWER + thresholdSensorTopLow + _CURRTHRESHUPPER + thresholdSensorTopHigh;
+		textBoxThresholdCenterSensor->Text = _CURRTHRESHSENSCEN + _CURRTHRESHLOWER + thresholdSensorCenterLow + _CURRTHRESHUPPER + thresholdSensorCenterHigh;
+		textBoxThresholdLowerSensor->Text = _CURRTHRESHSENSBOT + _CURRTHRESHLOWER + thresholdSensorBottomLow + _CURRTHRESHUPPER + thresholdSensorBottomHigh;
 	}
 	else {
-		textBoxUpperFan1->Text = _TEXTFAN1OFF->ToString();
+		temp1 = getDataFromServer(_GETTEMP1);
 	}
-	if (tmpStringV2.compare(_F2ON) == 0) {
-		textBoxUpperFan2->Text = _TEXTFAN2ON->ToString();
-	}
-	else {
-		textBoxUpperFan2->Text = _TEXTFAN2OFF->ToString();
-	}
-
-	textBoxThresholdUpperSensor->Text = _CURRTHRESHSENSTOP + _CURRTHRESHLOWER + thresholdSensorTopLow + _CURRTHRESHUPPER + thresholdSensorTopHigh;
-	textBoxThresholdCenterSensor->Text = _CURRTHRESHSENSCEN + _CURRTHRESHLOWER + thresholdSensorCenterLow + _CURRTHRESHUPPER + thresholdSensorCenterHigh;
-	textBoxThresholdLowerSensor->Text = _CURRTHRESHSENSBOT + _CURRTHRESHLOWER + thresholdSensorBottomLow + _CURRTHRESHUPPER + thresholdSensorBottomHigh;
+	
 }
 
 void IotTemperatureWatcher::Config::clickButtonAddFan(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)

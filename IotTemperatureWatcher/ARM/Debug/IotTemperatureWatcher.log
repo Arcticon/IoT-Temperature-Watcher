@@ -1,11 +1,11 @@
 ﻿  Config.xaml.cpp
-Config.xaml.cpp(354): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
-Config.xaml.cpp(1128): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
-Config.xaml.cpp(1129): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
-Config.xaml.cpp(1130): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
-Config.xaml.cpp(1131): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
-Config.xaml.cpp(1132): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
-Config.xaml.cpp(1133): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
-c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\config.xaml.cpp(159): warning C4715: "IotTemperatureWatcher::Config::getStatus": Nicht alle Steuerelementpfade geben einen Wert zurück.
+Config.xaml.cpp(374): warning C4244: "return": Konvertierung von "double" in "float", möglicher Datenverlust
+Config.xaml.cpp(1168): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
+Config.xaml.cpp(1169): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
+Config.xaml.cpp(1170): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
+Config.xaml.cpp(1171): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
+Config.xaml.cpp(1172): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
+Config.xaml.cpp(1173): warning C4244: "=": Konvertierung von "float" in "int", möglicher Datenverlust
+c:\users\admin\documents\visual studio 2015\projects\iot-temperature-watcher\iottemperaturewatcher\config.xaml.cpp(160): warning C4715: "IotTemperatureWatcher::Config::getStatus": Nicht alle Steuerelementpfade geben einen Wert zurück.
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.exe
   IotTemperatureWatcher.vcxproj -> C:\Users\admin\Documents\Visual Studio 2015\Projects\IoT-Temperature-Watcher\ARM\Debug\IotTemperatureWatcher\IotTemperatureWatcher.pdb (Partial PDB)

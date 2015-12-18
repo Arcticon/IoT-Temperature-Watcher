@@ -93,7 +93,7 @@ bool fan2State = false;
 /*
  * Pins for the Fans
  */
-byte fan1Pin = 8;
+byte fan1Pin = 4;
 byte fan2Pin = 9;
 
 /*
@@ -224,7 +224,7 @@ void loop() {
     Serial.print("\t");
     Serial.print(isSensor4Enabled);
     Serial.print("\t");
-    Serial.print(isSensor4Enabled);
+    Serial.print(isSensor5Enabled);
     Serial.print("\t");
     Serial.println(isSensor6Enabled);
     Serial.println("------------------------------------");
@@ -296,16 +296,24 @@ void loop() {
       } else if (str_data == "getTemp6") {
         server.write(dtostrf(temperature6, 0, 2, stringBuffer));
       } else if (str_data == "getFan1") {
-        if (fan1State == true) {
-          server.write("f1on");
-        } else {
-          server.write("f1off");
+        if(isFan1Enabled){
+          if (fan1State == true) {
+            server.write("f1on");
+          } else {
+            server.write("f1off");
+          }
+        }else{
+          server.write("f1nc");
         }
       } else if (str_data == "getFan2") {
-        if (fan2State == true) {
-          server.write("f2on");
-        } else {
-          server.write("f2off");
+        if(isFan2Enabled){
+          if (fan2State == true) {
+            server.write("f2on");
+          } else {
+            server.write("f2off");
+          }
+        }else{
+          server.write("f2nc");
         }
       } else if (str_data == "setFan1On") {
         //Fan 1 ON

@@ -56,8 +56,10 @@ namespace IotTemperatureWatcher
 
 		Platform::String^ _TEXTFAN1ON = "Fan 1 Top - running";
 		Platform::String^ _TEXTFAN1OFF = "Fan 1 Top - not running";
+		Platform::String^ _TEXTFAN1NC = "Fan 1 Top - not connected";
 		Platform::String^ _TEXTFAN2ON = "Fan 2 Top - running";
 		Platform::String^ _TEXTFAN2OFF = "Fan 2 Top - not running";
+		Platform::String^ _TEXTFAN2NC = "Fan 2 Top - not connected";
 		Platform::String^ _TEXTUPPERTEMP1 = "Upper Temperature1: ";
 		Platform::String^ _TEXTUPPERTEMP1V2 = "Upper Temperature1 Fan2: ";
 		Platform::String^ _TEXTLOWERTEMP1 = "Lower Temperature1: ";

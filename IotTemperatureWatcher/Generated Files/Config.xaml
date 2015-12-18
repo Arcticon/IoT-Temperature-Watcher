@@ -999,20 +999,20 @@
 
                     <!--FAN-->
 
-                    <ComboBox x:ConnectionId='33' x:Name="comboBoxFan" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" SelectedItem="comboBoxItem1" Visibility="Visible">
+                    <ComboBox x:ConnectionId='33' x:Name="comboBoxFan" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible">
                         <ComboBoxItem x:ConnectionId='66' x:Name="comboBoxItemFan1" Visibility="Visible">Fan 1</ComboBoxItem>
                         <ComboBoxItem x:ConnectionId='67' x:Name="comboBoxItemFan2" Visibility="Visible">Fan 2</ComboBoxItem>
                     </ComboBox>
 
                     <!--SENSOR-->
 
-                    <ComboBox x:ConnectionId='34' x:Name="comboBoxSensor" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" SelectedItem="comboBoxItem1" Visibility="Visible">
-                        <ComboBoxItem x:ConnectionId='60' x:Name="comboBoxItemSensor1" Visibility="Visible">Sensor 1</ComboBoxItem>
-                        <ComboBoxItem x:ConnectionId='61' x:Name="comboBoxItemSensor2" Visibility="Visible">Sensor 2</ComboBoxItem>
-                        <ComboBoxItem x:ConnectionId='62' x:Name="comboBoxItemSensor3" Visibility="Visible">Sensor 3</ComboBoxItem>
-                        <ComboBoxItem x:ConnectionId='63' x:Name="comboBoxItemSensor4" Visibility="Visible">Sensor 4</ComboBoxItem>
-                        <ComboBoxItem x:ConnectionId='64' x:Name="comboBoxItemSensor5" Visibility="Visible">Sensor 5</ComboBoxItem>
-                        <ComboBoxItem x:ConnectionId='65' x:Name="comboBoxItemSensor6" Visibility="Visible">Sensor 6</ComboBoxItem>
+                    <ComboBox x:ConnectionId='34' x:Name="comboBoxSensor" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible">
+                        <ComboBoxItem x:ConnectionId='60' x:Name="comboBoxItemSensor1" Visibility="Visible">STL</ComboBoxItem>
+                        <ComboBoxItem x:ConnectionId='61' x:Name="comboBoxItemSensor2" Visibility="Visible">SCL</ComboBoxItem>
+                        <ComboBoxItem x:ConnectionId='62' x:Name="comboBoxItemSensor3" Visibility="Visible">SBL</ComboBoxItem>
+                        <ComboBoxItem x:ConnectionId='63' x:Name="comboBoxItemSensor4" Visibility="Visible">STR</ComboBoxItem>
+                        <ComboBoxItem x:ConnectionId='64' x:Name="comboBoxItemSensor5" Visibility="Visible">SCR</ComboBoxItem>
+                        <ComboBoxItem x:ConnectionId='65' x:Name="comboBoxItemSensor6" Visibility="Visible">SBR</ComboBoxItem>
                     </ComboBox>
 
                     <!--THRESHOLDS-->

@@ -999,20 +999,20 @@
 
                     <!--FAN-->
 
-                    <ComboBox x:Name="comboBoxFan" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" SelectedItem="comboBoxItem1" Visibility="Visible">
+                    <ComboBox x:Name="comboBoxFan" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible">
                         <ComboBoxItem x:Name="comboBoxItemFan1" Visibility="Visible">Fan 1</ComboBoxItem>
                         <ComboBoxItem x:Name="comboBoxItemFan2" Visibility="Visible">Fan 2</ComboBoxItem>
                     </ComboBox>
 
                     <!--SENSOR-->
 
-                    <ComboBox x:Name="comboBoxSensor" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" SelectedItem="comboBoxItem1" Visibility="Visible">
-                        <ComboBoxItem x:Name="comboBoxItemSensor1" Visibility="Visible">Sensor 1</ComboBoxItem>
-                        <ComboBoxItem x:Name="comboBoxItemSensor2" Visibility="Visible">Sensor 2</ComboBoxItem>
-                        <ComboBoxItem x:Name="comboBoxItemSensor3" Visibility="Visible">Sensor 3</ComboBoxItem>
-                        <ComboBoxItem x:Name="comboBoxItemSensor4" Visibility="Visible">Sensor 4</ComboBoxItem>
-                        <ComboBoxItem x:Name="comboBoxItemSensor5" Visibility="Visible">Sensor 5</ComboBoxItem>
-                        <ComboBoxItem x:Name="comboBoxItemSensor6" Visibility="Visible">Sensor 6</ComboBoxItem>
+                    <ComboBox x:Name="comboBoxSensor" HorizontalAlignment="Left" Margin="922,473,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible">
+                        <ComboBoxItem x:Name="comboBoxItemSensor1" Visibility="Visible">STL</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor2" Visibility="Visible">SCL</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor3" Visibility="Visible">SBL</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor4" Visibility="Visible">STR</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor5" Visibility="Visible">SCR</ComboBoxItem>
+                        <ComboBoxItem x:Name="comboBoxItemSensor6" Visibility="Visible">SBR</ComboBoxItem>
                     </ComboBox>
 
                     <!--THRESHOLDS-->

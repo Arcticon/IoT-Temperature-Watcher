@@ -33,6 +33,8 @@ char recvbuffer2[256];
 float floatBuffer2 = 0;
 long rc2 = 0;
 
+static bool connectionProblem = false;
+
 float avgTemp1 = 0;
 float avgTemp2 = 0;
 float avgTemp3 = 0;
@@ -133,7 +135,13 @@ float IotTemperatureWatcher::Overview::getDataFromServer(std::string str) {
 		closesocket(sConnect);
 
 		WSACleanup();
+
+		connectionProblem = true;
+
 		return 0;
+	}
+	else {
+		connectionProblem = false;
 	}
 
 
@@ -211,7 +219,13 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 		closesocket(sConnect);
 
 		WSACleanup();
+
+		connectionProblem = true;
+		
 		return "";
+	}
+	else {
+		connectionProblem = false;
 	}
 
 
@@ -245,21 +259,43 @@ std::string IotTemperatureWatcher::Overview::getDataFromServerToString(std::stri
 }
 
 void IotTemperatureWatcher::Overview::updateAll() {
-	avgTemp1 = getDataFromServer("dc01ro01ra01");
-	/*avgTemp2 = getDataFromServer("dc01ro01ra02");
-	avgTemp3 = getDataFromServer("dc01ro01ra03");
-	avgTemp4 = getDataFromServer("dc01ro01ra04");
-	avgTemp5 = getDataFromServer("dc01ro01ra05");
-	avgTemp6 = getDataFromServer("dc01ro01ra06");*/
+	if (!connectionProblem) {
+		buttonRackConfig1->IsEnabled = true;
+		buttonRackConfig2->IsEnabled = true;
+		buttonRackConfig3->IsEnabled = true;
+		buttonRackConfig4->IsEnabled = true;
+		buttonRackConfig5->IsEnabled = true;
+		buttonRackConfig6->IsEnabled = true;
 
-	textBlock1->Text = "Temp. Rack 1: " + avgTemp1 + " | Status: " + Config::getStatus(avgTemp1, 0) + " || " + "Temp. Rack 2: " + avgTemp2 + " | Status: " + Config::getStatus(avgTemp2, 0) + " || " + "Temp. Rack 3: " + avgTemp3 + " | Status: " + Config::getStatus(avgTemp3, 0) + " || " + "Temp. Rack 4: " + avgTemp4 + " | Status: " + Config::getStatus(avgTemp4, 0) + " || " + "Temp. Rack 5: " + avgTemp5 + " | Status: " + Config::getStatus(avgTemp5, 0) + " || " + "Temp. Rack 6: " + avgTemp6 + " | Status: " + Config::getStatus(avgTemp6, 0);
-	textBlock2->Text = textBlock1->Text;
-	textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + avgTemp1 + "\nStatus: " + Config::getStatus(avgTemp1, 0);
-	/*textBoxRackInfo2->Text = "Datacenter: 01 | Room: 01 | Rack: 02\nTemperature: " + avgTemp2 + "\nStatus: " + getStatus(avgTemp2);
-	textBoxRackInfo3->Text = "Datacenter: 01 | Room: 01 | Rack: 03\nTemperature: " + avgTemp3 + "\nStatus: " + getStatus(avgTemp3);
-	textBoxRackInfo4->Text = "Datacenter: 01 | Room: 01 | Rack: 04\nTemperature: " + avgTemp4 + "\nStatus: " + getStatus(avgTemp4);
-	textBoxRackInfo5->Text = "Datacenter: 01 | Room: 01 | Rack: 05\nTemperature: " + avgTemp5 + "\nStatus: " + getStatus(avgTemp5);
-	textBoxRackInfo6->Text = "Datacenter: 01 | Room: 01 | Rack: 06\nTemperature: " + avgTemp6 + "\nStatus: " + getStatus(avgTemp6);*/
+
+		avgTemp1 = getDataFromServer("dc01ro01ra01");
+		/*avgTemp2 = getDataFromServer("dc01ro01ra02");
+		avgTemp3 = getDataFromServer("dc01ro01ra03");
+		avgTemp4 = getDataFromServer("dc01ro01ra04");
+		avgTemp5 = getDataFromServer("dc01ro01ra05");
+		avgTemp6 = getDataFromServer("dc01ro01ra06");*/
+
+		textBlock1->Text = "Temp. Rack 1: " + avgTemp1 + " | Status: " + Config::getStatus(avgTemp1, 0) + " || " + "Temp. Rack 2: " + avgTemp2 + " | Status: " + Config::getStatus(avgTemp2, 0) + " || " + "Temp. Rack 3: " + avgTemp3 + " | Status: " + Config::getStatus(avgTemp3, 0) + " || " + "Temp. Rack 4: " + avgTemp4 + " | Status: " + Config::getStatus(avgTemp4, 0) + " || " + "Temp. Rack 5: " + avgTemp5 + " | Status: " + Config::getStatus(avgTemp5, 0) + " || " + "Temp. Rack 6: " + avgTemp6 + " | Status: " + Config::getStatus(avgTemp6, 0);
+		textBlock2->Text = textBlock1->Text;
+		textBoxRackInfo1->Text = "Datacenter: 01 | Room: 01 | Rack: 01\nTemperature: " + avgTemp1 + "\nStatus: " + Config::getStatus(avgTemp1, 0);
+		/*textBoxRackInfo2->Text = "Datacenter: 01 | Room: 01 | Rack: 02\nTemperature: " + avgTemp2 + "\nStatus: " + getStatus(avgTemp2);
+		textBoxRackInfo3->Text = "Datacenter: 01 | Room: 01 | Rack: 03\nTemperature: " + avgTemp3 + "\nStatus: " + getStatus(avgTemp3);
+		textBoxRackInfo4->Text = "Datacenter: 01 | Room: 01 | Rack: 04\nTemperature: " + avgTemp4 + "\nStatus: " + getStatus(avgTemp4);
+		textBoxRackInfo5->Text = "Datacenter: 01 | Room: 01 | Rack: 05\nTemperature: " + avgTemp5 + "\nStatus: " + getStatus(avgTemp5);
+		textBoxRackInfo6->Text = "Datacenter: 01 | Room: 01 | Rack: 06\nTemperature: " + avgTemp6 + "\nStatus: " + getStatus(avgTemp6);*/
+	}
+	else {
+		buttonRackConfig1->IsEnabled = false;
+		buttonRackConfig2->IsEnabled = false;
+		buttonRackConfig3->IsEnabled = false;
+		buttonRackConfig4->IsEnabled = false;
+		buttonRackConfig5->IsEnabled = false;
+		buttonRackConfig6->IsEnabled = false;
+
+
+		avgTemp1 = getDataFromServer("dc01ro01ra01");
+	}
+	
 }
 
 void IotTemperatureWatcher::Overview::getThresholds() {
